@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <style>
+    :root {
+      --bg-start: #0f172a;
+      --bg-end: #1e293b;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --danger: #b91c1c;
+      --success: #166534;
+      --track: #dbeafe;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(148, 163, 184, 0.28), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(45, 212, 191, 0.2), transparent 30%),
+        linear-gradient(140deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .profile-shell {
+      width: min(1000px, 100%);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+    }
+
+    .summary {
+      background: linear-gradient(165deg, #0f766e 0%, #115e59 100%);
+      color: #ecfeff;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 116px;
+      height: 116px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      background: #ffffff;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .meta {
+      width: 100%;
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      color: #ccfbf1;
+    }
+
+    .metric-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .metric {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      padding: 10px 8px;
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .metric-value {
+      display: block;
+      margin-top: 4px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: #d1fae5;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.25);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #a7f3d0, #ecfeff);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .badges {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .badge {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+      color: #f0fdfa;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .content {
+      padding: 30px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .quick-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .quick-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quick-value {
+      margin-top: 6px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
+    }
+
+    .actions {
+      margin-top: 8px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.12s ease, background 0.2s;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .save-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .save-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .logout-btn {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid var(--border);
+    }
+
+    .logout-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .status {
+      min-height: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    @media (max-width: 920px) {
+      .profile-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="profile-shell">
+    <section class="summary">
+      <img id="avatar" class="avatar" src="" alt="Profile image">
+      <h1 id="name" class="name">Loading...</h1>
+
+      <div class="meta">
+        <div id="email">Email: -</div>
+        <div id="phone">Phone: -</div>
+        <div id="age">Age: -</div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="metric-label">Level</span>
+          <span id="level" class="metric-value">-</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">XP</span>
+          <span id="xp" class="metric-value">-</span>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-head">
+          <span>Level Progress</span>
+          <span id="progressText">0 / 50 XP</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div id="badges" class="badges"></div>
+    </section>
+
+    <section class="content">
+      <h2 class="title">Profile Overview</h2>
+      <p class="subtitle">Keep your details updated and track your growth.</p>
+
+      <section class="quick-grid">
+        <article class="quick-card">
+          <div class="quick-label">XP To Next Level</div>
+          <div id="xpNext" class="quick-value">-</div>
+        </article>
+        <article class="quick-card">
+          <div class="quick-label">Current Tier</div>
+          <div id="tier" class="quick-value">-</div>
+        </article>
+        <article class="quick-card">
+          <div class="quick-label">Profile Status</div>
+          <div id="profileStatus" class="quick-value">Ready</div>
+        </article>
+      </section>
+
+      <form class="form" onsubmit="event.preventDefault(); updateProfile();">
+        <div class="field">
+          <label for="editName">Full Name</label>
+          <input id="editName" type="text" placeholder="Enter name" required>
+        </div>
+
+        <div class="field">
+          <label for="editPhone">Phone</label>
+          <input id="editPhone" type="text" placeholder="Enter phone number" required>
+        </div>
+
+        <div class="field">
+          <label for="editAge">Age</label>
+          <input id="editAge" type="number" min="0" placeholder="Enter age">
+        </div>
+
+        <div class="field">
+          <label for="editImage">Profile Image URL</label>
+          <input id="editImage" type="text" placeholder="https://example.com/photo.jpg">
+        </div>
+
+        <div class="actions">
+          <button id="saveBtn" class="save-btn" type="submit">Save Changes</button>
+          <button class="logout-btn" type="button" onclick="logout()">Logout</button>
+        </div>
+      </form>
+
+      <div id="status" class="status"></div>
+    </section>
+  </main>
+
+  <script>
+    const XP_PER_LEVEL = 50;
+
+    function setStatus(message, type) {
+      const status = document.getElementById("status");
+      status.textContent = message || "";
+      status.className = "status" + (type ? " " + type : "");
+    }
+
+    function toNumber(value, fallback) {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : fallback;
+    }
+
+    function tierFromLevel(level) {
+      if (level >= 10) return "Legend";
+      if (level >= 6) return "Pro";
+      if (level >= 3) return "Explorer";
+      return "Starter";
+    }
+
+    function badgesFromData(xp, age, phone, image) {
+      const badges = ["Starter"];
+      if (xp >= 100) badges.push("XP 100+");
+      if (xp >= 250) badges.push("Level Climber");
+      if (toNumber(age, 0) > 0) badges.push("Profile Age Set");
+      if (phone) badges.push("Phone Verified");
+      if (image) badges.push("Avatar Ready");
+      return badges;
+    }
+
+    function renderBadges(list) {
+      const container = document.getElementById("badges");
+      container.innerHTML = "";
+      list.forEach((text) => {
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = text;
+        container.appendChild(badge);
+      });
+    }
+
+    function applyProfile(data) {
+      const xp = toNumber(data.xp, 0);
+      const level = Math.max(0, toNumber(data.level, 0));
+      const progressRaw = toNumber(data.progress, xp % XP_PER_LEVEL);
+      const progress = Math.max(0, Math.min(XP_PER_LEVEL, progressRaw));
+      const toNext = progress === 0 ? XP_PER_LEVEL : XP_PER_LEVEL - progress;
+
+      document.getElementById("avatar").src = data.profileImage || "https://via.placeholder.com/120";
+      document.getElementById("name").textContent = data.name || "User";
+      document.getElementById("email").textContent = "Email: " + (data.email || "-");
+      document.getElementById("phone").textContent = "Phone: " + (data.phone || "-");
+      document.getElementById("age").textContent = "Age: " + (data.age ?? "-");
+      document.getElementById("level").textContent = String(level);
+      document.getElementById("xp").textContent = String(xp);
+
+      document.getElementById("progressText").textContent = progress + " / " + XP_PER_LEVEL + " XP";
+      document.getElementById("progressFill").style.width = (progress / XP_PER_LEVEL) * 100 + "%";
+
+      document.getElementById("xpNext").textContent = toNext + " XP";
+      document.getElementById("tier").textContent = tierFromLevel(level);
+      document.getElementById("profileStatus").textContent = data.name && data.phone ? "Complete" : "In Progress";
+
+      renderBadges(badgesFromData(xp, data.age, data.phone, data.profileImage));
+
+      document.getElementById("editName").value = data.name || "";
+      document.getElementById("editPhone").value = data.phone || "";
+      document.getElementById("editAge").value = data.age ?? "";
+      document.getElementById("editImage").value = data.profileImage || "";
+    }
+
+    setStatus("Loading profile...", "");
+
+    fetch("/api/dashboard", { credentials: "include" })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = "/auth";
+          return null;
+        }
+        if (!res.ok) throw new Error("Failed to load profile");
+        return res.json();
+      })
+      .then((data) => {
+        if (!data) return;
+        applyProfile(data);
+        setStatus("", "");
+      })
+      .catch((error) => {
+        setStatus(error.message || "Unable to load profile.", "error");
+      });
+
+    function updateProfile() {
+      const saveBtn = document.getElementById("saveBtn");
+      const bodyData = {
+        name: document.getElementById("editName").value.trim(),
+        phone: document.getElementById("editPhone").value.trim(),
+        age: document.getElementById("editAge").value.trim(),
+        profileImage: document.getElementById("editImage").value.trim()
+      };
+
+      saveBtn.disabled = true;
+      setStatus("Saving changes...", "");
+
+      fetch("/api/auth/profile", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bodyData)
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.message || "Update failed");
+          }
+          return data;
+        })
+        .then((data) => {
+          if (data.user) {
+            applyProfile({
+              ...data.user,
+              level: Number.isFinite(Number(data.user.level)) ? Number(data.user.level) : 0,
+              xp: Number.isFinite(Number(data.user.xp)) ? Number(data.user.xp) : 0
+            });
+          }
+          setStatus("Profile updated successfully.", "success");
+        })
+        .catch((error) => {
+          setStatus(error.message || "Something went wrong.", "error");
+        })
+        .finally(() => {
+          saveBtn.disabled = false;
+        });
+    }
+
+    async function logout() {
+      try {
+        await fetch("/api/auth/logout", {
+          method: "POST",
+          credentials: "include"
+        });
+      } catch (error) {
+      }
+      window.location.href = "/auth";
+    }
+  </script>
+</body>
+</html>

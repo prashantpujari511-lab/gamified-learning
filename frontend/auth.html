@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Access</title>
+  <style>
+    :root {
+      --bg-start: #0f172a;
+      --bg-end: #1e293b;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --secondary: #f8fafc;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+      --danger: #b91c1c;
+      --success: #166534;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(148, 163, 184, 0.28), transparent 35%),
+        radial-gradient(circle at 80% 85%, rgba(45, 212, 191, 0.2), transparent 30%),
+        linear-gradient(140deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .auth-card {
+      width: min(460px, 100%);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.12s ease;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .mode-btn {
+      background: var(--secondary);
+      color: #0f172a;
+      border: 1px solid var(--border);
+    }
+
+    .mode-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .home-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="auth-card">
+    <h1 id="formTitle" class="title">Login</h1>
+    <p id="formSubtitle" class="subtitle">Access your account and continue learning.</p>
+
+    <form class="form" onsubmit="event.preventDefault(); handleSubmit();">
+      <div id="nameField" class="field hidden">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter full name">
+      </div>
+
+      <div id="phoneField" class="field hidden">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" placeholder="Enter phone number">
+      </div>
+
+      <div id="profileImageField" class="field hidden">
+        <label for="profileImage">Profile Image URL</label>
+        <input type="text" id="profileImage" placeholder="https://example.com/photo.jpg">
+      </div>
+
+      <div id="ageField" class="field hidden">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="0" placeholder="Enter age">
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter email" required>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <div class="actions">
+        <button id="submitBtn" class="submit-btn" type="submit">Login</button>
+        <button id="switchBtn" class="mode-btn" type="button" onclick="toggleForm()">
+          Need an account? Register
+        </button>
+      </div>
+    </form>
+
+    <div id="status" class="status"></div>
+    <a class="home-link" href="/">Back to Home</a>
+  </main>
+
+  <script>
+    fetch("/api/dashboard", { credentials: "include" })
+      .then((res) => {
+        if (res.ok) {
+          window.location.href = "/profile";
+        }
+      })
+      .catch(() => {});
+
+    let isLogin = true;
+
+    function setStatus(message, type) {
+      const status = document.getElementById("status");
+      status.textContent = message || "";
+      status.className = "status" + (type ? " " + type : "");
+    }
+
+    function syncMode() {
+      document.getElementById("formTitle").textContent = isLogin ? "Login" : "Register";
+      document.getElementById("formSubtitle").textContent = isLogin
+        ? "Access your account and continue learning."
+        : "Create your account to start your progress.";
+      document.getElementById("submitBtn").textContent = isLogin ? "Login" : "Create Account";
+      document.getElementById("switchBtn").textContent = isLogin
+        ? "Need an account? Register"
+        : "Already have an account? Login";
+
+      document.getElementById("nameField").classList.toggle("hidden", isLogin);
+      document.getElementById("phoneField").classList.toggle("hidden", isLogin);
+      document.getElementById("profileImageField").classList.toggle("hidden", isLogin);
+      document.getElementById("ageField").classList.toggle("hidden", isLogin);
+      setStatus("", "");
+    }
+
+    function toggleForm() {
+      isLogin = !isLogin;
+      syncMode();
+    }
+
+    const mode = new URLSearchParams(window.location.search).get("mode");
+    if (mode === "register") {
+      isLogin = false;
+    }
+    syncMode();
+
+    async function handleSubmit() {
+      const submitBtn = document.getElementById("submitBtn");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password) {
+        setStatus("Email and password are required.", "error");
+        return;
+      }
+
+      const url = isLogin ? "/api/auth/login" : "/api/auth/register";
+      let bodyData = { email, password };
+
+      if (!isLogin) {
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const profileImage = document.getElementById("profileImage").value.trim();
+        const age = document.getElementById("age").value.trim();
+
+        if (!name || !phone) {
+          setStatus("Name and phone are required for registration.", "error");
+          return;
+        }
+
+        bodyData = { name, email, phone, password, profileImage, age };
+      }
+
+      submitBtn.disabled = true;
+      setStatus(isLogin ? "Signing in..." : "Creating account...", "");
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bodyData)
+        });
+
+        const data = await res.json();
+
+        if (isLogin) {
+          if (res.ok) {
+            window.location.href = "/profile";
+            return;
+          }
+          setStatus(data.message || "Login failed.", "error");
+        } else {
+          if (res.ok) {
+            setStatus("Registration successful. Please login.", "success");
+            isLogin = true;
+            syncMode();
+          } else {
+            setStatus(data.message || "Registration failed.", "error");
+          }
+        }
+      } catch (error) {
+        setStatus("Something went wrong. Please try again.", "error");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

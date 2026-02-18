@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Learning</title>
+  <style>
+    :root {
+      --bg-start: #0f172a;
+      --bg-end: #1e293b;
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --secondary: #f8fafc;
+      --secondary-text: #0f172a;
+      --muted: #cbd5e1;
+      --card-border: rgba(255, 255, 255, 0.18);
+      --card-bg: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #e2e8f0;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(148, 163, 184, 0.3), transparent 35%),
+        radial-gradient(circle at 78% 78%, rgba(45, 212, 191, 0.24), transparent 34%),
+        linear-gradient(140deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .hero {
+      width: min(940px, 100%);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      padding: 44px;
+      box-shadow: 0 20px 50px rgba(2, 6, 23, 0.3);
+      display: grid;
+      gap: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 12px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ccfbf1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.5vw, 56px);
+      line-height: 1.06;
+      color: #f8fafc;
+      max-width: 760px;
+    }
+
+    p {
+      margin: 0;
+      font-size: clamp(16px, 2.4vw, 20px);
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.2s, opacity 0.2s;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .login-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .login-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .register-btn {
+      background: var(--secondary);
+      color: var(--secondary-text);
+    }
+
+    .register-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .floating {
+      position: fixed;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.55;
+      animation: floatDown linear forwards;
+      font-size: 24px;
+    }
+
+    @keyframes floatDown {
+      from {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(110vh) rotate(25deg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <span class="badge">Gamified Platform</span>
+    <h1>Learn with momentum. Track progress like a game.</h1>
+    <p>Sign in to continue your journey, earn XP, and keep building your profile as you level up.</p>
+
+    <div class="actions">
+      <button class="login-btn" onclick="goLogin()">Login</button>
+      <button class="register-btn" onclick="goRegister()">Register</button>
+    </div>
+  </main>
+
+  <script>
+    fetch("/api/dashboard", { credentials: "include" })
+      .then((res) => {
+        if (res.ok) {
+          window.location.href = "/profile";
+        }
+      })
+      .catch(() => {});
+
+    function goLogin() {
+      window.location.href = "/auth?mode=login";
+    }
+
+    function goRegister() {
+      window.location.href = "/auth?mode=register";
+    }
+
+    const symbols = ["*","<>","{}","+","//","XP","UP"];
+
+    function createFloatingSymbol() {
+      const item = document.createElement("span");
+      item.className = "floating";
+      item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.animationDuration = 5 + Math.random() * 4 + "s";
+      document.body.appendChild(item);
+      setTimeout(() => item.remove(), 9500);
+    }
+
+    setInterval(createFloatingSymbol, 700);
+  </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    :root {
+      --bg-start: #0f172a;
+      --bg-end: #1e293b;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(148, 163, 184, 0.28), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(45, 212, 191, 0.2), transparent 30%),
+        linear-gradient(140deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .dashboard {
+      width: min(860px, 100%);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+
+    .summary {
+      padding: 24px;
+      background: linear-gradient(165deg, #0f766e 0%, #115e59 100%);
+      color: #ecfeff;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .mini {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ccfbf1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .sub {
+      margin: 0;
+      font-size: 14px;
+      color: #d1fae5;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+      color: #f0fdfa;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .main {
+      padding: 26px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .muted {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+    }
+
+    .stat-value {
+      margin-top: 6px;
+      font-size: 21px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .progress-wrap {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #dbeafe;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #14b8a6, #0f766e);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.2s;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .profile-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .profile-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .logout-btn {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid var(--border);
+    }
+
+    .logout-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .status {
+      min-height: 20px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .status.error {
+      color: #b91c1c;
+    }
+
+    @media (max-width: 860px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <section class="summary">
+      <div class="mini">Player Dashboard</div>
+      <h1 id="welcome">Loading...</h1>
+      <p class="sub">Track your level journey and keep the streak alive.</p>
+      <div class="chips">
+        <span id="tierChip" class="chip">Tier -</span>
+        <span id="nextChip" class="chip">Next -</span>
+      </div>
+    </section>
+
+    <section class="main">
+      <h2 class="title">Progress Snapshot</h2>
+      <p class="muted">Your current learning stats from this account.</p>
+
+      <div class="stats">
+        <article class="stat">
+          <div class="stat-label">Level</div>
+          <div id="level" class="stat-value">-</div>
+        </article>
+        <article class="stat">
+          <div class="stat-label">Total XP</div>
+          <div id="xp" class="stat-value">-</div>
+        </article>
+        <article class="stat">
+          <div class="stat-label">XP To Next</div>
+          <div id="toNext" class="stat-value">-</div>
+        </article>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-head">
+          <span>Level Progress</span>
+          <span id="progressText">0 / 50 XP</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="profile-btn" type="button" onclick="goProfile()">View Profile</button>
+        <button class="logout-btn" type="button" onclick="logout()">Logout</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </section>
+  </main>
+
+  <script>
+    const XP_PER_LEVEL = 50;
+
+    function tierFromLevel(level) {
+      if (level >= 10) return "Legend";
+      if (level >= 6) return "Pro";
+      if (level >= 3) return "Explorer";
+      return "Starter";
+    }
+
+    function setStatus(message, isError) {
+      const status = document.getElementById("status");
+      status.textContent = message || "";
+      status.className = "status" + (isError ? " error" : "");
+    }
+
+    setStatus("Loading dashboard...", false);
+
+    fetch("/api/dashboard", { credentials: "include" })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = "/auth";
+          return null;
+        }
+        if (!res.ok) throw new Error("Failed to load dashboard");
+        return res.json();
+      })
+      .then((data) => {
+        if (!data) return;
+
+        const xp = Number.isFinite(Number(data.xp)) ? Number(data.xp) : 0;
+        const level = Number.isFinite(Number(data.level))
+          ? Math.max(0, Number(data.level))
+          : 0;
+        const rawProgress = Number.isFinite(Number(data.progress))
+          ? Number(data.progress)
+          : xp % XP_PER_LEVEL;
+        const progress = Math.max(0, Math.min(XP_PER_LEVEL, rawProgress));
+        const toNext = progress === 0 ? XP_PER_LEVEL : XP_PER_LEVEL - progress;
+        const percent = (progress / XP_PER_LEVEL) * 100;
+
+        document.getElementById("welcome").innerText = "Welcome, " + (data.name || "Player") + "!";
+        document.getElementById("level").innerText = String(level);
+        document.getElementById("xp").innerText = String(xp);
+        document.getElementById("toNext").innerText = toNext + " XP";
+        document.getElementById("progressText").innerText = progress + " / " + XP_PER_LEVEL + " XP";
+        document.getElementById("progress").style.width = percent + "%";
+        document.getElementById("tierChip").innerText = "Tier " + tierFromLevel(level);
+        document.getElementById("nextChip").innerText = "Next " + toNext + " XP";
+
+        setStatus("", false);
+      })
+      .catch((error) => {
+        setStatus(error.message || "Unable to load dashboard.", true);
+      });
+
+    function goProfile() {
+      window.location.href = "/profile";
+    }
+
+    async function logout() {
+      try {
+        await fetch("/api/auth/logout", {
+          method: "POST",
+          credentials: "include"
+        });
+      } catch (error) {
+      }
+      window.location.href = "/";
+    }
+  </script>
+</body>
+</html>
