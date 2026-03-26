@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High School Games</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel-2: #0d1117;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --accent: #2f81f7;
+      --good: #3fb950;
+      --warn: #d29922;
+      --danger: #f85149;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 6% 8%, rgba(47, 129, 247, 0.12), transparent 32%),
+        radial-gradient(circle at 95% 90%, rgba(63, 185, 80, 0.12), transparent 28%),
+        var(--bg);
+      padding: 16px;
+    }
+
+    .shell {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 20%), var(--panel-2);
+    }
+
+    .top {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #010409;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .top p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #21262d;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #30363d;
+    }
+
+    .main {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .main.in-game {
+      grid-template-columns: 1fr;
+    }
+
+    .main.in-game .panel:first-child {
+      display: none;
+    }
+
+    .main.in-game .play-area {
+      min-height: calc(100vh - 220px);
+      align-content: start;
+    }
+
+    .main.in-game .question {
+      font-size: clamp(26px, 4.5vw, 44px);
+      text-align: center;
+      margin: 8px auto 0;
+      max-width: 900px;
+    }
+
+    .main.in-game #answerZone {
+      width: min(860px, 100%);
+      margin: 0 auto;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 12px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .games {
+      display: grid;
+      gap: 10px;
+    }
+
+    .game-card {
+      border: 1px solid var(--border);
+      background: #0d1117;
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .game-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .game-title {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .badge {
+      border: 1px solid #3a4550;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      color: #c9d1d9;
+    }
+
+    .play-area {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #0d1117;
+      padding: 10px;
+    }
+
+    .active-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .timer.warn {
+      color: var(--warn);
+    }
+
+    .timer.danger {
+      color: var(--danger);
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .answer-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .next-level-row {
+      justify-content: flex-end;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #161b22;
+      color: var(--text);
+      padding: 9px 10px;
+      font-size: 14px;
+      min-width: 180px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .next-level-btn {
+      border: 1px solid #2ea043;
+      background: #238636;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .next-level-btn:hover {
+      background: #2ea043;
+    }
+
+    .status {
+      min-height: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--good);
+    }
+
+    .reward {
+      border: 1px solid #2ea043;
+      background: rgba(46, 160, 67, 0.12);
+      color: #aff5b4;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    @media (max-width: 950px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div>
+        <h1>High School Games (9th-12th)</h1>
+        <p>Unlimited levels, coding and science challenges, timer stars, rewards, and auto-save.</p>
+      </div>
+      <div class="top-actions">
+        <button type="button" onclick="goDashboard()">Dashboard</button>
+        <button type="button" onclick="goProfile()">Profile</button>
+      </div>
+    </header>
+
+    <section id="mainLayout" class="main">
+      <section class="panel">
+        <h2 id="gamesPanelTitle">Games</h2>
+        <div id="games" class="games"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Play Area</h2>
+        <section id="playArea" class="play-area">
+          <div class="active-head">
+            <div id="activeTitle">Select a game to start</div>
+            <div id="timer" class="timer">00s</div>
+          </div>
+          <div id="question" class="question">Your challenge will appear here.</div>
+          <div id="answerZone"></div>
+          <div id="reward" class="reward"></div>
+          <div id="playStatus" class="status"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const GAME_CONFIG = {
+      physics_formula_rush: { title: "Physics Formula Rush", baseTime: 50 },
+      quant_challenge: { title: "Quant Challenge", baseTime: 47 },
+      speed_math_arena: { title: "Speed Math Arena", baseTime: 44 },
+      physics_simulation_game: { title: "Physics Simulation Game", baseTime: 52 },
+      cyber_security_escape_room: { title: "Cyber Security Escape Room", baseTime: 55 },
+      science_battle_grid: { title: "Science Battle Grid", baseTime: 51 },
+      coding_challenge_arena: { title: "Coding Challenge Arena", baseTime: 58 },
+      word_logic_sprint: { title: "Word Logic Sprint", baseTime: 46 },
+      language_analyzer: { title: "Language Analyzer", baseTime: 49 }
+    };
+    const requestedGameId = new URLSearchParams(window.location.search).get("game");
+    const lockedGameId = requestedGameId && GAME_CONFIG[requestedGameId] ? requestedGameId : "";
+    const GIFTS = [
+      "Dev Power Badge",
+      "Cyber Shield Token",
+      "Physics Pro Medal",
+      "Quantum Coin",
+      "Innovation Crown"
+    ];
+
+    const state = {
+      progress: {},
+      activeGameId: "",
+      activeLevel: 1,
+      expectedAnswer: "",
+      answerType: "text",
+      options: [],
+      wrongAttempts: 0,
+      startedAt: 0,
+      timeLeft: 0,
+      timeLimit: 0,
+      timerRef: null
+    };
+
+    function setPlayStatus(message, type) {
+      const el = document.getElementById("playStatus");
+      el.textContent = message || "";
+      el.className = "status" + (type ? " " + type : "");
+    }
+
+    function pickRandom(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function setFullQuestionView(enabled) {
+      const layout = document.getElementById("mainLayout");
+      if (!layout) return;
+      layout.classList.toggle("in-game", !!enabled);
+    }
+
+    function buildAnswerSuggestion() {
+      const expected = String(state.expectedAnswer || "").trim();
+      if (!expected) {
+        return "Hint: solve it step by step.";
+      }
+
+      if (/^-?\d+(\.\d+)?$/.test(expected)) {
+        const value = Number(expected);
+        const low = Math.floor(value - 2);
+        const high = Math.ceil(value + 2);
+        return `Hint: answer is between ${low} and ${high}.`;
+      }
+
+      if (state.answerType === "options") {
+        const first = expected.charAt(0);
+        return first
+          ? `Hint: correct option starts with "${first}".`
+          : "Hint: read all options carefully.";
+      }
+
+      const first = expected.charAt(0);
+      return first
+        ? `Hint: answer starts with "${first}" and has ${expected.length} characters.`
+        : "Hint: read the question carefully.";
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const t = copy[i];
+        copy[i] = copy[j];
+        copy[j] = t;
+      }
+      return copy;
+    }
+
+    function buildGamesList() {
+      const container = document.getElementById("games");
+      const panelTitle = document.getElementById("gamesPanelTitle");
+      container.innerHTML = "";
+      panelTitle.textContent = lockedGameId ? GAME_CONFIG[lockedGameId].title : "Games";
+
+      const gameIds = lockedGameId ? [lockedGameId] : Object.keys(GAME_CONFIG);
+      gameIds.forEach((gameId) => {
+        const progress = state.progress[gameId] || { currentLevel: 1, bestStars: 0, totalStars: 0 };
+        const card = document.createElement("article");
+        card.className = "game-card";
+        card.innerHTML = `
+          <div class="game-head">
+            <h3 class="game-title">${GAME_CONFIG[gameId].title}</h3>
+            <span class="badge">Level ${progress.currentLevel}</span>
+          </div>
+          <div class="mini">Best Stars: ${progress.bestStars} | Total Stars: ${progress.totalStars}</div>
+          <button type="button" data-game-id="${gameId}">Play Level ${progress.currentLevel}</button>
+        `;
+        container.appendChild(card);
+      });
+
+      container.querySelectorAll("button[data-game-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const gameId = btn.getAttribute("data-game-id");
+          startGame(gameId);
+        });
+      });
+    }
+
+    function updateTimerUI() {
+      const timer = document.getElementById("timer");
+      timer.textContent = `${Math.max(0, state.timeLeft)}s`;
+      timer.className = "timer";
+      if (state.timeLeft <= Math.floor(state.timeLimit * 0.4)) timer.classList.add("warn");
+      if (state.timeLeft <= Math.floor(state.timeLimit * 0.2)) timer.classList.add("danger");
+    }
+
+    function stopTimer() {
+      if (state.timerRef) {
+        clearInterval(state.timerRef);
+        state.timerRef = null;
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      updateTimerUI();
+      state.timerRef = setInterval(() => {
+        state.timeLeft -= 1;
+        updateTimerUI();
+        if (state.timeLeft <= 0) {
+          stopTimer();
+          setPlayStatus("Time is over. Try this level again.", "error");
+          renderAnswerZone();
+        }
+      }, 1000);
+    }
+
+    function limitForLevel(gameId, level) {
+      const base = GAME_CONFIG[gameId].baseTime;
+      const reduced = base - Math.min(24, Math.floor(level * 1.5));
+      return Math.max(12, reduced);
+    }
+
+    function generateCoding(level) {
+      const mode = level >= 6 ? pickRandom(["expr", "mod", "loop"]) : "expr";
+
+      if (mode === "expr") {
+        const a = 3 + Math.floor(Math.random() * (6 + level * 2));
+        const b = 2 + Math.floor(Math.random() * (5 + level));
+        const op = level >= 4 ? pickRandom(["+", "-", "*"]) : "+";
+        let answer = 0;
+        if (op === "+") answer = a + b;
+        if (op === "-") answer = a - b;
+        if (op === "*") answer = a * b;
+
+        return {
+          question: `Output of: const a=${a}; const b=${b}; console.log(a ${op} b);`,
+          answer: String(answer),
+          type: "text",
+          options: []
+        };
+      }
+
+      if (mode === "mod") {
+        const a = 20 + Math.floor(Math.random() * (25 + level * 2));
+        const b = 3 + Math.floor(Math.random() * 6);
+        return {
+          question: `Output of: console.log(${a} % ${b});`,
+          answer: String(a % b),
+          type: "text",
+          options: []
+        };
+      }
+
+      const n = 3 + Math.floor(Math.random() * Math.min(8, 2 + level));
+      const answer = (n * (n + 1)) / 2;
+      return {
+        question: `If code sums numbers 1 to ${n}, what value is printed?`,
+        answer: String(answer),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generateCyber(level) {
+      const scenarios = [
+        {
+          question: "Which password is strongest?",
+          answer: "Q7#vL2!mN9",
+          options: ["password123", "letmein", "Q7#vL2!mN9", "12345678"]
+        },
+        {
+          question: "Which is a clear phishing sign?",
+          answer: "Urgent link asking login details",
+          options: ["Official domain spelling", "Urgent link asking login details", "Valid SSL lock", "Expected sender and context"]
+        },
+        {
+          question: "Best way to add account security?",
+          answer: "Enable two-factor authentication",
+          options: ["Share password with friend", "Use same password everywhere", "Enable two-factor authentication", "Disable OTP prompts"]
+        },
+        {
+          question: "Safer protocol for websites is:",
+          answer: "HTTPS",
+          options: ["FTP", "HTTP", "TELNET", "HTTPS"]
+        }
+      ];
+
+      const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
+      if (level >= 8) {
+        pick.options = shuffle(pick.options);
+      }
+
+      return {
+        question: pick.question,
+        answer: pick.answer,
+        type: "options",
+        options: shuffle(pick.options)
+      };
+    }
+
+    function generatePhysics(level) {
+      const mode = pickRandom(["force", "speed", "work"]);
+
+      if (mode === "force") {
+        const mass = 2 + Math.floor(Math.random() * (4 + Math.floor(level / 2)));
+        const accel = 3 + Math.floor(Math.random() * (3 + Math.floor(level / 3)));
+        return {
+          question: `Find force: mass=${mass} kg, acceleration=${accel} m/s^2. (F = m*a)`,
+          answer: String(mass * accel),
+          type: "text",
+          options: []
+        };
+      }
+
+      if (mode === "speed") {
+        const time = 2 + Math.floor(Math.random() * 5);
+        const speed = 6 + Math.floor(Math.random() * (6 + Math.floor(level / 2)));
+        const distance = speed * time;
+        return {
+          question: `Find speed: distance=${distance} m in ${time} s. (v = d/t)`,
+          answer: String(speed),
+          type: "text",
+          options: []
+        };
+      }
+
+      const force = 5 + Math.floor(Math.random() * (6 + Math.floor(level / 2)));
+      const distance = 2 + Math.floor(Math.random() * 8);
+      return {
+        question: `Find work: force=${force} N over distance=${distance} m. (W = F*d)`,
+        answer: String(force * distance),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generatePhysicsFormulaRush(level) {
+      const mode = pickRandom(["acceleration", "density", "power"]);
+
+      if (mode === "acceleration") {
+        const start = Math.floor(Math.random() * 6);
+        const time = 2 + Math.floor(Math.random() * 5);
+        const acceleration = 2 + Math.floor(Math.random() * (5 + Math.floor(level / 3)));
+        const end = start + acceleration * time;
+        return {
+          question: `Formula Rush: u=${start} m/s, v=${end} m/s, t=${time} s. Find a = (v-u)/t`,
+          answer: String(acceleration),
+          type: "text",
+          options: []
+        };
+      }
+
+      if (mode === "density") {
+        const density = 3 + Math.floor(Math.random() * 9);
+        const volume = 20 + Math.floor(Math.random() * 25);
+        return {
+          question: `Formula Rush: mass=${density * volume} g, volume=${volume} cm^3. Density (m/v)?`,
+          answer: String(density),
+          type: "text",
+          options: []
+        };
+      }
+
+      const power = 12 + Math.floor(Math.random() * 20);
+      const time = 4 + Math.floor(Math.random() * 8);
+      return {
+        question: `Formula Rush: Work=${power * time} J in ${time} s. Power (P = W/t)?`,
+        answer: String(power),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generateQuantChallenge(level) {
+      const mode = level >= 6 ? pickRandom(["percent", "ratio", "average"]) : pickRandom(["percent", "ratio"]);
+
+      if (mode === "percent") {
+        const value = 200 + Math.floor(Math.random() * (400 + level * 20));
+        const percent = pickRandom([10, 15, 20, 25, 30]);
+        return {
+          question: `Quant: What is ${percent}% of ${value}?`,
+          answer: String((value * percent) / 100),
+          type: "text",
+          options: []
+        };
+      }
+
+      if (mode === "ratio") {
+        const a = 2 + Math.floor(Math.random() * 8);
+        const b = 2 + Math.floor(Math.random() * 8);
+        const factor = 2 + Math.floor(Math.random() * 6);
+        return {
+          question: `Quant: If ratio is ${a}:${b} and second value is ${b * factor}, first value is?`,
+          answer: String(a * factor),
+          type: "text",
+          options: []
+        };
+      }
+
+      const x = 30 + Math.floor(Math.random() * 25);
+      const y = 40 + Math.floor(Math.random() * 25);
+      const sumXY = x + y;
+      const targetAverage = 30 + Math.floor(Math.random() * 40);
+      const z = targetAverage * 3 - sumXY;
+      return {
+        question: `Quant: Average of ${x}, ${y}, and ${z} is?`,
+        answer: String((x + y + z) / 3),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generateSpeedMathArena(level) {
+      const a = 15 + Math.floor(Math.random() * (25 + level * 2));
+      const b = 5 + Math.floor(Math.random() * (16 + level));
+      const c = 2 + Math.floor(Math.random() * 8);
+      const mode = level >= 7 ? pickRandom(["expr", "sequence", "compare"]) : "expr";
+
+      if (mode === "expr") {
+        const question = `Speed Math: (${a} + ${b}) x ${c} - ${b} = ?`;
+        const answer = (a + b) * c - b;
+        return { question, answer: String(answer), type: "text", options: [] };
+      }
+
+      if (mode === "sequence") {
+        const start = 3 + Math.floor(Math.random() * 8);
+        const step = 2 + Math.floor(Math.random() * 5);
+        const seq = [start, start + step, start + step * 2, start + step * 3];
+        return {
+          question: `Speed Sequence: ${seq.join(", ")}, ?`,
+          answer: String(start + step * 4),
+          type: "text",
+          options: []
+        };
+      }
+
+      return {
+        question: `Speed Compare: ${a * c} __ ${b * c + a} (type >, <, or =)`,
+        answer: a * c === b * c + a ? "=" : (a * c > b * c + a ? ">" : "<"),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generateScienceBattleGrid(level) {
+      const pool = [
+        {
+          question: "Which particle has a negative charge?",
+          answer: "Electron",
+          options: ["Neutron", "Proton", "Electron", "Photon"]
+        },
+        {
+          question: "What is the SI unit of electric current?",
+          answer: "Ampere",
+          options: ["Volt", "Ohm", "Ampere", "Watt"]
+        },
+        {
+          question: "Plant food-making process is called:",
+          answer: "Photosynthesis",
+          options: ["Respiration", "Photosynthesis", "Fermentation", "Transpiration"]
+        },
+        {
+          question: "pH value below 7 indicates:",
+          answer: "Acidic",
+          options: ["Neutral", "Basic", "Acidic", "Salty"]
+        }
+      ];
+
+      const picked = { ...pickRandom(pool) };
+      if (level >= 7) picked.options = shuffle(picked.options);
+      return {
+        question: picked.question,
+        answer: picked.answer,
+        type: "options",
+        options: picked.options
+      };
+    }
+
+    function generateWordLogicSprint(level) {
+      const mode = level >= 7 ? pickRandom(["synonym", "antonym", "analogy"]) : pickRandom(["synonym", "antonym"]);
+
+      if (mode === "synonym") {
+        const row = pickRandom([
+          { word: "Rapid", answer: "Fast", options: ["Slow", "Fast", "Heavy", "Quiet"] },
+          { word: "Ancient", answer: "Old", options: ["New", "Old", "Loud", "Brief"] },
+          { word: "Assist", answer: "Help", options: ["Help", "Ignore", "Delay", "Damage"] }
+        ]);
+        return {
+          question: `Word Logic: Best synonym for "${row.word}"`,
+          answer: row.answer,
+          type: "options",
+          options: shuffle(row.options)
+        };
+      }
+
+      if (mode === "antonym") {
+        const row = pickRandom([
+          { word: "Expand", answer: "Contract", options: ["Stretch", "Contract", "Increase", "Grow"] },
+          { word: "Scarce", answer: "Abundant", options: ["Rare", "Few", "Abundant", "Tiny"] },
+          { word: "Accept", answer: "Reject", options: ["Allow", "Take", "Reject", "Choose"] }
+        ]);
+        return {
+          question: `Word Logic: Best antonym for "${row.word}"`,
+          answer: row.answer,
+          type: "options",
+          options: shuffle(row.options)
+        };
+      }
+
+      return {
+        question: "Analogy: Book is to Reading as Fork is to ___",
+        answer: "Eating",
+        type: "options",
+        options: shuffle(["Drawing", "Eating", "Sleeping", "Writing"])
+      };
+    }
+
+    function generateLanguageAnalyzer(level) {
+      const row = pickRandom([
+        {
+          question: "Choose the correct sentence:",
+          answer: "She has finished her work.",
+          options: [
+            "She have finished her work.",
+            "She has finished her work.",
+            "She has finish her work.",
+            "She had finish her work."
+          ]
+        },
+        {
+          question: "Fill in the blank: If I ___ time, I will call you.",
+          answer: "have",
+          options: ["has", "have", "had", "having"]
+        },
+        {
+          question: "Choose the best connector: He studied hard, ___ he passed.",
+          answer: "so",
+          options: ["because", "so", "unless", "though"]
+        }
+      ]);
+
+      const textMode = level >= 9 && Math.random() > 0.5;
+      return {
+        question: row.question,
+        answer: row.answer,
+        type: textMode ? "text" : "options",
+        options: textMode ? [] : shuffle(row.options)
+      };
+    }
+
+    function generateChallenge(gameId, level) {
+      if (gameId === "physics_formula_rush") return generatePhysicsFormulaRush(level);
+      if (gameId === "quant_challenge") return generateQuantChallenge(level);
+      if (gameId === "speed_math_arena") return generateSpeedMathArena(level);
+      if (gameId === "physics_simulation_game") return generatePhysics(level);
+      if (gameId === "cyber_security_escape_room") return generateCyber(level);
+      if (gameId === "science_battle_grid") return generateScienceBattleGrid(level);
+      if (gameId === "coding_challenge_arena") return generateCoding(level);
+      if (gameId === "word_logic_sprint") return generateWordLogicSprint(level);
+      return generateLanguageAnalyzer(level);
+    }
+
+    function renderAnswerZone() {
+      const zone = document.getElementById("answerZone");
+      zone.innerHTML = "";
+
+      const disabled = state.timeLeft <= 0 || !state.activeGameId;
+      if (state.answerType === "text") {
+        zone.innerHTML = `
+          <div class="answer-row">
+            <input id="answerInput" type="text" placeholder="Type your answer" ${disabled ? "disabled" : ""}>
+            <button id="submitAnswerBtn" type="button" ${disabled ? "disabled" : ""}>Submit</button>
+          </div>
+        `;
+        const btn = document.getElementById("submitAnswerBtn");
+        btn.addEventListener("click", () => {
+          const value = (document.getElementById("answerInput").value || "").trim();
+          checkAnswer(value);
+        });
+      } else {
+        const wrap = document.createElement("div");
+        wrap.className = "options";
+        state.options.forEach((option) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = option;
+          btn.disabled = disabled;
+          btn.addEventListener("click", () => checkAnswer(option));
+          wrap.appendChild(btn);
+        });
+        zone.appendChild(wrap);
+      }
+    }
+
+    function showNextLevelButton(gameId, nextLevel) {
+      const zone = document.getElementById("answerZone");
+      const row = document.createElement("div");
+      row.className = "answer-row next-level-row";
+      row.id = "nextLevelRow";
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "next-level-btn";
+      btn.textContent = `Next Level ${nextLevel}`;
+      btn.addEventListener("click", () => startGame(gameId));
+
+      row.appendChild(btn);
+      zone.appendChild(row);
+    }
+
+    async function startGame(gameId) {
+      const progress = state.progress[gameId] || { currentLevel: 1 };
+      const level = Math.max(1, Number(progress.currentLevel) || 1);
+      const challenge = generateChallenge(gameId, level);
+
+      state.activeGameId = gameId;
+      state.activeLevel = level;
+      state.expectedAnswer = String(challenge.answer).trim().toUpperCase();
+      state.answerType = challenge.type;
+      state.options = challenge.options || [];
+      state.wrongAttempts = 0;
+      state.startedAt = Date.now();
+      state.timeLimit = limitForLevel(gameId, level);
+      state.timeLeft = state.timeLimit;
+      setFullQuestionView(true);
+
+      document.getElementById("activeTitle").textContent = `${GAME_CONFIG[gameId].title} | Level ${level}`;
+      document.getElementById("question").textContent = challenge.question;
+      document.getElementById("reward").style.display = "none";
+      setPlayStatus("Solve quickly for 3 stars.", "");
+
+      renderAnswerZone();
+      startTimer();
+    }
+
+    function starsFromTime(elapsed, limit) {
+      if (elapsed <= limit * 0.4) return 3;
+      if (elapsed <= limit * 0.75) return 2;
+      return 1;
+    }
+
+    async function checkAnswer(answerRaw) {
+      if (!state.activeGameId || state.timeLeft <= 0) return;
+      const answer = String(answerRaw || "").trim().toUpperCase();
+      if (!answer) {
+        setPlayStatus("Enter an answer first.", "error");
+        return;
+      }
+
+      if (answer !== state.expectedAnswer) {
+        state.wrongAttempts += 1;
+        if (state.wrongAttempts >= 3) {
+          setPlayStatus(`Not correct. ${buildAnswerSuggestion()}`, "error");
+        } else {
+          const remaining = 3 - state.wrongAttempts;
+          setPlayStatus(`Not correct. Try again. ${remaining} attempt${remaining === 1 ? "" : "s"} before hint.`, "error");
+        }
+        return;
+      }
+
+      stopTimer();
+      state.timeLeft = 0;
+      renderAnswerZone();
+      const elapsed = Math.max(1, Math.round((Date.now() - state.startedAt) / 1000));
+      const stars = starsFromTime(elapsed, state.timeLimit);
+      const gift = pickRandom(GIFTS);
+
+      setPlayStatus(`Great! You earned ${stars} star. Saving progress...`, "success");
+
+      try {
+        const res = await fetch("/api/games/high/complete", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            gameId: state.activeGameId,
+            level: state.activeLevel,
+            stars,
+            solveTimeSec: elapsed,
+            gift
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Could not save level");
+        }
+
+        state.progress = data.high || data.progress || state.progress;
+        buildGamesList();
+        const nextLevel = Math.max(
+          state.activeLevel + 1,
+          Number((state.progress[state.activeGameId] || {}).currentLevel) || state.activeLevel + 1
+        );
+        showNextLevelButton(state.activeGameId, nextLevel);
+        const reward = document.getElementById("reward");
+        reward.style.display = "block";
+        reward.textContent = `Gift unlocked: ${gift}. XP reward: ${data.xpReward}.`;
+        setPlayStatus(`Level ${state.activeLevel} complete. Tap Next Level ${nextLevel}.`, "success");
+      } catch (error) {
+        setPlayStatus(error.message || "Save failed.", "error");
+      }
+    }
+
+    async function loadProgress() {
+      setPlayStatus("Loading your game history...", "");
+      const res = await fetch("/api/games/high/progress", { credentials: "include" });
+      if (res.status === 401 || res.status === 403) {
+        window.location.href = "/auth";
+        return;
+      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to load game progress");
+
+      state.progress = data.high || data.progress || {};
+      buildGamesList();
+
+      const initialGame = lockedGameId;
+      if (initialGame && GAME_CONFIG[initialGame]) {
+        startGame(initialGame);
+      } else {
+        setFullQuestionView(false);
+        setPlayStatus("Select any game and continue from your saved level.", "");
+      }
+    }
+
+    function goDashboard() {
+      window.location.href = "/dashboard";
+    }
+
+    function goProfile() {
+      window.location.href = "/profile";
+    }
+
+    loadProgress().catch((error) => {
+      setPlayStatus(error.message || "Failed to initialize.", "error");
+    });
+  </script>
+</body>
+</html>

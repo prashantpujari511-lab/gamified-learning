@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Level Games</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel-2: #0d1117;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --accent: #2f81f7;
+      --good: #3fb950;
+      --warn: #d29922;
+      --danger: #f85149;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 6% 8%, rgba(47, 129, 247, 0.12), transparent 32%),
+        radial-gradient(circle at 95% 90%, rgba(63, 185, 80, 0.12), transparent 28%),
+        var(--bg);
+      padding: 16px;
+    }
+
+    .shell {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 20%), var(--panel-2);
+    }
+
+    .top {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #010409;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .top p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #21262d;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #30363d;
+    }
+
+    .main {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .main.in-game {
+      grid-template-columns: 1fr;
+    }
+
+    .main.in-game .panel:first-child {
+      display: none;
+    }
+
+    .main.in-game .play-area {
+      min-height: calc(100vh - 220px);
+      align-content: start;
+    }
+
+    .main.in-game .question {
+      font-size: clamp(26px, 4.5vw, 44px);
+      text-align: center;
+      margin: 8px auto 0;
+      max-width: 900px;
+    }
+
+    .main.in-game #answerZone {
+      width: min(860px, 100%);
+      margin: 0 auto;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 12px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .games {
+      display: grid;
+      gap: 10px;
+    }
+
+    .game-card {
+      border: 1px solid var(--border);
+      background: #0d1117;
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .game-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .game-title {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .badge {
+      border: 1px solid #3a4550;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      color: #c9d1d9;
+    }
+
+    .play-area {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #0d1117;
+      padding: 10px;
+    }
+
+    .active-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .timer.warn {
+      color: var(--warn);
+    }
+
+    .timer.danger {
+      color: var(--danger);
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .answer-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .next-level-row {
+      justify-content: flex-end;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #161b22;
+      color: var(--text);
+      padding: 9px 10px;
+      font-size: 14px;
+      min-width: 180px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .next-level-btn {
+      border: 1px solid #2ea043;
+      background: #238636;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .next-level-btn:hover {
+      background: #2ea043;
+    }
+
+    .status {
+      min-height: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--good);
+    }
+
+    .reward {
+      border: 1px solid #2ea043;
+      background: rgba(46, 160, 67, 0.12);
+      color: #aff5b4;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    @media (max-width: 950px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div>
+        <h1>College Level Games</h1>
+        <p>Unlimited levels, exam-style aptitude and banking challenges, timer stars, rewards, and auto-save.</p>
+      </div>
+      <div class="top-actions">
+        <button type="button" onclick="goDashboard()">Dashboard</button>
+        <button type="button" onclick="goProfile()">Profile</button>
+      </div>
+    </header>
+
+    <section id="mainLayout" class="main">
+      <section class="panel">
+        <h2 id="gamesPanelTitle">Games</h2>
+        <div id="games" class="games"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Play Area</h2>
+        <section id="playArea" class="play-area">
+          <div class="active-head">
+            <div id="activeTitle">Select a game to start</div>
+            <div id="timer" class="timer">00s</div>
+          </div>
+          <div id="question" class="question">Your challenge will appear here.</div>
+          <div id="answerZone"></div>
+          <div id="reward" class="reward"></div>
+          <div id="playStatus" class="status"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const GAME_CONFIG = {
+      placement_preparation_battle: { title: "Placement Preparation Battle", baseTime: 60 },
+      banking_exam_simulator_game: { title: "Banking Exam Simulator Game", baseTime: 57 }
+    };
+    const requestedGameId = new URLSearchParams(window.location.search).get("game");
+    const lockedGameId = requestedGameId && GAME_CONFIG[requestedGameId] ? requestedGameId : "";
+    const GIFTS = [
+      "Aptitude Ace Badge",
+      "Interview Booster Token",
+      "Finance Master Medal",
+      "Career Accelerator Coin",
+      "Campus Champion Crown"
+    ];
+
+    const state = {
+      progress: {},
+      activeGameId: "",
+      activeLevel: 1,
+      expectedAnswer: "",
+      answerType: "text",
+      wrongAttempts: 0,
+      startedAt: 0,
+      timeLeft: 0,
+      timeLimit: 0,
+      timerRef: null
+    };
+
+    function setPlayStatus(message, type) {
+      const el = document.getElementById("playStatus");
+      el.textContent = message || "";
+      el.className = "status" + (type ? " " + type : "");
+    }
+
+    function pickRandom(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function setFullQuestionView(enabled) {
+      const layout = document.getElementById("mainLayout");
+      if (!layout) return;
+      layout.classList.toggle("in-game", !!enabled);
+    }
+
+    function buildAnswerSuggestion() {
+      const expected = String(state.expectedAnswer || "").trim();
+      if (!expected) {
+        return "Hint: solve it step by step.";
+      }
+
+      if (/^-?\d+(\.\d+)?$/.test(expected)) {
+        const value = Number(expected);
+        const low = Math.floor(value - 2);
+        const high = Math.ceil(value + 2);
+        return `Hint: answer is between ${low} and ${high}.`;
+      }
+
+      if (state.answerType === "options") {
+        const first = expected.charAt(0);
+        return first
+          ? `Hint: correct option starts with "${first}".`
+          : "Hint: read all options carefully.";
+      }
+
+      const first = expected.charAt(0);
+      return first
+        ? `Hint: answer starts with "${first}" and has ${expected.length} characters.`
+        : "Hint: read the question carefully.";
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const t = copy[i];
+        copy[i] = copy[j];
+        copy[j] = t;
+      }
+      return copy;
+    }
+
+    function buildGamesList() {
+      const container = document.getElementById("games");
+      const panelTitle = document.getElementById("gamesPanelTitle");
+      container.innerHTML = "";
+      panelTitle.textContent = lockedGameId ? GAME_CONFIG[lockedGameId].title : "Games";
+
+      const gameIds = lockedGameId ? [lockedGameId] : Object.keys(GAME_CONFIG);
+      gameIds.forEach((gameId) => {
+        const progress = state.progress[gameId] || { currentLevel: 1, bestStars: 0, totalStars: 0 };
+        const card = document.createElement("article");
+        card.className = "game-card";
+        card.innerHTML = `
+          <div class="game-head">
+            <h3 class="game-title">${GAME_CONFIG[gameId].title}</h3>
+            <span class="badge">Level ${progress.currentLevel}</span>
+          </div>
+          <div class="mini">Best Stars: ${progress.bestStars} | Total Stars: ${progress.totalStars}</div>
+          <button type="button" data-game-id="${gameId}">Play Level ${progress.currentLevel}</button>
+        `;
+        container.appendChild(card);
+      });
+
+      container.querySelectorAll("button[data-game-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const gameId = btn.getAttribute("data-game-id");
+          startGame(gameId);
+        });
+      });
+    }
+
+    function updateTimerUI() {
+      const timer = document.getElementById("timer");
+      timer.textContent = `${Math.max(0, state.timeLeft)}s`;
+      timer.className = "timer";
+      if (state.timeLeft <= Math.floor(state.timeLimit * 0.4)) timer.classList.add("warn");
+      if (state.timeLeft <= Math.floor(state.timeLimit * 0.2)) timer.classList.add("danger");
+    }
+
+    function stopTimer() {
+      if (state.timerRef) {
+        clearInterval(state.timerRef);
+        state.timerRef = null;
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      updateTimerUI();
+      state.timerRef = setInterval(() => {
+        state.timeLeft -= 1;
+        updateTimerUI();
+        if (state.timeLeft <= 0) {
+          stopTimer();
+          setPlayStatus("Time is over. Try this level again.", "error");
+          renderAnswerZone();
+        }
+      }, 1000);
+    }
+
+    function limitForLevel(gameId, level) {
+      const base = GAME_CONFIG[gameId].baseTime;
+      const reduced = base - Math.min(24, Math.floor(level * 1.5));
+      return Math.max(12, reduced);
+    }
+
+    function generatePlacement(level) {
+      const mode = pickRandom(["percent", "ratio", "series"]);
+
+      if (mode === "percent") {
+        const principal = (8 + Math.floor(Math.random() * 8)) * 100;
+        const pct = 5 + Math.floor(Math.random() * (10 + Math.floor(level / 2)));
+        return {
+          question: `Find ${pct}% of ${principal}.`,
+          answer: String((principal * pct) / 100),
+          type: "text",
+          options: []
+        };
+      }
+
+      if (mode === "ratio") {
+        const a = 2 + Math.floor(Math.random() * 5);
+        const b = 2 + Math.floor(Math.random() * 5);
+        const k = 5 + Math.floor(Math.random() * 6);
+        const total = (a + b) * k;
+        return {
+          question: `Ratio A:B = ${a}:${b}. If total is ${total}, find value of A.`,
+          answer: String(a * k),
+          type: "text",
+          options: []
+        };
+      }
+
+      const start = 3 + Math.floor(Math.random() * 8);
+      const diff = 2 + Math.floor(Math.random() * 5);
+      const sequence = [start, start + diff, start + 2 * diff, start + 3 * diff];
+      return {
+        question: `Find next number: ${sequence.join(", ")}, ?`,
+        answer: String(start + 4 * diff),
+        type: "text",
+        options: []
+      };
+    }
+
+    function generateBanking(level) {
+      const questions = [
+        {
+          question: "KYC stands for:",
+          answer: "Know Your Customer",
+          options: ["Keep Your Cash", "Know Your Customer", "Key Yield Control", "Kind Yearly Credit"]
+        },
+        {
+          question: "Full form of RBI is:",
+          answer: "Reserve Bank of India",
+          options: ["Rural Bank of India", "Reserve Bank of India", "Retail Banking Institute", "Revenue Board of India"]
+        },
+        {
+          question: "Which transfer method is typically used for bank-to-bank electronic transfer in India?",
+          answer: "NEFT",
+          options: ["UPI PIN", "Locker ID", "NEFT", "MICR Ink"]
+        },
+        {
+          question: "Which account generally earns interest for regular customers?",
+          answer: "Savings Account",
+          options: ["Current Account", "Savings Account", "Loan Account", "Demat Ledger"]
+        }
+      ];
+
+      const pick = questions[Math.floor(Math.random() * questions.length)];
+      const options = level >= 7 ? shuffle(pick.options) : pick.options;
+
+      return {
+        question: pick.question,
+        answer: pick.answer,
+        type: "options",
+        options: shuffle(options)
+      };
+    }
+
+    function generateChallenge(gameId, level) {
+      if (gameId === "placement_preparation_battle") return generatePlacement(level);
+      return generateBanking(level);
+    }
+
+    function renderAnswerZone() {
+      const zone = document.getElementById("answerZone");
+      zone.innerHTML = "";
+
+      const disabled = state.timeLeft <= 0 || !state.activeGameId;
+      if (state.answerType === "text") {
+        zone.innerHTML = `
+          <div class="answer-row">
+            <input id="answerInput" type="text" placeholder="Type your answer" ${disabled ? "disabled" : ""}>
+            <button id="submitAnswerBtn" type="button" ${disabled ? "disabled" : ""}>Submit</button>
+          </div>
+        `;
+        const btn = document.getElementById("submitAnswerBtn");
+        btn.addEventListener("click", () => {
+          const value = (document.getElementById("answerInput").value || "").trim();
+          checkAnswer(value);
+        });
+      } else {
+        const wrap = document.createElement("div");
+        wrap.className = "options";
+        state.options.forEach((option) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = option;
+          btn.disabled = disabled;
+          btn.addEventListener("click", () => checkAnswer(option));
+          wrap.appendChild(btn);
+        });
+        zone.appendChild(wrap);
+      }
+    }
+
+    function showNextLevelButton(gameId, nextLevel) {
+      const zone = document.getElementById("answerZone");
+      const row = document.createElement("div");
+      row.className = "answer-row next-level-row";
+      row.id = "nextLevelRow";
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "next-level-btn";
+      btn.textContent = `Next Level ${nextLevel}`;
+      btn.addEventListener("click", () => startGame(gameId));
+
+      row.appendChild(btn);
+      zone.appendChild(row);
+    }
+
+    async function startGame(gameId) {
+      const progress = state.progress[gameId] || { currentLevel: 1 };
+      const level = Math.max(1, Number(progress.currentLevel) || 1);
+      const challenge = generateChallenge(gameId, level);
+
+      state.activeGameId = gameId;
+      state.activeLevel = level;
+      state.expectedAnswer = String(challenge.answer).trim().toUpperCase();
+      state.answerType = challenge.type;
+      state.options = challenge.options || [];
+      state.wrongAttempts = 0;
+      state.startedAt = Date.now();
+      state.timeLimit = limitForLevel(gameId, level);
+      state.timeLeft = state.timeLimit;
+      setFullQuestionView(true);
+
+      document.getElementById("activeTitle").textContent = `${GAME_CONFIG[gameId].title} | Level ${level}`;
+      document.getElementById("question").textContent = challenge.question;
+      document.getElementById("reward").style.display = "none";
+      setPlayStatus("Solve quickly for 3 stars.", "");
+
+      renderAnswerZone();
+      startTimer();
+    }
+
+    function starsFromTime(elapsed, limit) {
+      if (elapsed <= limit * 0.4) return 3;
+      if (elapsed <= limit * 0.75) return 2;
+      return 1;
+    }
+
+    async function checkAnswer(answerRaw) {
+      if (!state.activeGameId || state.timeLeft <= 0) return;
+      const answer = String(answerRaw || "").trim().toUpperCase();
+      if (!answer) {
+        setPlayStatus("Enter an answer first.", "error");
+        return;
+      }
+
+      if (answer !== state.expectedAnswer) {
+        state.wrongAttempts += 1;
+        if (state.wrongAttempts >= 3) {
+          setPlayStatus(`Not correct. ${buildAnswerSuggestion()}`, "error");
+        } else {
+          const remaining = 3 - state.wrongAttempts;
+          setPlayStatus(`Not correct. Try again. ${remaining} attempt${remaining === 1 ? "" : "s"} before hint.`, "error");
+        }
+        return;
+      }
+
+      stopTimer();
+      state.timeLeft = 0;
+      renderAnswerZone();
+      const elapsed = Math.max(1, Math.round((Date.now() - state.startedAt) / 1000));
+      const stars = starsFromTime(elapsed, state.timeLimit);
+      const gift = pickRandom(GIFTS);
+
+      setPlayStatus(`Great! You earned ${stars} star. Saving progress...`, "success");
+
+      try {
+        const res = await fetch("/api/games/college/complete", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            gameId: state.activeGameId,
+            level: state.activeLevel,
+            stars,
+            solveTimeSec: elapsed,
+            gift
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Could not save level");
+        }
+
+        state.progress = data.college || data.progress || state.progress;
+        buildGamesList();
+        const nextLevel = Math.max(
+          state.activeLevel + 1,
+          Number((state.progress[state.activeGameId] || {}).currentLevel) || state.activeLevel + 1
+        );
+        showNextLevelButton(state.activeGameId, nextLevel);
+        const reward = document.getElementById("reward");
+        reward.style.display = "block";
+        reward.textContent = `Gift unlocked: ${gift}. XP reward: ${data.xpReward}.`;
+        setPlayStatus(`Level ${state.activeLevel} complete. Tap Next Level ${nextLevel}.`, "success");
+      } catch (error) {
+        setPlayStatus(error.message || "Save failed.", "error");
+      }
+    }
+
+    async function loadProgress() {
+      setPlayStatus("Loading your game history...", "");
+      const res = await fetch("/api/games/college/progress", { credentials: "include" });
+      if (res.status === 401 || res.status === 403) {
+        window.location.href = "/auth";
+        return;
+      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to load game progress");
+
+      state.progress = data.college || data.progress || {};
+      buildGamesList();
+
+      const initialGame = lockedGameId;
+      if (initialGame && GAME_CONFIG[initialGame]) {
+        startGame(initialGame);
+      } else {
+        setFullQuestionView(false);
+        setPlayStatus("Select any game and continue from your saved level.", "");
+      }
+    }
+
+    function goDashboard() {
+      window.location.href = "/dashboard";
+    }
+
+    function goProfile() {
+      window.location.href = "/profile";
+    }
+
+    loadProgress().catch((error) => {
+      setPlayStatus(error.message || "Failed to initialize.", "error");
+    });
+  </script>
+</body>
+</html>

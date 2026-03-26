@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
+const { createDefaultGameProgress, buildDashboardPayload } = require("../utils/progressStats");
 
 /* =========================
    REGISTER ROUTE
@@ -164,6 +165,33 @@ router.put("/profile", authMiddleware, async (req, res) => {
     if (error && error.name === "ValidationError") {
       return res.status(400).json({ message: error.message });
     }
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+/* =========================
+   RESET PROGRESS ROUTE
+========================= */
+router.post("/reset-progress", authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.xp = 0;
+    user.gameLogs = [];
+    user.gameProgress = createDefaultGameProgress();
+    user.markModified("gameProgress");
+
+    await user.save();
+
+    res.json({
+      message: "XP, logs, and progress reset successfully",
+      dashboard: buildDashboardPayload(user)
+    });
+  } catch (error) {
+    console.error("Reset Progress Error:", error);
     res.status(500).json({ message: "Server error" });
   }
 });

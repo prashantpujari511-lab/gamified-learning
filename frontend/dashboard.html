@@ -3,349 +3,587 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>🎮 Learning Quest Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-start: #0f172a;
-      --bg-end: #1e293b;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --primary: #0f766e;
-      --primary-hover: #115e59;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+      --void: #03010a;
+      --panel: rgba(10,5,30,0.88);
+      --panel2: rgba(6,3,22,0.92);
+      --neon-cyan: #00fff2;
+      --neon-pink: #ff2d78;
+      --neon-yellow: #ffe100;
+      --neon-green: #39ff14;
+      --neon-purple: #bf5fff;
+      --neon-orange: #ff7c00;
+      --neon-blue: #1e90ff;
+      --text: #e8f4ff;
+      --muted: #6a7fa8;
+      --glow-cyan: 0 0 8px #00fff2, 0 0 24px #00fff280, 0 0 48px #00fff240;
+      --glow-pink: 0 0 8px #ff2d78, 0 0 24px #ff2d7880;
+      --glow-yellow: 0 0 8px #ffe100, 0 0 24px #ffe10080;
+      --glow-purple: 0 0 8px #bf5fff, 0 0 24px #bf5fff80;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
     body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--void);
       color: var(--text);
+      cursor: crosshair;
+    }
+
+    /* BG */
+    .bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,255,242,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,242,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+    @keyframes gridPulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+    .bg-scanlines {
+      background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.18) 3px,rgba(0,0,0,0.18) 4px);
+    }
+    .bg-nebula {
       background:
-        radial-gradient(circle at 15% 20%, rgba(148, 163, 184, 0.28), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(45, 212, 191, 0.2), transparent 30%),
-        linear-gradient(140deg, var(--bg-start), var(--bg-end));
-      display: grid;
-      place-items: center;
-      padding: 24px;
+        radial-gradient(ellipse 60% 50% at 10% 15%, rgba(191,95,255,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 88% 80%, rgba(0,255,242,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 55% at 50% 50%, rgba(255,45,120,0.06) 0%, transparent 70%);
+    }
+    .bg-vignette {
+      background: radial-gradient(ellipse 95% 95% at 50% 50%, transparent 35%, rgba(0,0,0,0.85) 100%);
+    }
+    .noise {
+      position:fixed; inset:0; pointer-events:none; z-index:3; opacity:0.022;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:180px;
+    }
+    .hud-corner { position:fixed; width:50px; height:50px; pointer-events:none; z-index:4; opacity:0.35; }
+    .hud-corner.tl { top:12px; left:12px; border-top:2px solid var(--neon-cyan); border-left:2px solid var(--neon-cyan); }
+    .hud-corner.tr { top:12px; right:12px; border-top:2px solid var(--neon-cyan); border-right:2px solid var(--neon-cyan); }
+    .hud-corner.bl { bottom:12px; left:12px; border-bottom:2px solid var(--neon-cyan); border-left:2px solid var(--neon-cyan); }
+    .hud-corner.br { bottom:12px; right:12px; border-bottom:2px solid var(--neon-cyan); border-right:2px solid var(--neon-cyan); }
+
+    /* PARTICLES */
+    #particles { position:fixed; inset:0; pointer-events:none; z-index:0; }
+    .particle { position:absolute; border-radius:50%; animation:floatP linear infinite; }
+    @keyframes floatP {
+      0%   { transform:translateY(100vh) scale(0); opacity:0; }
+      10%  { opacity:1; }
+      90%  { opacity:1; }
+      100% { transform:translateY(-10vh) scale(1); opacity:0; }
     }
 
-    .dashboard {
-      width: min(860px, 100%);
-      background: var(--card);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-    }
-
-    .summary {
-      padding: 24px;
-      background: linear-gradient(165deg, #0f766e 0%, #115e59 100%);
-      color: #ecfeff;
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .mini {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #ccfbf1;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 26px;
-      line-height: 1.2;
-    }
-
-    .sub {
-      margin: 0;
-      font-size: 14px;
-      color: #d1fae5;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .chip {
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.14);
-      color: #f0fdfa;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 12px;
-    }
-
-    .main {
-      padding: 26px;
-      display: grid;
-      gap: 16px;
-      align-content: start;
-    }
-
-    .title {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    .muted {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* FULL-SCREEN LAYOUT */
+    .screen {
+      position:relative; z-index:1;
+      width:100vw; height:100vh;
+      display:grid;
+      grid-template-rows: auto auto 1fr auto;
+      padding: 14px 18px 10px;
       gap: 10px;
-    }
-
-    .stat {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      background: #f8fafc;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #64748b;
-    }
-
-    .stat-value {
-      margin-top: 6px;
-      font-size: 21px;
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    .progress-wrap {
-      display: grid;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .progress-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 13px;
-      color: #334155;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 12px;
-      background: #dbeafe;
-      border-radius: 999px;
       overflow: hidden;
     }
 
-    .progress {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #14b8a6, #0f766e);
-      border-radius: 999px;
-      transition: width 0.4s ease;
+    /* TOPBAR */
+    .topbar {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      animation: slideDown 0.7s cubic-bezier(0.16,1,0.3,1) both;
     }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 6px;
+    @keyframes slideDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand-icon-wrap {
+      width:52px; height:52px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; position:relative;
     }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.12s ease, background 0.2s;
+    .brand-icon-wrap::before {
+      content:''; position:absolute; inset:0;
+      border:2px solid var(--neon-cyan);
+      clip-path:polygon(12px 0%,100% 0%,100% calc(100% - 12px),calc(100% - 12px) 100%,0% 100%,0% 12px);
+      animation:bIconGlow 2s ease-in-out infinite alternate;
     }
-
-    button:active {
-      transform: translateY(1px);
+    @keyframes bIconGlow { from{opacity:.6} to{opacity:1; box-shadow:var(--glow-cyan)} }
+    .brand-icon { font-size:26px; filter:drop-shadow(0 0 8px #00fff2); animation:iconBob 3s ease-in-out infinite; }
+    @keyframes iconBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+    .brand-text h1 {
+      font-family:'Orbitron',monospace; font-size:clamp(14px,2vw,22px);
+      font-weight:900; letter-spacing:3px; color:var(--neon-cyan);
+      text-shadow:var(--glow-cyan); line-height:1;
     }
-
-    .profile-btn {
-      background: var(--primary);
-      color: #fff;
+    .brand-text p { font-family:'Exo 2',sans-serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+    .brand-version {
+      font-family:'Orbitron',monospace; font-size:8px;
+      background:rgba(0,255,242,0.08); border:1px solid rgba(0,255,242,0.25);
+      color:var(--neon-cyan); padding:2px 7px; margin-top:4px; display:inline-block; letter-spacing:1px;
     }
-
-    .profile-btn:hover {
-      background: var(--primary-hover);
+    .topbar-right { display:flex; align-items:center; gap:8px; }
+    .stat-pill {
+      display:flex; align-items:center; gap:6px; padding:8px 16px;
+      font-family:'Orbitron',monospace; font-size:clamp(10px,1.2vw,13px); font-weight:700; letter-spacing:1px;
+      clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+      transition:transform 0.2s;
     }
-
+    .stat-pill:hover { transform:scale(1.05); }
+    .xp-pill     { background:rgba(255,225,0,0.08); border:1px solid rgba(255,225,0,0.4); color:var(--neon-yellow); text-shadow:var(--glow-yellow); }
+    .streak-pill { background:rgba(255,124,0,0.08); border:1px solid rgba(255,124,0,0.4); color:var(--neon-orange); }
+    .avatar-btn {
+      width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+      font-family:'Orbitron',monospace; font-size:16px; font-weight:900;
+      color:var(--neon-purple); background:rgba(191,95,255,0.1);
+      border:2px solid rgba(191,95,255,0.5);
+      clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);
+      cursor:pointer; transition:all 0.2s; text-shadow:var(--glow-purple);
+    }
+    .avatar-btn:hover { background:rgba(191,95,255,0.22); border-color:var(--neon-purple); box-shadow:var(--glow-purple); }
     .logout-btn {
-      background: #f8fafc;
-      color: #0f172a;
-      border: 1px solid var(--border);
+      background:rgba(255,45,120,0.06); border:1px solid rgba(255,45,120,0.3);
+      color:rgba(255,45,120,0.75); padding:8px 16px;
+      font-family:'Orbitron',monospace; font-size:10px; font-weight:700; letter-spacing:2px;
+      cursor:pointer; transition:all 0.2s;
+      clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);
+    }
+    .logout-btn:hover { background:rgba(255,45,120,0.18); border-color:var(--neon-pink); color:var(--neon-pink); text-shadow:var(--glow-pink); }
+
+    /* WELCOME BANNER */
+    .welcome-banner {
+      position:relative; padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:20px; flex-wrap:wrap; overflow:hidden;
+      background:var(--panel); border:1px solid rgba(0,255,242,0.12);
+      clip-path:polygon(20px 0%,100% 0%,100% calc(100% - 20px),calc(100% - 20px) 100%,0% 100%,0% 20px);
+      animation:fadeUp 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .welcome-banner::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-purple),var(--neon-pink),transparent);
+      background-size:200%; animation:topScan 4s linear infinite;
+    }
+    @keyframes topScan { 0%{background-position:-100% 0} 100%{background-position:200% 0} }
+    .welcome-banner::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:radial-gradient(ellipse 60% 120% at 80% 50%,rgba(0,255,242,0.04) 0%,transparent 70%);
+    }
+    .banner-bg-text {
+      position:absolute; right:24px; top:50%; transform:translateY(-50%);
+      font-family:'Orbitron',monospace; font-size:clamp(40px,6vw,72px);
+      opacity:0.035; color:var(--neon-cyan); user-select:none; pointer-events:none;
+      letter-spacing:-2px; white-space:nowrap;
+    }
+    .welcome-left { position:relative; z-index:1; }
+    .welcome-tag {
+      display:inline-flex; align-items:center; gap:6px;
+      font-family:'Orbitron',monospace; font-size:8px; letter-spacing:3px;
+      text-transform:uppercase; color:var(--neon-cyan);
+      background:rgba(0,255,242,0.06); border:1px solid rgba(0,255,242,0.18);
+      padding:3px 10px; margin-bottom:6px;
+      clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+    }
+    .welcome-tag::before { content:''; width:6px; height:6px; background:var(--neon-cyan); border-radius:50%; box-shadow:0 0 6px var(--neon-cyan); animation:blink 1.5s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+    .welcome-text h2 {
+      font-family:'Orbitron',monospace; font-size:clamp(15px,2vw,24px);
+      font-weight:900; letter-spacing:1px; line-height:1.1; margin-bottom:4px;
+    }
+    .welcome-text h2 span { color:var(--neon-yellow); text-shadow:var(--glow-yellow); }
+    .welcome-text p { font-size:clamp(12px,1.1vw,14px); color:var(--muted); font-weight:500; }
+
+    .progress-group { position:relative; z-index:1; min-width:220px; display:flex; flex-direction:column; gap:6px; }
+    .progress-label {
+      display:flex; justify-content:space-between; align-items:center;
+      font-family:'Orbitron',monospace; font-size:9px; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase;
+    }
+    .progress-bar-track {
+      height:9px; background:rgba(255,255,255,0.05);
+      border:1px solid rgba(0,255,242,0.1); overflow:hidden; position:relative;
+    }
+    .progress-bar-track::after {
+      content:''; position:absolute; inset:0;
+      background:repeating-linear-gradient(90deg,transparent,transparent 10px,rgba(0,0,0,0.25) 10px,rgba(0,0,0,0.25) 11px);
+    }
+    .progress-bar-fill {
+      height:100%; width:0;
+      background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));
+      transition:width 1.3s cubic-bezier(0.16,1,0.3,1);
+      position:relative; box-shadow:0 0 12px rgba(0,255,242,0.5);
+    }
+    .progress-bar-fill::after { content:''; position:absolute; right:0; top:0; bottom:0; width:3px; background:white; box-shadow:0 0 8px white; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* SECTION HEADER */
+    .section-header {
+      display:flex; align-items:center; gap:14px;
+      animation:fadeUp 0.8s 0.2s both;
+    }
+    .section-header h2 {
+      font-family:'Orbitron',monospace; font-size:clamp(10px,1.1vw,13px);
+      font-weight:700; letter-spacing:4px; text-transform:uppercase;
+      color:var(--neon-cyan); text-shadow:0 0 10px rgba(0,255,242,0.4); white-space:nowrap;
+    }
+    .section-line { flex:1; height:1px; background:linear-gradient(90deg,rgba(0,255,242,0.35),transparent); }
+    .section-count {
+      font-family:'Orbitron',monospace; font-size:9px; color:var(--muted);
+      letter-spacing:2px; background:rgba(0,255,242,0.05);
+      border:1px solid rgba(0,255,242,0.1); padding:3px 10px; white-space:nowrap;
     }
 
-    .logout-btn:hover {
-      background: #f1f5f9;
+    /* GAMES GRID — fills remaining height */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      height: 100%;
+      min-height: 0;
     }
 
+    /* TRACK CARD */
+    .track-container {
+      position:relative; background:var(--panel2);
+      border:1px solid rgba(255,255,255,0.06);
+      display:flex; flex-direction:column;
+      cursor:pointer; overflow:hidden;
+      transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s;
+      clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);
+      min-height:0;
+    }
+    .track-container[data-track="primary"] { --accent:#00fff2; --accent2:#1e90ff; }
+    .track-container[data-track="middle"]  { --accent:#bf5fff; --accent2:#ff2d78; }
+    .track-container[data-track="high"]    { --accent:#39ff14; --accent2:#00fff2; }
+    .track-container[data-track="college"] { --accent:#ffe100; --accent2:#ff7c00; }
+
+    .track-container::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent); z-index:2;
+    }
+    .track-container:hover { transform:translateY(-5px) scale(1.015); border-color:rgba(255,255,255,0.14); }
+
+    .track-glow {
+      position:absolute; inset:0; opacity:0; pointer-events:none; z-index:0;
+      background:radial-gradient(ellipse 90% 70% at 50% 0%, color-mix(in srgb, var(--accent) 14%, transparent) 0%, transparent 70%);
+      transition:opacity 0.4s;
+    }
+    .track-container:hover .track-glow { opacity:1; }
+
+    .track-inner {
+      position:relative; z-index:2;
+      padding: clamp(14px,2vh,26px) clamp(14px,1.8vw,24px);
+      display:flex; flex-direction:column;
+      height:100%; gap: clamp(6px,1vh,12px);
+    }
+
+    /* Big emoji */
+    .track-emoji {
+      font-size: clamp(36px,5vw,64px);
+      line-height:1;
+      filter:drop-shadow(0 0 10px var(--accent));
+      transition:transform 0.3s, filter 0.3s;
+      user-select:none;
+    }
+    .track-container:hover .track-emoji {
+      transform:scale(1.2) rotate(-6deg);
+      filter:drop-shadow(0 0 22px var(--accent));
+    }
+
+    .track-label {
+      display:inline-flex; align-items:center; gap:5px;
+      font-family:'Orbitron',monospace; font-size:clamp(7px,0.65vw,9px);
+      letter-spacing:2px; text-transform:uppercase;
+      color:var(--accent); text-shadow:0 0 8px var(--accent);
+      background:rgba(0,0,0,0.3);
+      border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);
+      padding:3px 9px; width:fit-content;
+    }
+
+    .track-title {
+      font-family:'Exo 2',sans-serif;
+      font-size:clamp(13px,1.4vw,18px);
+      font-weight:800; line-height:1.2; color:var(--text);
+    }
+
+    .track-subtitle {
+      font-size:clamp(10px,0.9vw,13px);
+      color:rgba(150,170,200,0.65);
+      font-weight:500; line-height:1.5;
+    }
+
+    /* Game list */
+    .track-games { display:flex; flex-direction:column; gap:3px; flex:1; overflow:hidden; }
+    .game-item {
+      display:flex; align-items:center; gap:8px;
+      font-size:clamp(10px,0.85vw,12px);
+      color:rgba(200,220,240,0.55); font-weight:500;
+      padding:3px 5px; border-radius:2px;
+      transition:background 0.2s, color 0.2s;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .game-item:hover { background:rgba(255,255,255,0.04); color:var(--text); }
+    .game-emoji { font-size:13px; line-height:1; flex-shrink:0; }
+
+    .track-footer {
+      display:flex; align-items:center; justify-content:space-between;
+      border-top:1px solid rgba(255,255,255,0.06);
+      padding-top:clamp(6px,1vh,12px);
+      margin-top:auto;
+    }
+    .track-count {
+      font-family:'Orbitron',monospace; font-size:clamp(9px,0.75vw,11px);
+      color:var(--accent); letter-spacing:1px; text-shadow:0 0 6px var(--accent);
+    }
+    .track-cta {
+      display:flex; align-items:center; gap:5px;
+      font-family:'Orbitron',monospace; font-size:clamp(8px,0.65vw,10px);
+      letter-spacing:1.5px; color:var(--muted); text-transform:uppercase;
+      transition:color 0.2s, gap 0.2s;
+    }
+    .track-container:hover .track-cta { color:var(--accent); gap:9px; }
+    .cta-arrow { display:inline-block; transition:transform 0.2s; }
+    .track-container:hover .cta-arrow { transform:translateX(4px); }
+    .track-notch {
+      position:absolute; bottom:0; right:0; width:28px; height:28px;
+      background:linear-gradient(135deg,transparent 50%,color-mix(in srgb,var(--accent) 18%,transparent) 50%);
+    }
+
+    /* STATUS */
     .status {
-      min-height: 20px;
-      font-size: 13px;
-      color: #64748b;
+      font-family:'Orbitron',monospace; font-size:10px; letter-spacing:2px;
+      text-transform:uppercase; color:var(--muted); text-align:center; min-height:18px;
     }
+    .status.error { color:var(--neon-pink); text-shadow:var(--glow-pink); }
 
-    .status.error {
-      color: #b91c1c;
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      html,body { overflow:auto; height:auto; }
+      .screen { height:auto; overflow:visible; }
+      .games-grid { grid-template-columns:repeat(2,1fr); }
     }
-
-    @media (max-width: 860px) {
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width:580px) {
+      .games-grid { grid-template-columns:1fr; }
+      .stat-pill { display:none; }
     }
   </style>
 </head>
 <body>
-  <main class="dashboard">
-    <section class="summary">
-      <div class="mini">Player Dashboard</div>
-      <h1 id="welcome">Loading...</h1>
-      <p class="sub">Track your level journey and keep the streak alive.</p>
-      <div class="chips">
-        <span id="tierChip" class="chip">Tier -</span>
-        <span id="nextChip" class="chip">Next -</span>
+
+<div class="bg-layer bg-nebula"></div>
+<div class="bg-layer bg-grid"></div>
+<div class="bg-layer bg-scanlines"></div>
+<div class="bg-layer bg-vignette"></div>
+<div class="noise"></div>
+<div class="hud-corner tl"></div>
+<div class="hud-corner tr"></div>
+<div class="hud-corner bl"></div>
+<div class="hud-corner br"></div>
+<div id="particles"></div>
+
+<div class="screen">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon-wrap"><span class="brand-icon">🎮</span></div>
+      <div class="brand-text">
+        <h1>Learning Quest</h1>
+        <p>Adventure Learning Platform</p>
+        <div class="brand-version">v2.4.1 — 🟢 ONLINE</div>
       </div>
-    </section>
+    </div>
+    <div class="topbar-right">
+      <div id="xpPill"     class="stat-pill xp-pill">⚡ 0 XP</div>
+      <div id="streakPill" class="stat-pill streak-pill">🔥 0 STREAK</div>
+      <div id="avatarBtn"  class="avatar-btn" onclick="goProfile()" title="My Profile">U</div>
+      <button class="logout-btn" onclick="logout()">◀ EXIT</button>
+    </div>
+  </header>
 
-    <section class="main">
-      <h2 class="title">Progress Snapshot</h2>
-      <p class="muted">Your current learning stats from this account.</p>
-
-      <div class="stats">
-        <article class="stat">
-          <div class="stat-label">Level</div>
-          <div id="level" class="stat-value">-</div>
-        </article>
-        <article class="stat">
-          <div class="stat-label">Total XP</div>
-          <div id="xp" class="stat-value">-</div>
-        </article>
-        <article class="stat">
-          <div class="stat-label">XP To Next</div>
-          <div id="toNext" class="stat-value">-</div>
-        </article>
+  <!-- WELCOME BANNER -->
+  <div class="welcome-banner">
+    <div class="banner-bg-text">LQ</div>
+    <div class="welcome-left">
+      <div class="welcome-tag">● Player Status — Active Session</div>
+      <div class="welcome-text">
+        <h2>Welcome back, <span id="welcomeName">Player! 👾</span></h2>
+        <p id="welcomeSubtitle">🚀 Start your first game and build your streak.</p>
       </div>
-
-      <div class="progress-wrap">
-        <div class="progress-head">
-          <span>Level Progress</span>
-          <span id="progressText">0 / 50 XP</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress" id="progress"></div>
-        </div>
+    </div>
+    <div class="progress-group">
+      <div class="progress-label">
+        <span>⭐ LEVEL PROGRESS</span>
+        <span id="progressXpText" style="color:var(--neon-cyan);text-shadow:var(--glow-cyan)">0 / 50 XP</span>
       </div>
-
-      <div class="actions">
-        <button class="profile-btn" type="button" onclick="goProfile()">View Profile</button>
-        <button class="logout-btn" type="button" onclick="logout()">Logout</button>
+      <div class="progress-bar-track">
+        <div id="progressFill" class="progress-bar-fill"></div>
       </div>
+      <div class="progress-label">
+        <span id="levelRangeText">LEVEL 0 → LEVEL 1</span>
+        <span id="progressPercent" style="color:var(--neon-pink);text-shadow:var(--glow-pink)">0%</span>
+      </div>
+    </div>
+  </div>
 
-      <div id="status" class="status"></div>
-    </section>
-  </main>
+  <!-- GAME HUB -->
+  <div style="display:flex;flex-direction:column;gap:10px;min-height:0;">
+    <div class="section-header">
+      <h2>🕹️ // Game Hub — Select Your Class</h2>
+      <div class="section-line"></div>
+      <div class="section-count">04 TRACKS</div>
+    </div>
+    <div id="gamesGrid" class="games-grid"></div>
+  </div>
 
-  <script>
-    const XP_PER_LEVEL = 50;
+  <div id="status" class="status"></div>
+</div>
 
-    function tierFromLevel(level) {
-      if (level >= 10) return "Legend";
-      if (level >= 6) return "Pro";
-      if (level >= 3) return "Explorer";
-      return "Starter";
+<script>
+  /* Particles */
+  const pEl = document.getElementById('particles');
+  const pColors = ['#00fff2','#bf5fff','#ff2d78','#ffe100','#39ff14','#1e90ff'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const sz = 1 + Math.random()*2.5, col = pColors[Math.floor(Math.random()*pColors.length)];
+    p.style.cssText = `width:${sz}px;height:${sz}px;background:${col};left:${Math.random()*100}%;animation-duration:${7+Math.random()*13}s;animation-delay:${Math.random()*-22}s;box-shadow:0 0 ${sz*3}px ${col};`;
+    pEl.appendChild(p);
+  }
+
+  const XP_PER_LEVEL = 50;
+
+  const TRACK_META = Object.freeze({
+    primary: {
+      label:'Primary Class', grade:'🏫 GRADE 1–4',
+      subtitle:'Foundational games for numbers, letters & shapes',
+      path:'/primary-subjects', emoji:'🔢',
+      games:[{emoji:'🧮',name:'Math Adventure Quest'},{emoji:'🔤',name:'Alphabet Treasure Hunt'},{emoji:'🔷',name:'Shape & Color Matching'}]
+    },
+    middle: {
+      label:'Middle School', grade:'🔬 GRADE 5–8',
+      subtitle:'Science, grammar & timeline challenge games',
+      path:'/middle-subjects', emoji:'🧪',
+      games:[{emoji:'⚗️',name:'Science Quiz Battle Arena'},{emoji:'🥷',name:'Grammar Ninja'},{emoji:'📜',name:'History Timeline Challenge'}]
+    },
+    high: {
+      label:'High School', grade:'💻 GRADE 9–12',
+      subtitle:'Coding, cybersecurity & physics challenges',
+      path:'/high-subjects', emoji:'🖥️',
+      games:[{emoji:'⌨️',name:'Coding Challenge Arena'},{emoji:'🔐',name:'Cyber Security Escape Room'},{emoji:'⚛️',name:'Physics Simulation Game'}]
+    },
+    college: {
+      label:'College Level', grade:'🎓 COLLEGE',
+      subtitle:'Placement & banking exam simulation games',
+      path:'/college-level-games', emoji:'🏛️',
+      games:[{emoji:'🏆',name:'Placement Prep Battle'},{emoji:'🏦',name:'Banking Exam Simulator'}]
     }
+  });
 
-    function setStatus(message, isError) {
-      const status = document.getElementById("status");
-      status.textContent = message || "";
-      status.className = "status" + (isError ? " error" : "");
+  const TRACK_GAME_COUNTS = Object.freeze({
+    primary: 9,
+    middle: 9,
+    high: 9,
+    college: 2
+  });
+
+  function setStatus(msg, isError) {
+    const el = document.getElementById('status');
+    el.textContent = msg ? `[ ${msg} ]` : '';
+    el.className = 'status' + (isError ? ' error' : '');
+  }
+  function toNumber(v, f=0) { const n=Number(v); return Number.isFinite(n)?n:f; }
+
+  function setAvatar(img, name) {
+    const btn = document.getElementById('avatarBtn');
+    const letter = ((name||'U').trim().charAt(0)||'U').toUpperCase();
+    btn.title = name ? `${name} — Profile` : 'My Profile';
+    if (img) { btn.textContent=''; btn.style.backgroundImage=`url("${img}")`; btn.style.backgroundSize='cover'; btn.style.backgroundPosition='center'; }
+    else { btn.textContent=letter; btn.style.backgroundImage=''; }
+  }
+
+  function openTrack(track) {
+    const m = TRACK_META[track];
+    if (!m) return;
+    window.location.href = m.path;
+  }
+
+  function renderGameHub() {
+    const grid = document.getElementById('gamesGrid');
+    grid.innerHTML = '';
+    Object.keys(TRACK_META).forEach((track, i) => {
+      const m = TRACK_META[track];
+      const count = TRACK_GAME_COUNTS[track] || m.games.length;
+      const card = document.createElement('section');
+      card.className = 'track-container';
+      card.dataset.track = track;
+      card.setAttribute('role','button');
+      card.setAttribute('tabindex','0');
+      card.setAttribute('aria-label',`Open ${m.label} games`);
+      card.style.cssText = `animation:fadeUp 0.75s ${0.3+i*0.08}s both`;
+      const gameItems = m.games.map(g=>`<div class="game-item"><span class="game-emoji">${g.emoji}</span><span>${g.name}</span></div>`).join('');
+      card.innerHTML = `
+        <div class="track-glow"></div>
+        <div class="track-inner">
+          <div class="track-emoji">${m.emoji}</div>
+          <div class="track-label">${m.grade}</div>
+          <div class="track-title">${m.label}</div>
+          <div class="track-subtitle">${m.subtitle}</div>
+          <div class="track-games">${gameItems}</div>
+          <div class="track-footer">
+            <div class="track-count">🎮 ${count} GAMES</div>
+            <div class="track-cta">ENTER <span class="cta-arrow">→</span></div>
+          </div>
+        </div>
+        <div class="track-notch"></div>
+      `;
+      const go = () => openTrack(track);
+      card.addEventListener('click', go);
+      card.addEventListener('keydown', e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+      grid.appendChild(card);
+    });
+  }
+
+  function renderDashboard(d) {
+    const xp=Math.max(0,toNumber(d&&d.xp,0)), level=Math.max(0,toNumber(d&&d.level,Math.floor(xp/XP_PER_LEVEL)));
+    const progress=Math.max(0,Math.min(XP_PER_LEVEL,toNumber(d&&d.progress,xp%XP_PER_LEVEL)));
+    const streak=Math.max(0,toNumber(d&&d.streak,0)), pct=Math.round((progress/XP_PER_LEVEL)*100);
+    const name=(d&&d.name)||'Player', first=name.trim().split(/\s+/)[0]||'Player';
+    document.getElementById('xpPill').textContent=`⚡ ${xp} XP`;
+    document.getElementById('streakPill').textContent=`🔥 ${streak} STREAK`;
+    document.getElementById('welcomeName').textContent=`${first}! 👾`;
+    document.getElementById('welcomeSubtitle').textContent=streak>0?`🔥 ${streak}-day streak — You're unstoppable! 💪`:'🚀 Start your first game today and begin your streak!';
+    document.getElementById('progressXpText').textContent=`${progress} / ${XP_PER_LEVEL} XP`;
+    document.getElementById('levelRangeText').textContent=`LEVEL ${level} → LEVEL ${level+1}`;
+    document.getElementById('progressPercent').textContent=`${pct}%`;
+    setTimeout(()=>{document.getElementById('progressFill').style.width=`${pct}%`;},500);
+    setAvatar(d&&d.profileImage,name);
+  }
+
+  function getClientTimeZone() {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    } catch {
+      return 'UTC';
     }
+  }
 
-    setStatus("Loading dashboard...", false);
-
-    fetch("/api/dashboard", { credentials: "include" })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          window.location.href = "/auth";
-          return null;
-        }
-        if (!res.ok) throw new Error("Failed to load dashboard");
-        return res.json();
-      })
-      .then((data) => {
-        if (!data) return;
-
-        const xp = Number.isFinite(Number(data.xp)) ? Number(data.xp) : 0;
-        const level = Number.isFinite(Number(data.level))
-          ? Math.max(0, Number(data.level))
-          : 0;
-        const rawProgress = Number.isFinite(Number(data.progress))
-          ? Number(data.progress)
-          : xp % XP_PER_LEVEL;
-        const progress = Math.max(0, Math.min(XP_PER_LEVEL, rawProgress));
-        const toNext = progress === 0 ? XP_PER_LEVEL : XP_PER_LEVEL - progress;
-        const percent = (progress / XP_PER_LEVEL) * 100;
-
-        document.getElementById("welcome").innerText = "Welcome, " + (data.name || "Player") + "!";
-        document.getElementById("level").innerText = String(level);
-        document.getElementById("xp").innerText = String(xp);
-        document.getElementById("toNext").innerText = toNext + " XP";
-        document.getElementById("progressText").innerText = progress + " / " + XP_PER_LEVEL + " XP";
-        document.getElementById("progress").style.width = percent + "%";
-        document.getElementById("tierChip").innerText = "Tier " + tierFromLevel(level);
-        document.getElementById("nextChip").innerText = "Next " + toNext + " XP";
-
-        setStatus("", false);
-      })
-      .catch((error) => {
-        setStatus(error.message || "Unable to load dashboard.", true);
+  async function loadDashboard() {
+    setStatus('🔌 Connecting to server...', false);
+    renderGameHub();
+    try {
+      const res = await fetch('/api/dashboard',{
+        credentials:'include',
+        cache:'no-store',
+        headers:{'x-timezone': getClientTimeZone()}
       });
+      if(res.status===401||res.status===403){window.location.href='/auth';return;}
+      if(!res.ok) throw new Error('Failed to load dashboard');
+      renderDashboard(await res.json());
+      setStatus('',false);
+    } catch(err) { setStatus(err.message||'Unable to load dashboard.',true); }
+  }
 
-    function goProfile() {
-      window.location.href = "/profile";
-    }
-
-    async function logout() {
-      try {
-        await fetch("/api/auth/logout", {
-          method: "POST",
-          credentials: "include"
-        });
-      } catch (error) {
-      }
-      window.location.href = "/";
-    }
-  </script>
+  loadDashboard();
+  function goProfile(){window.location.href='/profile';}
+  async function logout(){try{await fetch('/api/auth/logout',{method:'POST',credentials:'include'});}catch{}window.location.href='/';}
+</script>
 </body>
 </html>

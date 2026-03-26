@@ -5,6 +5,7 @@ const path = require("path");
 
 const authMiddleware = require("./middleware/authMiddleware");
 const User = require("./models/User");
+const { buildDashboardPayload } = require("./utils/progressStats");
 
 const app = express();
 
@@ -13,6 +14,12 @@ const app = express();
 ========================= */
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use("/api", (req, res, next) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  next();
+});
 
 /* =========================
    STATIC FRONTEND
@@ -31,6 +38,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gamifiedDB")
    AUTH ROUTES
 ========================= */
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/games", require("./routes/gameRoutes"));
 
 /* =========================
    DASHBOARD ROUTE
@@ -47,20 +55,8 @@ app.get("/api/dashboard", authMiddleware, async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const xp = Number.isFinite(user.xp) ? user.xp : 0;
-    const level = Math.floor(xp / 50);
-    const progress = xp % 50;
-
-    res.json({
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      profileImage: user.profileImage,
-      age: user.age,
-      xp,
-      level,
-      progress
-    });
+    const clientTimeZone = String(req.get("x-timezone") || "").trim();
+    res.json(buildDashboardPayload(user, { timeZone: clientTimeZone }));
 
   } catch (error) {
     console.error("Dashboard Error:", error);
@@ -88,6 +84,38 @@ app.get("/auth", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dashboard.html"));
+});
+
+app.get("/primary-games", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/primary-class-games.html"));
+});
+
+app.get("/primary-subjects", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/primary-subjects.html"));
+});
+
+app.get("/primary-class-games", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/primary-class-games.html"));
+});
+
+app.get("/middle-school-games", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/middle-school-games.html"));
+});
+
+app.get("/middle-subjects", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/middle-subjects.html"));
+});
+
+app.get("/high-school-games", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/high-school-games.html"));
+});
+
+app.get("/high-subjects", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/high-subjects.html"));
+});
+
+app.get("/college-level-games", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/college-level-games.html"));
 });
 
 /* =========================
