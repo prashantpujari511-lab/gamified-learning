@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Runner - Numbers & Counting</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            background: #000;
+        }
+        #game {
+            width: 100%;
+            height: auto;
+        }
+        .ui-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+        .ui-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 18px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .ui-element {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 5px;
+            border: 2px solid #FFD700;
+        }
+        .ui-bottom {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 16px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #00FF00;
+        }
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            pointer-events: all;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .question-text {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .option-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .option-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        .option-btn:active {
+            transform: scale(0.95);
+        }
+        .option-btn.correct {
+            background: linear-gradient(135deg, #00FF00, #00DD00);
+            animation: pulse 0.5s;
+        }
+        .option-btn.incorrect {
+            background: linear-gradient(135deg, #FF0000, #DD0000);
+            animation: shake 0.5s;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .game-over-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            pointer-events: all;
+            flex-direction: column;
+        }
+        .game-over-overlay.active {
+            display: flex;
+        }
+        .game-over-content {
+            text-align: center;
+            color: white;
+        }
+        .game-over-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+        }
+        .game-over-score {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #00FF00;
+        }
+        .game-over-stats {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #BBB;
+            line-height: 1.8;
+        }
+        .game-over-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #888, #555);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="game"></div>
+        
+        <!-- UI Elements -->
+        <div class="ui-container">
+            <div class="ui-top">
+                <div class="ui-element">
+                    ⭐ XP: <span id="xpValue">0</span>
+                </div>
+                <div class="ui-element">
+                    💰 Coins: <span id="coinsValue">0</span>
+                </div>
+                <div class="ui-element">
+                    ❤️ Lives: <span id="livesValue">❤️❤️❤️</span>
+                </div>
+            </div>
+            <div class="ui-bottom">
+                🎮 Level: <span id="levelValue">1</span>
+            </div>
+        </div>
+
+        <!-- Question Modal -->
+        <div class="modal-overlay" id="questionModal">
+            <div class="modal-content">
+                <div class="question-text" id="questionText">कितना है 2 + 3?</div>
+                <div class="options" id="optionsContainer">
+                    <!-- Options will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div class="game-over-overlay" id="gameOverScreen">
+            <div class="game-over-content">
+                <div class="game-over-title">🎮 Game Over!</div>
+                <div class="game-over-score">Score: <span id="finalScore">0</span></div>
+                <div class="game-over-stats">
+                    <div>📊 Total XP: <span id="finalXP">0</span></div>
+                    <div>💰 Total Coins: <span id="finalCoins">0</span></div>
+                    <div>📈 Level Reached: <span id="finalLevel">1</span></div>
+                </div>
+                <div class="game-over-buttons">
+                    <button class="btn" onclick="location.reload()">🔄 Play Again</button>
+                    <button class="btn btn-secondary" onclick="saveScore()">💾 Save Score</button>
+                    <button class="btn btn-secondary" onclick="goToDashboard()">🏠 Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Game Configuration ==========
+        // खेल का कॉन्फ़िगरेशन
+        const gameConfig = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 400,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false
+                }
+            },
+            scene: GameScene,
+            render: {
+                pixelArt: false,
+                antialias: true
+            }
+        };
+
+        let currentGame;
+        let gameState = {
+            topicId: 'numbers-and-counting',
+            mode: 'challenger',
+            xp: 0,
+            coins: 0,
+            lives: 3,
+            level: 1,
+            score: 0,
+            speed: 200,
+            correctAnswers: 0,
+            wrongAnswersInRow: 0,
+            currentQuestion: null,
+            isShielded: false,
+            shieldEndTime: 0,
+            gamePaused: false,
+            gameOver: false
+        };
+
+        // ========== Game Scene ==========
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+            }
+
+            // प्रारंभ करना - खेल शुरू करने से पहले संपत्तियां लोड करें
+            preload() {
+            }
+
+            // बनाना - खेल के सभी वस्तुओं को शुरू करें
+            create() {
+                this.createBackground();
+                this.createPlayer();
+                this.createPhysicsGroups();
+                this.setupControls();
+                this.setupCollisions();
+                this.spawnEvent = 0;
+                this.questionSpawnTimer = 0;
+                this.shieldTimer = 0;
+                this.currentQuestion = null;
+
+                // पहला सवाल लोड करें
+                this.loadNextQuestion();
+
+                // कण प्रभाव सिस्टम
+                this.particles = this.add.particles(0xFFD700);
+                this.shieldParticles = this.add.particles(0x0099FF);
+            }
+
+            // पृष्ठभूमि बनाएं - 3-स्तरीय समानांतर
+            createBackground() {
+                // आकाश परत (धीमी गति)
+                const sky = this.add.rectangle(400, 0, 800, 150, 0x87CEEB);
+                sky.setOrigin(0, 0);
+                
+                // पेड़ों की परत (मध्यम गति)
+                for (let i = 0; i < 5; i++) {
+                    const tree = this.add.rectangle(i * 200, 120, 60, 80, 0x228B22);
+                    tree.setOrigin(0, 0);
+                }
+                
+                // जमीन की परत (तेजी से)
+                const ground = this.add.rectangle(0, 350, 800, 50, 0x8B7355);
+                ground.setOrigin(0, 0);
+                this.physics.add.existing(ground, true);
+            }
+
+            // खिलाड़ी बनाएं
+            createPlayer() {
+                this.player = this.add.rectangle(100, 280, 30, 40, 0xFF6B6B);
+                this.physics.add.existing(this.player);
+                this.player.body.setBounce(0.2);
+                this.player.body.setCollideWorldBounds(true);
+                this.player.isJumping = false;
+            }
+
+            // भौतिकी समूह बनाएं
+            createPhysicsGroups() {
+                this.obstacles = this.physics.add.group();
+                this.coins = this.physics.add.group();
+                this.questionBlocks = this.physics.add.group();
+                this.shields = this.physics.add.group();
+            }
+
+            // नियंत्रण सेट करें
+            setupControls() {
+                this.input.keyboard.on('keydown-SPACE', () => this.playerJump());
+                this.input.on('pointerdown', () => this.playerJump());
+            }
+
+            // जमीन से खिलाड़ी कूदें
+            playerJump() {
+                if (!gameState.gamePaused && !gameState.gameOver && 
+                    this.player.body.touching.down) {
+                    this.player.body.setVelocityY(-200);
+                }
+            }
+
+            // टकराव सेट करें
+            setupCollisions() {
+                this.physics.add.collider(this.player, this.obstacles, 
+                    () => this.handleObstacleCollision(), null, this);
+                
+                this.physics.add.overlap(this.player, this.coins, 
+                    (player, coin) => this.collectCoin(coin), null, this);
+                
+                this.physics.add.overlap(this.player, this.questionBlocks, 
+                    (player, block) => this.handleQuestionBlock(block), null, this);
+                
+                this.physics.add.overlap(this.player, this.shields, 
+                    (player, shield) => this.collectShield(shield), null, this);
+            }
+
+            // बाधा टकराव हैंडलर
+            handleObstacleCollision() {
+                if (gameState.isShielded) {
+                    gameState.isShielded = false;
+                    this.player.setTint(0xffffff);
+                } else {
+                    gameState.lives--;
+                    this.camera.shake(200, 0.02);
+                    this.updateUI();
+                    
+                    if (gameState.lives <= 0) {
+                        this.endGame();
+                    }
+                }
+            }
+
+            // सिक्का इकट्ठा करें
+            collectCoin(coin) {
+                gameState.coins += 1;
+                gameState.xp += 5;
+                gameState.score += 5;
+                
+                // सिक्के पर कण प्रभाव
+                this.particles.emitParticleAt(coin.x, coin.y, 10);
+                coin.destroy();
+                this.updateUI();
+            }
+
+            // ढाल इकट्ठा करें
+            collectShield(shield) {
+                gameState.isShielded = true;
+                gameState.shieldEndTime = this.time.now + 10000;
+                this.player.setTint(0x0099FF);
+                shield.destroy();
+            }
+
+            // प्रश्न ब्लॉक हैंडलर
+            handleQuestionBlock(block) {
+                if (!gameState.gamePaused) {
+                    gameState.gamePaused = true;
+                    block.destroy();
+                    this.showQuestion();
+                }
+            }
+
+            // अगला सवाल लोड करें
+            loadNextQuestion() {
+                const topicId = new URLSearchParams(window.location.search).get('topic') || 'numbers-and-counting';
+                const currentLevel = gameState.level || 1;
+                
+                fetch(`http://localhost:5000/api/games/infinite-runner/${topicId}/level-question?level=${currentLevel}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            gameState.currentQuestion = data.data;
+                            console.log(`📚 Level ${data.level} - ${data.difficulty.toUpperCase()} प्रश्न`);
+                        }
+                    })
+                    .catch(err => console.log('Question load error:', err));
+            }
+
+            // सवाल दिखाएं
+            showQuestion() {
+                if (!gameState.currentQuestion) return;
+                
+                const modal = document.getElementById('questionModal');
+                const questionText = document.getElementById('questionText');
+                const optionsContainer = document.getElementById('optionsContainer');
+                
+                questionText.textContent = gameState.currentQuestion.question_text;
+                optionsContainer.innerHTML = '';
+                
+                gameState.currentQuestion.options.forEach((option, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = option;
+                    btn.onclick = () => this.handleAnswerSelection(index);
+                    optionsContainer.appendChild(btn);
+                });
+                
+                modal.classList.add('active');
+            }
+
+            // उत्तर चयन हैंडलर
+            handleAnswerSelection(selectedIndex) {
+                const modal = document.getElementById('questionModal');
+                const options = document.querySelectorAll('.option-btn');
+                const correct = gameState.currentQuestion.correct_answer;
+                
+                if (selectedIndex === correct) {
+                    // सही जवाब
+                    options[selectedIndex].classList.add('correct');
+                    gameState.correctAnswers++;
+                    gameState.xp += 10;
+                    gameState.score += 10;
+                    gameState.wrongAnswersInRow = 0;
+                    gameState.speed += gameState.speed * 0.05;
+                    
+                    // हर 2 सही जवाब के बाद गति बढ़ाएं
+                    if (gameState.correctAnswers % 2 === 0) {
+                        gameState.speed += 20;
+                    }
+                    
+                    // हर 5 सही जवाब के बाद स्तर बढ़ाएं
+                    if (gameState.correctAnswers % 5 === 0) {
+                        gameState.level++;
+                    }
+                    
+                    // कन्फेटी प्रभाव
+                    for (let i = 0; i < 20; i++) {
+                        this.particles.emitParticleAt(400, 100);
+                    }
+                } else {
+                    // गलत जवाब
+                    options[selectedIndex].classList.add('incorrect');
+                    options[correct].classList.add('correct');
+                    gameState.wrongAnswersInRow++;
+                    
+                    // 3 गलत उत्तर के बाद जीवन खोएं
+                    if (gameState.wrongAnswersInRow >= 3) {
+                        gameState.lives--;
+                        gameState.wrongAnswersInRow = 0;
+                        if (gameState.lives <= 0) {
+                            setTimeout(() => this.endGame(), 500);
+                        }
+                    }
+                    
+                    this.camera.shake(200, 0.01);
+                }
+                
+                this.updateUI();
+                
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    gameState.gamePaused = false;
+                    this.loadNextQuestion();
+                }, 1500);
+            }
+
+            // UI अपडेट करें
+            updateUI() {
+                document.getElementById('xpValue').textContent = gameState.xp;
+                document.getElementById('coinsValue').textContent = gameState.coins;
+                document.getElementById('levelValue').textContent = gameState.level;
+                
+                let hearts = '';
+                for (let i = 0; i < gameState.lives; i++) {
+                    hearts += '❤️';
+                }
+                document.getElementById('livesValue').textContent = hearts || '💔';
+            }
+
+            // खेल समाप्त करें
+            endGame() {
+                gameState.gameOver = true;
+                const overlay = document.getElementById('gameOverScreen');
+                document.getElementById('finalScore').textContent = gameState.score;
+                document.getElementById('finalXP').textContent = gameState.xp;
+                document.getElementById('finalCoins').textContent = gameState.coins;
+                document.getElementById('finalLevel').textContent = gameState.level;
+                overlay.classList.add('active');
+            }
+
+            // अपडेट लूप
+            update() {
+                if (gameState.gameOver || gameState.gamePaused) return;
+
+                // जमीन की गति (पृष्ठभूमि एनिमेशन)
+                this.spawnEvent += gameState.speed * this.sys.game.loop.delta / 1000;
+
+                // बाधा स्पॉन करें
+                if (this.spawnEvent > 3) {
+                    this.spawnObstacle();
+                    this.spawnEvent = 0;
+                }
+
+                // सिक्का स्पॉन करें (30% संभावना)
+                if (Math.random() < 0.001) {
+                    this.spawnCoin();
+                }
+
+                // प्रश्न ब्लॉक स्पॉन करें (हर 5 सेकंड)
+                this.questionSpawnTimer += this.sys.game.loop.delta;
+                if (this.questionSpawnTimer > 5000) {
+                    this.spawnQuestionBlock();
+                    this.questionSpawnTimer = 0;
+                }
+
+                // ढाल स्पॉन करें (0.5% संभावना)
+                if (Math.random() < 0.0005) {
+                    this.spawnShield();
+                }
+
+                // ढाल समय समाप्त करें
+                if (gameState.isShielded && this.time.now > gameState.shieldEndTime) {
+                    gameState.isShielded = false;
+                    this.player.setTint(0xffffff);
+                }
+            }
+
+            // बाधा स्पॉन करें
+            spawnObstacle() {
+                const obstacle = this.add.rectangle(800, 320, 30, 30, 0xFF0000);
+                this.physics.add.existing(obstacle);
+                obstacle.body.setVelocityX(-gameState.speed);
+                this.obstacles.add(obstacle);
+                
+                // स्क्रीन से बाहर निकलने पर नष्ट करें
+                this.time.delayedCall(4000, () => obstacle.destroy());
+            }
+
+            // सिक्का स्पॉन करें
+            spawnCoin() {
+                const coin = this.add.circle(800, Math.random() * 300 + 50, 8, 0xFFD700);
+                this.physics.add.existing(coin);
+                coin.body.setVelocityX(-gameState.speed);
+                this.coins.add(coin);
+                
+                this.time.delayedCall(4000, () => coin.destroy());
+            }
+
+            // प्रश्न ब्लॉक स्पॉन करें
+            spawnQuestionBlock() {
+                const block = this.add.rectangle(800, 280, 40, 40, 0xFFFF00);
+                this.physics.add.existing(block);
+                block.body.setVelocityX(-gameState.speed);
+                this.questionBlocks.add(block);
+                
+                // ब्लॉक के बीच में "?" जोड़ें
+                const text = this.add.text(800, 280, '?', {
+                    fontSize: '24px',
+                    fill: '#000'
+                });
+                text.setOrigin(0.5, 0.5);
+                this.physics.add.existing(text);
+                text.body.setVelocityX(-gameState.speed);
+                
+                this.time.delayedCall(4000, () => {
+                    block.destroy();
+                    text.destroy();
+                });
+            }
+
+            // ढाल स्पॉन करें
+            spawnShield() {
+                const shield = this.add.circle(800, Math.random() * 300 + 50, 15, 0x0099FF);
+                this.physics.add.existing(shield);
+                shield.body.setVelocityX(-gameState.speed);
+                this.shields.add(shield);
+                
+                // चमकता हुआ एनिमेशन
+                this.tweens.add({
+                    targets: shield,
+                    scaleX: 1.2,
+                    scaleY: 1.2,
+                    duration: 500,
+                    yoyo: true,
+                    repeat: -1
+                });
+                
+                this.time.delayedCall(4000, () => shield.destroy());
+            }
+        }
+
+        // खेल शुरू करें
+        window.addEventListener('load', () => {
+            currentGame = new Phaser.Game(gameConfig);
+        });
+
+        // स्कोर बचाएं
+        function saveScore() {
+            const userId = localStorage.getItem('userId') || 'guest';
+            
+            fetch('http://localhost:5000/api/games/infinite-runner/save-score', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    student_id: userId,
+                    xp: gameState.xp,
+                    coins: gameState.coins,
+                    score: gameState.score,
+                    level: gameState.level,
+                    topic: gameState.topicId
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert('✅ स्कोर सफलतापूर्वक सहेजा गया!');
+                setTimeout(() => goToDashboard(), 1000);
+            })
+            .catch(err => {
+                console.log('Save error:', err);
+                alert('⚠️ स्कोर सहेजने में त्रुटि, लेकिन आपका खेल पूर्ण हुआ!');
+            });
+        }
+
+        // डैशबोर्ड पर जाएं
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

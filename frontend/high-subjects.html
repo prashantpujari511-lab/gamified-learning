@@ -139,16 +139,75 @@
       background: #111b2a;
       color: var(--text);
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: 10px 12px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       transition: border-color 0.15s ease, background 0.15s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .game-btn:hover {
       border-color: var(--accent);
       background: #162338;
+    }
+
+    .xp-badge {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .subject-card {
+      cursor: pointer;
+    }
+
+    .subtopics {
+      display: grid;
+      gap: 12px;
+    }
+
+    .back-button {
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .subtopic-item {
+      border: 1px solid var(--border);
+      background: #0d1422;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtopic-item:hover {
+      border-color: var(--accent);
+      background: #111b2a;
+    }
+
+    .subtopic-grade {
+      background: #38bdf8;
+      color: #000;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 12px;
+      letter-spacing: 0.5px;
     }
 
     @media (max-width: 920px) {
@@ -160,82 +219,142 @@
   <div class="shell">
     <header class="top">
       <div>
-        <h1>High School Subjects (9th-12th)</h1>
-        <p>Select a subject, then choose one of its 3 games.</p>
+        <h1 id="pageTitle">High School Subjects (Grades 9-10)</h1>
+        <p id="pageSubtitle">Select a subject, then choose one of its topics.</p>
       </div>
       <div class="top-actions">
+        <button type="button" id="backBtn" class="back-button" onclick="goBackToSubjects()" style="display: none;">← Back</button>
         <button type="button" onclick="goDashboard()">Dashboard</button>
         <button type="button" onclick="goProfile()">Profile</button>
       </div>
     </header>
 
     <main class="main">
-      <section id="subjects" class="subjects"></section>
+      <section id="content"></section>
     </main>
   </div>
 
   <script>
-    const SUBJECTS = [
-      {
-        title: "Maths",
-        sub: "Calculation speed, logic, and applied problem solving.",
-        games: [
-          { name: "Physics Formula Rush", path: "/high-school-games?game=physics_formula_rush" },
-          { name: "Quant Challenge", path: "/high-school-games?game=quant_challenge" },
-          { name: "Speed Math Arena", path: "/high-school-games?game=speed_math_arena" }
-        ]
-      },
-      {
-        title: "Science",
-        sub: "Physics and cyber-science concept challenges.",
-        games: [
-          { name: "Physics Simulation", path: "/high-school-games?game=physics_simulation_game" },
-          { name: "Cyber Security Escape", path: "/high-school-games?game=cyber_security_escape_room" },
-          { name: "Science Battle Grid", path: "/high-school-games?game=science_battle_grid" }
-        ]
-      },
-      {
-        title: "English",
-        sub: "Comprehension, reasoning, and coding-language drills.",
-        games: [
-          { name: "Coding Challenge Arena", path: "/high-school-games?game=coding_challenge_arena" },
-          { name: "Word Logic Sprint", path: "/high-school-games?game=word_logic_sprint" },
-          { name: "Language Analyzer", path: "/high-school-games?game=language_analyzer" }
-        ]
-      }
-    ];
+    let curriculumData = [];
+    let currentView = 'subjects';
+    let selectedSubject = null;
+    const gradeRange = [9, 10, 11, 12];
 
-    function renderSubjects() {
-      const root = document.getElementById("subjects");
-      root.innerHTML = SUBJECTS.map((subject, idx) => `
-        <article class="subject-card" data-idx="${idx}">
-          <h2 class="subject-title">${subject.title}</h2>
-          <p class="subject-sub">${subject.sub}</p>
-          <div class="subject-cta">Subject Games</div>
-          <div class="subject-games">
-            ${subject.games.map((game, gameIdx) => `
-              <button type="button" class="game-btn" data-subject-idx="${idx}" data-game-idx="${gameIdx}">
-                ${game.name}
-              </button>
-            `).join("")}
-          </div>
-        </article>
-      `).join("");
-
-      root.querySelectorAll(".game-btn").forEach((button) => {
-        button.addEventListener("click", () => {
-          const subjectIdx = Number(button.getAttribute("data-subject-idx"));
-          const gameIdx = Number(button.getAttribute("data-game-idx"));
-          const selected = SUBJECTS[subjectIdx] && SUBJECTS[subjectIdx].games[gameIdx];
-          if (selected) window.location.href = selected.path;
+    async function fetchAllGrades() {
+      try {
+        // Fetch all grades
+        const allGradesData = [];
+        for (const grade of gradeRange) {
+          const response = await fetch(`http://localhost:5000/api/curriculum/dashboard/${grade}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const result = await response.json();
+          allGradesData.push({ grade, data: result.data || [] });
+        }
+        
+        // Combine data from all grades
+        const subjectMap = new Map();
+        allGradesData.forEach(({ grade, data }) => {
+          data.forEach(item => {
+            const subjName = item.subject.name;
+            if (!subjectMap.has(subjName)) {
+              subjectMap.set(subjName, {
+                _id: item.subject.id,
+                name: subjName,
+                learningObjective: item.subject.learningObjective || `Learn ${subjName}`,
+                subtopics: [],
+                icon: item.subject.icon,
+                color: item.subject.color
+              });
+            }
+            // Add subtopics with grade info
+            const subject = subjectMap.get(subjName);
+            (item.subtopics || []).forEach(topic => {
+              subject.subtopics.push({ ...topic, grade });
+            });
+          });
         });
-      });
+        
+        curriculumData = Array.from(subjectMap.values());
+        currentView = 'subjects';
+        renderSubjects();
+        updateBackButton();
+      } catch (error) {
+        console.error("Failed to fetch curriculum:", error);
+        document.getElementById("content").innerHTML = `<p style="color: #ff6b6b; padding: 20px; font-weight: 600;">⚠️ Error loading curriculum. Ensure backend is running on http://localhost:5000</p>`;
+      }
     }
 
-    function goDashboard() { window.location.href = "/dashboard"; }
-    function goProfile() { window.location.href = "/profile"; }
+    function renderSubjects() {
+      const root = document.getElementById("content");
+      
+      if (!curriculumData || curriculumData.length === 0) {
+        root.innerHTML = "<p style='color: var(--muted); padding: 20px;'>No subjects loaded. Please try again.</p>";
+        return;
+      }
 
-    renderSubjects();
+      root.innerHTML = `<section class="subjects">${curriculumData.map((subject, idx) => {
+        const subtopicCount = (subject.subtopics || []).length;
+        
+        return `
+          <article class="subject-card" data-idx="${idx}" onclick="showSubtopics(${idx})">
+            <h2 class="subject-title">${subject.name}</h2>
+            <p class="subject-sub">${subject.learningObjective || "Explore this subject to learn more."}</p>
+            <div class="subject-cta">${subtopicCount} Topics</div>
+          </article>
+        `;
+      }).join("")}</section>`;
+    }
+
+    function showSubtopics(subjectIdx) {
+      selectedSubject = curriculumData[subjectIdx];
+      currentView = 'subtopics';
+      const root = document.getElementById("content");
+      
+      const subtopics = selectedSubject.subtopics || [];
+      
+      root.innerHTML = `<div class="subtopics">${subtopics.map(topic => `
+        <div class="subtopic-item" onclick="startTopic('${topic.id}', '${topic.name}', ${topic.grade})">
+          <span>${topic.name}</span>
+          <span class="subtopic-grade">Grade ${topic.grade}</span>
+        </div>
+      `).join("")}</div>`;
+      
+      // Update title
+      document.getElementById("pageTitle").textContent = selectedSubject.name;
+      document.getElementById("pageSubtitle").textContent = `${subtopics.length} topics across all grades`;
+      
+      updateBackButton();
+    }
+
+    function goBackToSubjects() {
+      currentView = 'subjects';
+      selectedSubject = null;
+      document.getElementById("pageTitle").textContent = "High School Subjects (Grades 9-10)";
+      document.getElementById("pageSubtitle").textContent = "Select a subject, then choose one of its topics.";
+      renderSubjects();
+      updateBackButton();
+    }
+
+    function updateBackButton() {
+      const backBtn = document.getElementById("backBtn");
+      backBtn.style.display = currentView === 'subtopics' ? 'inline-block' : 'none';
+    }
+
+    function startTopic(topicId, topicName, grade) {
+      sessionStorage.setItem("selectedTopic", JSON.stringify({
+        id: topicId,
+        name: topicName,
+        grade: grade,
+        subject: selectedSubject.name
+      }));
+      // 🎮 Launch infinite runner game
+      window.location.href = `/game-infinite-runner.html?topicId=${topicId}`;
+    }
+
+    function goDashboard() { window.location.href = "/dashboard.html"; }
+    function goProfile() { window.location.href = "/profile.html"; }
+
+    fetchAllGrades();
   </script>
 </body>
 </html>

@@ -1,0 +1,2344 @@
+{
+  "curriculum": {
+    "platform": "Gamified Learning Platform",
+    "targetAudience": "Primary Class (Grade 1-4)",
+    "syllabus": "Indian CBSE & State Boards",
+    "lastUpdated": "2026-03-31",
+    "subjects": [
+      {
+        "subjectId": "MATH_P",
+        "subjectName": "Mathematics",
+        "description": "Fundamental mathematical concepts and numeracy skills",
+        "icon": "calculator",
+        "color": "#FF6B6B",
+        "learningObjectives": [
+          "Understand number system and place value",
+          "Develop computational skills (addition, subtraction, multiplication, division)",
+          "Apply mathematical concepts to real-world problems",
+          "Recognize and create patterns",
+          "Measure and compare quantities"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "MATH_P_G1_001",
+                "subtopicName": "Numbers and Counting",
+                "description": "Learning numbers 1-20 and counting skills",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Number recognition (1-20)",
+                  "Counting objects",
+                  "Number sequence",
+                  "Before and after numbers",
+                  "Number names (one, two, three...)"
+                ],
+                "gameActivityTypes": ["number-puzzle", "counting-drag-drop", "number-matching"],
+                "tags": ["numbers", "counting", "recognition"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G1_002",
+                "subtopicName": "Addition (Single Digits)",
+                "description": "Basic addition with numbers 1-10",
+                "xpValue": 120,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Combining sets",
+                  "Simple addition (1+1 to 5+5)",
+                  "Addition with objects",
+                  "Vertical addition format"
+                ],
+                "gameActivityTypes": ["addition-quiz", "number-battle", "combo-challenge"],
+                "tags": ["addition", "operations", "basic-math"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G1_003",
+                "subtopicName": "Shapes (2D)",
+                "description": "Recognition and identification of basic 2D shapes",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Circle, square, triangle, rectangle",
+                  "Properties of shapes",
+                  "Shape sorting",
+                  "Counting sides"
+                ],
+                "gameActivityTypes": ["shape-matching", "shape-sort", "identify-shapes"],
+                "tags": ["geometry", "shapes", "visual"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G1_004",
+                "subtopicName": "Comparison",
+                "description": "Comparing quantities using greater than, less than, equal",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "More and less",
+                  "Greater than (>)",
+                  "Less than (<)",
+                  "Equal to (=)",
+                  "Comparing sets"
+                ],
+                "gameActivityTypes": ["comparison-quiz", "number-compare", "quantity-match"],
+                "tags": ["comparison", "operations", "logic"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "MATH_P_G2_001",
+                "subtopicName": "Numbers (1-100)",
+                "description": "Extended number recognition and place value understanding",
+                "xpValue": 150,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Counting 1-100",
+                  "Tens and ones",
+                  "Place value (T and U)",
+                  "Number names (1-100)",
+                  "Skip counting by 2, 5, 10"
+                ],
+                "gameActivityTypes": ["number-sequence", "place-value-game", "skip-count-race"],
+                "tags": ["numbers", "place-value", "counting"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G2_002",
+                "subtopicName": "Addition (Two Digits)",
+                "description": "Addition with two-digit numbers",
+                "xpValue": 180,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Adding 2-digit numbers",
+                  "No regrouping",
+                  "Vertical addition",
+                  "Word problems (addition)",
+                  "Checking answers"
+                ],
+                "gameActivityTypes": ["addition-challenge", "word-problem-quiz", "math-battle"],
+                "tags": ["addition", "operations", "problem-solving"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G2_003",
+                "subtopicName": "Subtraction (Two Digits)",
+                "description": "Subtraction with two-digit numbers",
+                "xpValue": 180,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Subtracting from 2-digit numbers",
+                  "No regrouping",
+                  "Vertical subtraction",
+                  "Relationship with addition",
+                  "Word problems (subtraction)"
+                ],
+                "gameActivityTypes": ["subtraction-puzzle", "number-race", "math-quiz"],
+                "tags": ["subtraction", "operations", "problem-solving"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G2_004",
+                "subtopicName": "Multiplication Basics",
+                "description": "Introduction to multiplication through arrays and groups",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Concept of multiplication",
+                  "Arrays and groups",
+                  "Repeated addition",
+                  "Times tables (2, 5, 10)",
+                  "Skip counting"
+                ],
+                "gameActivityTypes": ["multiplication-game", "array-puzzle", "times-table-race"],
+                "tags": ["multiplication", "tables", "operations"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G2_005",
+                "subtopicName": "Measurement (Length)",
+                "description": "Measuring length using non-standard and standard units",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Non-standard units (finger, palm)",
+                  "Centimeters (cm)",
+                  "Comparison of lengths",
+                  "Ordering by length"
+                ],
+                "gameActivityTypes": ["measurement-game", "compare-lengths", "sorting-challenge"],
+                "tags": ["measurement", "length", "comparison"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G2_006",
+                "subtopicName": "Money (Indian Currency)",
+                "description": "Understanding coins and notes (₹1, ₹2, ₹5, ₹10)",
+                "xpValue": 160,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Coin recognition",
+                  "Note recognition",
+                  "Counting money",
+                  "Simple addition of money",
+                  "Shopping scenarios"
+                ],
+                "gameActivityTypes": ["money-counting", "shopping-game", "coin-puzzle"],
+                "tags": ["money", "currency", "real-world-math"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "MATH_P_G3_001",
+                "subtopicName": "Numbers (1-1000)",
+                "description": "Extended place value and number system understanding",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Counting 1-1000",
+                  "Hundreds, tens, ones",
+                  "Place value (H, T, U)",
+                  "Expanded form",
+                  "Number comparison and ordering"
+                ],
+                "gameActivityTypes": ["place-value-challenge", "number-expansion-game", "ordering-race"],
+                "tags": ["numbers", "place-value", "thousands"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_002",
+                "subtopicName": "Addition with Regrouping",
+                "description": "Adding numbers with carrying/regrouping",
+                "xpValue": 220,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "2-digit addition with regrouping",
+                  "3-digit addition",
+                  "Word problems",
+                  "Verification of answers"
+                ],
+                "gameActivityTypes": ["addition-challenge", "carry-puzzle", "math-battle"],
+                "tags": ["addition", "regrouping", "operations"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_003",
+                "subtopicName": "Multiplication Tables (1-10)",
+                "description": "Learning and mastering multiplication tables",
+                "xpValue": 250,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Times tables 1-10",
+                  "Multiplication facts",
+                  "Array representation",
+                  "Commutative property",
+                  "Word problems with multiplication"
+                ],
+                "gameActivityTypes": ["times-table-master", "multiplication-race", "array-puzzle"],
+                "tags": ["multiplication", "tables", "facts"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_004",
+                "subtopicName": "Division Basics",
+                "description": "Introduction to division through sharing and grouping",
+                "xpValue": 240,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Concept of division",
+                  "Sharing equally",
+                  "Grouping concept",
+                  "Relationship with multiplication",
+                  "Division notation"
+                ],
+                "gameActivityTypes": ["division-puzzle", "sharing-game", "grouping-challenge"],
+                "tags": ["division", "operations", "sharing"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_005",
+                "subtopicName": "Fractions (Basic)",
+                "description": "Understanding halves, quarters, and thirds",
+                "xpValue": 220,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Halves (1/2)",
+                  "Quarters (1/4)",
+                  "Thirds (1/3)",
+                  "Identifying fractions",
+                  "Equal parts"
+                ],
+                "gameActivityTypes": ["fraction-pizza-game", "equal-parts-puzzle", "fraction-match"],
+                "tags": ["fractions", "parts", "division"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_006",
+                "subtopicName": "Measurement (Weight & Capacity)",
+                "description": "Understanding weight and liquid capacity measurements",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Kilograms (kg) and grams (g)",
+                  "Liters (l) and milliliters (ml)",
+                  "Comparison of weights",
+                  "Comparison of volumes"
+                ],
+                "gameActivityTypes": ["weight-puzzle", "capacity-game", "measurement-compare"],
+                "tags": ["measurement", "weight", "capacity"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G3_007",
+                "subtopicName": "Time (Clock Reading)",
+                "description": "Reading analog clocks and understanding time",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Hour hand and minute hand",
+                  "Telling time (to the hour)",
+                  "Half past (30 minutes)",
+                  "Quarter past/to",
+                  "Duration between times"
+                ],
+                "gameActivityTypes": ["clock-puzzle", "time-match-game", "schedule-organizer"],
+                "tags": ["time", "clock", "measurement"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "MATH_P_G4_001",
+                "subtopicName": "Place Value (Thousands & Lakhs)",
+                "description": "Understanding larger numbers and their place values",
+                "xpValue": 250,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Thousands place",
+                  "Lakhs (Indian system)",
+                  "Expanded notation",
+                  "Number comparison",
+                  "Roman numerals (I, V, X, L)"
+                ],
+                "gameActivityTypes": ["place-value-expert", "number-expansion-race", "roman-numeral-puzzle"],
+                "tags": ["place-value", "large-numbers", "number-system"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_002",
+                "subtopicName": "Multiplication (2-digit)",
+                "description": "Multiplying numbers with multiple digits",
+                "xpValue": 280,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Multiplication by 2-digit numbers",
+                  "Partial products",
+                  "Vertical multiplication",
+                  "Word problems with multiplication",
+                  "Estimation"
+                ],
+                "gameActivityTypes": ["multiplication-challenge", "partial-products-puzzle", "math-quest"],
+                "tags": ["multiplication", "operations", "advanced"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_003",
+                "subtopicName": "Division (Long Division)",
+                "description": "Performing long division with remainders",
+                "xpValue": 300,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Long division process",
+                  "Quotient and remainder",
+                  "Division with 2-digit divisors",
+                  "Word problems with division",
+                  "Verification of division"
+                ],
+                "gameActivityTypes": ["long-division-master", "remainder-puzzle", "division-challenge"],
+                "tags": ["division", "operations", "advanced"],
+                "estimatedTime": "30-40 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_004",
+                "subtopicName": "Fractions (Advanced)",
+                "description": "Understanding and comparing fractions",
+                "xpValue": 270,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Equivalent fractions",
+                  "Comparing fractions",
+                  "Simplifying fractions",
+                  "Adding fractions (same denominator)",
+                  "Fraction of a number"
+                ],
+                "gameActivityTypes": ["fraction-equivalence-game", "fraction-compare-puzzle", "fraction-builder"],
+                "tags": ["fractions", "operations", "advanced-math"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_005",
+                "subtopicName": "Decimals (Basics)",
+                "description": "Understanding basic decimal notation and operations",
+                "xpValue": 280,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Decimal notation (tenths, hundredths)",
+                  "Comparing decimals",
+                  "Decimal and fraction relationship",
+                  "Adding and subtracting decimals",
+                  "Money as decimals"
+                ],
+                "gameActivityTypes": ["decimal-puzzle", "decimal-match", "money-decimal-game"],
+                "tags": ["decimals", "fractions", "operations"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_006",
+                "subtopicName": "Geometry & Perimeter",
+                "description": "Understanding 2D shapes, properties, and measurements",
+                "xpValue": 250,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Properties of polygons",
+                  "Perimeter calculation",
+                  "Introduction to area",
+                  "3D shapes (cube, cuboid, sphere)",
+                  "Symmetry"
+                ],
+                "gameActivityTypes": ["perimeter-puzzle", "shape-builder", "symmetry-challenge"],
+                "tags": ["geometry", "shapes", "measurement"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_007",
+                "subtopicName": "Data Interpretation",
+                "description": "Reading and interpreting graphs and charts",
+                "xpValue": 260,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Pictographs",
+                  "Bar graphs",
+                  "Tally marks",
+                  "Data collection",
+                  "Answering questions from graphs"
+                ],
+                "gameActivityTypes": ["graph-reading-game", "data-puzzle", "chart-challenge"],
+                "tags": ["data", "graphs", "interpretation"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MATH_P_G4_008",
+                "subtopicName": "Word Problems (Mixed Operations)",
+                "description": "Solving complex word problems with multiple steps",
+                "xpValue": 300,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Multi-step problems",
+                  "Real-world scenarios",
+                  "Problem-solving strategies",
+                  "Estimation and verification",
+                  "Money problems"
+                ],
+                "gameActivityTypes": ["word-problem-quest", "real-world-challenge", "strategy-builder"],
+                "tags": ["problem-solving", "word-problems", "advanced"],
+                "estimatedTime": "30-40 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "ENG_P",
+        "subjectName": "English",
+        "description": "Language skills including reading, writing, and grammar",
+        "icon": "book",
+        "color": "#4ECDC4",
+        "learningObjectives": [
+          "Develop phonetic and phonemic awareness",
+          "Build vocabulary and communication skills",
+          "Understand basic grammar and sentence structure",
+          "Enhance reading comprehension",
+          "Develop creative writing and expression"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "ENG_P_G1_001",
+                "subtopicName": "Alphabet Recognition",
+                "description": "Learning uppercase and lowercase letters",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Uppercase letters (A-Z)",
+                  "Lowercase letters (a-z)",
+                  "Letter shapes and names",
+                  "Alphabetical order (A-Z)"
+                ],
+                "gameActivityTypes": ["alphabet-puzzle", "letter-matching", "trace-and-learn"],
+                "tags": ["alphabet", "letter-recognition", "basics"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G1_002",
+                "subtopicName": "Phonics Sounds",
+                "description": "Learning sounds of letters and simple phonetic patterns",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Consonant sounds",
+                  "Vowel sounds (a, e, i, o, u)",
+                  "Beginning sounds",
+                  "Ending sounds",
+                  "Sound-letter correspondence"
+                ],
+                "gameActivityTypes": ["sound-matching", "phonics-puzzle", "audio-letter-game"],
+                "tags": ["phonics", "sounds", "pronunciation"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G1_003",
+                "subtopicName": "Sight Words",
+                "description": "Learning high-frequency common words",
+                "xpValue": 120,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Common words (the, and, is, at, it)",
+                  "Word recognition",
+                  "Reading sight words in context",
+                  "Writing sight words"
+                ],
+                "gameActivityTypes": ["word-recognition-game", "sight-word-memory", "word-matching"],
+                "tags": ["sight-words", "vocabulary", "reading"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G1_004",
+                "subtopicName": "Vowels and Consonants",
+                "description": "Understanding vowels and consonant classifications",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "5 vowels (a, e, i, o, u)",
+                  "Consonants",
+                  "Identifying vowels in words",
+                  "Vowel sounds vs consonant sounds"
+                ],
+                "gameActivityTypes": ["vowel-sorter", "consonant-puzzle", "word-analyzer"],
+                "tags": ["vowels", "consonants", "classification"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "ENG_P_G2_001",
+                "subtopicName": "Simple Words and Writing",
+                "description": "Writing simple CVC words and short sentences",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "CVC words (cat, dog, sit)",
+                  "CVCC words (lamp, hand)",
+                  "Short vowel words",
+                  "Word formation from letters"
+                ],
+                "gameActivityTypes": ["word-builder", "cvc-game", "spelling-challenge"],
+                "tags": ["spelling", "writing", "words"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G2_002",
+                "subtopicName": "Rhyming Words",
+                "description": "Understanding rhyming patterns and word families",
+                "xpValue": 130,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Word rhymes",
+                  "Rhyming pairs",
+                  "Word families (-at, -og, -ing)",
+                  "Creating rhymes"
+                ],
+                "gameActivityTypes": ["rhyme-match-game", "rhyming-puzzle", "word-family-sort"],
+                "tags": ["rhymes", "patterns", "phonics"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G2_003",
+                "subtopicName": "Nouns",
+                "description": "Understanding persons, places, things, and animals",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Persons (boy, girl, teacher)",
+                  "Places (school, park, home)",
+                  "Things (pen, book, toy)",
+                  "Animals (cat, dog, bird)",
+                  "Common nouns vs proper nouns"
+                ],
+                "gameActivityTypes": ["noun-sort-game", "noun-memory", "categorize-nouns"],
+                "tags": ["grammar", "nouns", "parts-of-speech"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G2_004",
+                "subtopicName": "Verbs (Action Words)",
+                "description": "Learning action words and their usage",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Common verbs (run, jump, play, eat)",
+                  "Action recognition",
+                  "Verbs in sentences",
+                  "Verb tenses (present)"
+                ],
+                "gameActivityTypes": ["action-mime-game", "verb-match", "sentence-builder"],
+                "tags": ["grammar", "verbs", "actions"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G2_005",
+                "subtopicName": "Sentence Formation",
+                "description": "Creating simple sentences with proper structure",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Subject and verb",
+                  "Simple sentence structure",
+                  "Capitalization",
+                  "Punctuation (period, question mark)"
+                ],
+                "gameActivityTypes": ["sentence-builder-game", "word-order-puzzle", "punctuation-challenge"],
+                "tags": ["grammar", "writing", "sentences"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "ENG_P_G3_001",
+                "subtopicName": "Adjectives",
+                "description": "Understanding descriptive words and their usage",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Descriptive adjectives (big, small, red, happy)",
+                  "Adjectives describing color",
+                  "Adjectives describing size",
+                  "Adjectives describing feeling",
+                  "Adjectives in sentences"
+                ],
+                "gameActivityTypes": ["describe-and-match", "adjective-game", "descriptive-story-builder"],
+                "tags": ["grammar", "adjectives", "description"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G3_002",
+                "subtopicName": "Pronouns",
+                "description": "Learning personal pronouns and their usage",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Personal pronouns (I, you, he, she, it, we, they)",
+                  "Subject pronouns",
+                  "Object pronouns (me, him, her, us, them)",
+                  "Pronouns vs nouns",
+                  "Pronoun agreement"
+                ],
+                "gameActivityTypes": ["pronoun-replace-game", "pronoun-match", "dialogue-builder"],
+                "tags": ["grammar", "pronouns", "parts-of-speech"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G3_003",
+                "subtopicName": "Articles (A, An, The)",
+                "description": "Using indefinite and definite articles correctly",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Indefinite articles (a, an)",
+                  "Definite article (the)",
+                  "When to use 'a'",
+                  "When to use 'an'",
+                  "Usage in sentences"
+                ],
+                "gameActivityTypes": ["article-puzzle", "article-fill-game", "sentence-completion"],
+                "tags": ["grammar", "articles", "rules"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G3_004",
+                "subtopicName": "Prepositions",
+                "description": "Understanding position and location words",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Prepositions of place (in, on, under, above, below)",
+                  "Prepositions of time (in, on, at)",
+                  "Prepositions of direction (to, from, into)",
+                  "Prepositions in sentences"
+                ],
+                "gameActivityTypes": ["position-puzzle-game", "preposition-match", "location-story"],
+                "tags": ["grammar", "prepositions", "positions"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G3_005",
+                "subtopicName": "Tenses (Present & Past)",
+                "description": "Understanding basic verb tenses",
+                "xpValue": 190,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Present tense (is, are, do, does)",
+                  "Past tense (was, were, did, -ed endings)",
+                  "Tense identification",
+                  "Tense conversion",
+                  "Regular and irregular verbs"
+                ],
+                "gameActivityTypes": ["tense-converter-game", "timeline-puzzle", "verb-tense-quiz"],
+                "tags": ["grammar", "tenses", "verbs"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G3_006",
+                "subtopicName": "Reading Comprehension",
+                "description": "Understanding stories and answering questions",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Reading short passages",
+                  "Identifying main idea",
+                  "Answering comprehension questions",
+                  "Character identification",
+                  "Sequencing events"
+                ],
+                "gameActivityTypes": ["reading-quiz", "story-puzzle", "comprehension-challenge"],
+                "tags": ["reading", "comprehension", "understanding"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "ENG_P_G4_001",
+                "subtopicName": "Complex Sentences",
+                "description": "Building sentences with conjunctions and clauses",
+                "xpValue": 220,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Conjunctions (and, but, or, because, so)",
+                  "Compound sentences",
+                  "Simple and compound sentences",
+                  "Sentence combining",
+                  "Punctuation in complex sentences"
+                ],
+                "gameActivityTypes": ["sentence-combiner", "conjunction-puzzle", "complex-builder"],
+                "tags": ["grammar", "sentences", "advanced"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G4_002",
+                "subtopicName": "Plural and Singular",
+                "description": "Understanding singular and plural forms",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Regular plurals (s, es)",
+                  "Irregular plurals (child-children, man-men)",
+                  "Words that don't change in plural",
+                  "Plural possessives"
+                ],
+                "gameActivityTypes": ["plural-converter", "singular-plural-match", "noun-variation"],
+                "tags": ["grammar", "plurals", "nouns"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G4_003",
+                "subtopicName": "Opposites (Antonyms)",
+                "description": "Finding and using opposite words",
+                "xpValue": 190,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Antonym pairs (big-small, hot-cold)",
+                  "Finding opposites in context",
+                  "Using antonyms in sentences",
+                  "Antonym categories"
+                ],
+                "gameActivityTypes": ["antonym-match-game", "opposite-puzzle", "word-pair-builder"],
+                "tags": ["vocabulary", "opposites", "antonyms"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G4_004",
+                "subtopicName": "Synonyms and Word Variations",
+                "description": "Understanding similar words and word families",
+                "xpValue": 210,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Synonym pairs (happy-joyful, big-large)",
+                  "Finding synonyms in context",
+                  "Shades of meaning",
+                  "Word families",
+                  "Root words and variations"
+                ],
+                "gameActivityTypes": ["synonym-match", "word-family-explorer", "meaning-mapper"],
+                "tags": ["vocabulary", "synonyms", "word-families"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G4_005",
+                "subtopicName": "Story Writing & Creative Expression",
+                "description": "Writing short stories and creative pieces",
+                "xpValue": 250,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Story structure (beginning, middle, end)",
+                  "Character development",
+                  "Plot and sequence",
+                  "Descriptive writing",
+                  "Dialogue in stories"
+                ],
+                "gameActivityTypes": ["story-builder-game", "character-creator", "plot-puzzle"],
+                "tags": ["writing", "creativity", "storytelling"],
+                "estimatedTime": "35-40 mins"
+              },
+              {
+                "subtopicId": "ENG_P_G4_006",
+                "subtopicName": "Picture Based Stories",
+                "description": "Creating narratives based on visual prompts",
+                "xpValue": 230,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Interpreting images",
+                  "Creating story sequences",
+                  "Adding descriptive details",
+                  "Story coherence",
+                  "Descriptive vocabulary"
+                ],
+                "gameActivityTypes": ["image-story-game", "sequence-builder", "descriptive-painter"],
+                "tags": ["writing", "visual-literacy", "storytelling"],
+                "estimatedTime": "30-35 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "EVS_P",
+        "subjectName": "Environmental Studies",
+        "description": "Understanding the environment, nature, and living things",
+        "icon": "leaf",
+        "color": "#95E1D3",
+        "learningObjectives": [
+          "Develop awareness about the environment and nature",
+          "Understand human relationships and social structures",
+          "Learn about living and non-living things",
+          "Appreciate natural resources and conservation",
+          "Develop sense of responsibility towards the environment"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "EVS_P_G1_001",
+                "subtopicName": "Me and My Family",
+                "description": "Understanding self and family relationships",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Self-awareness (name, age, gender)",
+                  "Family members",
+                  "Family relationships",
+                  "My role in family",
+                  "Family activities"
+                ],
+                "gameActivityTypes": ["family-tree-game", "relationship-puzzle", "family-match"],
+                "tags": ["family", "relationships", "self"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G1_002",
+                "subtopicName": "My Body Parts",
+                "description": "Learning names and functions of body parts",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Head, eyes, nose, ears, mouth, hands, legs",
+                  "Functions of body parts",
+                  "External body parts",
+                  "Keeping body clean",
+                  "Body health"
+                ],
+                "gameActivityTypes": ["body-labeling-game", "body-parts-match", "health-challenge"],
+                "tags": ["body", "anatomy", "health"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G1_003",
+                "subtopicName": "Sense Organs",
+                "description": "Understanding the five senses and their functions",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Eyes (seeing)",
+                  "Ears (hearing)",
+                  "Nose (smelling)",
+                  "Tongue (tasting)",
+                  "Skin (touching)",
+                  "Care of sense organs"
+                ],
+                "gameActivityTypes": ["sense-match-game", "sensory-explorer", "organ-function-puzzle"],
+                "tags": ["senses", "organs", "perception"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G1_004",
+                "subtopicName": "My School",
+                "description": "Learning about the school environment",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "School rooms (classroom, office, library)",
+                  "School helpers (teacher, principal, guard)",
+                  "School rules",
+                  "School activities",
+                  "School safety"
+                ],
+                "gameActivityTypes": ["school-tour-game", "room-match", "role-identification"],
+                "tags": ["school", "social", "environment"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "EVS_P_G2_001",
+                "subtopicName": "Plants Around Us",
+                "description": "Understanding plants and their parts",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Plant parts (root, stem, leaf, flower, fruit)",
+                  "Functions of plant parts",
+                  "Types of plants",
+                  "Uses of plants",
+                  "Growing plants"
+                ],
+                "gameActivityTypes": ["plant-labeling", "parts-match-game", "plant-life-cycle"],
+                "tags": ["plants", "nature", "biology"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G2_002",
+                "subtopicName": "Animals Around Us",
+                "description": "Learning about animals and their characteristics",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Domestic animals",
+                  "Wild animals",
+                  "Animal habitats",
+                  "Animal food",
+                  "Animal body parts"
+                ],
+                "gameActivityTypes": ["animal-match-game", "habitat-puzzle", "animal-sorter"],
+                "tags": ["animals", "nature", "biology"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G2_003",
+                "subtopicName": "Birds and Their Features",
+                "description": "Understanding birds and their distinctive features",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Bird body parts",
+                  "Feathers and wings",
+                  "Different bird types",
+                  "Bird habitats",
+                  "Bird sounds",
+                  "What birds eat"
+                ],
+                "gameActivityTypes": ["bird-identification-game", "bird-feature-match", "aviary-explorer"],
+                "tags": ["birds", "nature", "animals"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G2_004",
+                "subtopicName": "Food We Eat",
+                "description": "Understanding food sources and healthy eating",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Food groups",
+                  "Fruits and vegetables",
+                  "Dairy products",
+                  "Grains and cereals",
+                  "Proteins",
+                  "Healthy vs unhealthy food"
+                ],
+                "gameActivityTypes": ["food-sorting-game", "nutrition-puzzle", "healthy-food-challenge"],
+                "tags": ["food", "nutrition", "health"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G2_005",
+                "subtopicName": "Water Sources",
+                "description": "Understanding water and its importance",
+                "xpValue": 130,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Water sources (rivers, lakes, wells)",
+                  "Uses of water",
+                  "Water for drinking",
+                  "Water conservation",
+                  "Water safety"
+                ],
+                "gameActivityTypes": ["water-source-game", "conservation-puzzle", "water-match"],
+                "tags": ["water", "environment", "conservation"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "EVS_P_G3_001",
+                "subtopicName": "Weather and Seasons",
+                "description": "Understanding weather patterns and seasonal changes",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Seasons (spring, summer, autumn, winter)",
+                  "Seasonal changes",
+                  "Weather (sunny, rainy, cloudy, windy)",
+                  "Weather effects",
+                  "Season-specific activities",
+                  "Monsoon, weather patterns in India"
+                ],
+                "gameActivityTypes": ["season-match-game", "weather-predictor", "seasonal-cycle"],
+                "tags": ["weather", "seasons", "nature"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G3_002",
+                "subtopicName": "Air and Its Importance",
+                "description": "Understanding air and its vital role",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "What is air",
+                  "Air all around us",
+                  "Breathing and respiration",
+                  "Air pollution",
+                  "Clean air importance",
+                  "Wind"
+                ],
+                "gameActivityTypes": ["air-activity-game", "pollution-puzzle", "breathing-explorer"],
+                "tags": ["air", "environment", "science"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G3_003",
+                "subtopicName": "Transportation",
+                "description": "Learning about different modes of transport",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Land transport (car, bus, train, bicycle)",
+                  "Water transport (boat, ship)",
+                  "Air transport (airplane, helicopter)",
+                  "Public vs private transport",
+                  "Road safety",
+                  "Transport in India"
+                ],
+                "gameActivityTypes": ["transport-match-game", "vehicle-classifier", "journey-planner"],
+                "tags": ["transportation", "travel", "society"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G3_004",
+                "subtopicName": "Types of Houses",
+                "description": "Understanding different types of dwellings",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "House types (house, flat, hut, bungalow)",
+                  "Houses in different regions",
+                  "Building materials",
+                  "Parts of a house",
+                  "Traditional homes in India"
+                ],
+                "gameActivityTypes": ["house-match-game", "dwelling-explorer", "building-designer"],
+                "tags": ["housing", "society", "culture"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G3_005",
+                "subtopicName": "Community Helpers",
+                "description": "Learning about people who serve the community",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Doctor and nurse",
+                  "Teacher",
+                  "Police officer",
+                  "Firefighter",
+                  "Farmer",
+                  "Shopkeeper",
+                  "Roles and responsibilities"
+                ],
+                "gameActivityTypes": ["helper-match-game", "role-explorer", "community-puzzle"],
+                "tags": ["community", "society", "roles"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "EVS_P_G4_001",
+                "subtopicName": "Our Earth",
+                "description": "Understanding planet Earth and its characteristics",
+                "xpValue": 200,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Earth's shape and size",
+                  "Land and water bodies",
+                  "Continents and oceans",
+                  "Equator and poles",
+                  "Earth's layers",
+                  "Rotation and revolution"
+                ],
+                "gameActivityTypes": ["earth-explorer", "continent-map-game", "globe-puzzle"],
+                "tags": ["earth", "geography", "science"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G4_002",
+                "subtopicName": "Environment Conservation",
+                "description": "Understanding the need for environmental protection",
+                "xpValue": 210,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Pollution (air, water, soil)",
+                  "Deforestation",
+                  "Wildlife protection",
+                  "Recycling",
+                  "Renewable resources",
+                  "Sustainable living"
+                ],
+                "gameActivityTypes": ["eco-challenge", "recycle-sorter", "conservation-quest"],
+                "tags": ["environment", "conservation", "sustainability"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G4_003",
+                "subtopicName": "Health and Hygiene",
+                "description": "Learning about personal and community hygiene",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Personal cleanliness",
+                  "Handwashing importance",
+                  "Dental care",
+                  "Food safety",
+                  "Illness prevention",
+                  "First aid basics"
+                ],
+                "gameActivityTypes": ["hygiene-builder", "health-challenge", "safety-puzzle"],
+                "tags": ["health", "hygiene", "wellness"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G4_004",
+                "subtopicName": "Indian Festivals and Culture",
+                "description": "Learning about Indian festivals and traditions",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Diwali",
+                  "Holi",
+                  "Eid",
+                  "Christmas",
+                  "Independence Day",
+                  "Republic Day",
+                  "Regional festivals"
+                ],
+                "gameActivityTypes": ["festival-match", "cultural-explorer", "celebration-puzzle"],
+                "tags": ["culture", "festivals", "society"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "EVS_P_G4_005",
+                "subtopicName": "Safety and Disaster Management",
+                "description": "Understanding safety rules and emergency preparedness",
+                "xpValue": 210,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Road safety rules",
+                  "Fire safety",
+                  "Natural disasters (earthquake, flood)",
+                  "Emergency numbers",
+                  "First aid",
+                  "What to do during emergencies"
+                ],
+                "gameActivityTypes": ["safety-challenge", "disaster-preparedness", "emergency-quiz"],
+                "tags": ["safety", "disaster-management", "emergencies"],
+                "estimatedTime": "30-35 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "GK_P",
+        "subjectName": "General Knowledge",
+        "description": "Basic awareness and facts about the world",
+        "icon": "globe",
+        "color": "#FFD93D",
+        "learningObjectives": [
+          "Build general awareness about the world",
+          "Learn about Indian national symbols and heritage",
+          "Understand basic geography and world facts",
+          "Develop knowledge about sports and famous personalities",
+          "Expand overall knowledge and curiosity"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "GK_P_G1_001",
+                "subtopicName": "Indian National Symbols",
+                "description": "Learning about India's symbols and identity",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Indian flag (colors and meaning)",
+                  "National animal (Tiger)",
+                  "National bird (Peacock)",
+                  "National flower (Lotus)",
+                  "National language (Hindi)"
+                ],
+                "gameActivityTypes": ["symbol-match-game", "flag-builder", "national-memory"],
+                "tags": ["india", "symbols", "national"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "GK_P_G1_002",
+                "subtopicName": "Days of the Week",
+                "description": "Learning and practicing days of the week",
+                "xpValue": 90,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+                  "Sequence of days",
+                  "School days vs weekend",
+                  "Days in a week"
+                ],
+                "gameActivityTypes": ["day-sequence-game", "calendar-puzzle", "day-match"],
+                "tags": ["time", "calendar", "basics"],
+                "estimatedTime": "10-15 mins"
+              },
+              {
+                "subtopicId": "GK_P_G1_003",
+                "subtopicName": "Months of the Year",
+                "description": "Learning all 12 months in sequence",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "All 12 months names",
+                  "Sequence of months",
+                  "Number of days in months",
+                  "Seasons and months"
+                ],
+                "gameActivityTypes": ["month-song-game", "sequence-puzzle", "month-match"],
+                "tags": ["time", "calendar", "months"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "GK_P_G1_004",
+                "subtopicName": "Colors of the Rainbow",
+                "description": "Learning rainbow colors and their order",
+                "xpValue": 90,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "VIBGYOR (Violet, Indigo, Blue, Green, Yellow, Orange, Red)",
+                  "Rainbow formation",
+                  "Color identification",
+                  "Color mixing"
+                ],
+                "gameActivityTypes": ["color-match-game", "rainbow-builder", "color-sequence"],
+                "tags": ["colors", "nature", "science"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "GK_P_G2_001",
+                "subtopicName": "Indian States and Capitals",
+                "description": "Learning about Indian states and their capital cities",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Major states of India (Delhi, Mumbai, Bangalore)",
+                  "State capitals",
+                  "Map of India",
+                  "Union territories"
+                ],
+                "gameActivityTypes": ["state-capital-match", "india-map-puzzle", "location-finder"],
+                "tags": ["geography", "india", "states"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "GK_P_G2_002",
+                "subtopicName": "Indian Festivals",
+                "description": "Learning about major Indian festivals",
+                "xpValue": 140,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Diwali (festival of lights)",
+                  "Holi (festival of colors)",
+                  "Eid (festival)",
+                  "Christmas",
+                  "Pongal",
+                  "When and why celebrated"
+                ],
+                "gameActivityTypes": ["festival-memory-game", "celebration-match", "cultural-explorer"],
+                "tags": ["festivals", "culture", "celebrations"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "GK_P_G2_003",
+                "subtopicName": "Famous Personalities",
+                "description": "Learning about famous Indians (politicians, scientists, freedom fighters)",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Mahatma Gandhi (Father of the Nation)",
+                  "Pandit Nehru (First PM)",
+                  "Dr. Ambedkar",
+                  "Subhas Chandra Bose",
+                  "Rani Lakshmibai",
+                  "Their contributions"
+                ],
+                "gameActivityTypes": ["personality-match", "achievement-puzzle", "history-quiz"],
+                "tags": ["history", "personalities", "india"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "GK_P_G2_004",
+                "subtopicName": "Important Places in India",
+                "description": "Learning about famous landmarks and places",
+                "xpValue": 145,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Taj Mahal",
+                  "Red Fort",
+                  "India Gate",
+                  "Statue of Equality",
+                  "Historical significance"
+                ],
+                "gameActivityTypes": ["landmark-match", "place-identifier", "travel-game"],
+                "tags": ["geography", "landmarks", "places"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "GK_P_G3_001",
+                "subtopicName": "Independence Day & Republic Day",
+                "description": "Learning about India's Independence and Constitution",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Independence Day (August 15, 1947)",
+                  "Republic Day (January 26, 1950)",
+                  "Freedom fighters",
+                  "Independence struggle",
+                  "Indian Constitution"
+                ],
+                "gameActivityTypes": ["timeline-game", "history-puzzle", "celebration-explorer"],
+                "tags": ["history", "independence", "india"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "GK_P_G3_002",
+                "subtopicName": "Solar System Basics",
+                "description": "Learning about planets and space",
+                "xpValue": 180,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Sun",
+                  "Planets (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune)",
+                  "Moon",
+                  "Stars",
+                  "Solar system structure"
+                ],
+                "gameActivityTypes": ["planet-match-game", "space-explorer", "solar-system-builder"],
+                "tags": ["space", "science", "astronomy"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "GK_P_G3_003",
+                "subtopicName": "Sports Basics",
+                "description": "Learning about popular sports in India and world",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Cricket (national sport)",
+                  "Badminton",
+                  "Hockey",
+                  "Football",
+                  "Kabaddi",
+                  "Sports equipment"
+                ],
+                "gameActivityTypes": ["sport-match", "equipment-quiz", "athlete-finder"],
+                "tags": ["sports", "games", "recreation"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "GK_P_G3_004",
+                "subtopicName": "Basic Science Facts",
+                "description": "Learning interesting scientific facts",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Properties of water",
+                  "Gravity",
+                  "Light and shadow",
+                  "Sound",
+                  "Fossils",
+                  "Dinosaurs"
+                ],
+                "gameActivityTypes": ["science-quiz", "fact-match", "discovery-game"],
+                "tags": ["science", "facts", "discovery"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "GK_P_G4_001",
+                "subtopicName": "World Geography & Continents",
+                "description": "Learning about world continents and countries",
+                "xpValue": 210,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Continents (Asia, Africa, Europe, North America, South America, Australia, Antarctica)",
+                  "Major countries",
+                  "Largest countries",
+                  "Capital cities",
+                  "World map"
+                ],
+                "gameActivityTypes": ["world-map-puzzle", "continent-explorer", "country-match"],
+                "tags": ["geography", "continents", "world"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "GK_P_G4_002",
+                "subtopicName": "Indian Culture & Heritage",
+                "description": "Learning about Indian traditions and cultural diversity",
+                "xpValue": 220,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Indian languages",
+                  "Traditional clothing",
+                  "Indian arts and crafts",
+                  "Classical music and dance",
+                  "Religious diversity in India",
+                  "Unity in diversity"
+                ],
+                "gameActivityTypes": ["culture-explorer", "tradition-match", "heritage-puzzle"],
+                "tags": ["culture", "heritage", "traditions"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "GK_P_G4_003",
+                "subtopicName": "Ancient Indian Civilizations",
+                "description": "Learning about Indus Valley and Vedic civilizations",
+                "xpValue": 220,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Indus Valley Civilization",
+                  "Vedic Age",
+                  "Mauryan Empire",
+                  "Ancient cities (Harappa, Mohenjo-daro)",
+                  "Ancient Indian contributions"
+                ],
+                "gameActivityTypes": ["civilization-explorer", "timeline-puzzle", "archaeology-game"],
+                "tags": ["history", "ancient", "civilization"],
+                "estimatedTime": "30-35 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "LOGIC_P",
+        "subjectName": "Logical Reasoning",
+        "description": "Developing critical thinking and problem-solving skills",
+        "icon": "brain",
+        "color": "#A8E6CF",
+        "learningObjectives": [
+          "Develop logical thinking abilities",
+          "Enhance pattern recognition skills",
+          "Improve problem-solving strategies",
+          "Build analytical and critical thinking",
+          "Enhance memory and concentration"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "LOGIC_P_G1_001",
+                "subtopicName": "Matching Pairs",
+                "description": "Finding identical or related items",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Identical matching",
+                  "Related pair matching",
+                  "Object matching",
+                  "Pattern matching basics"
+                ],
+                "gameActivityTypes": ["memory-match-game", "pair-finder", "concentration-challenge"],
+                "tags": ["matching", "memory", "basics"],
+                "estimatedTime": "10-15 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G1_002",
+                "subtopicName": "Odd One Out",
+                "description": "Identifying items that don't belong to a group",
+                "xpValue": 120,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Category identification",
+                  "Finding different items",
+                  "Grouping by quality",
+                  "Logic application"
+                ],
+                "gameActivityTypes": ["odd-one-out", "grouping-game", "categorizer"],
+                "tags": ["logic", "categorization", "reasoning"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G1_003",
+                "subtopicName": "Picture Sequence",
+                "description": "Arranging pictures in correct order",
+                "xpValue": 120,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Story sequencing",
+                  "Before and after",
+                  "Logical progression",
+                  "Event ordering"
+                ],
+                "gameActivityTypes": ["sequence-puzzle", "story-builder", "order-game"],
+                "tags": ["sequencing", "logic", "storytelling"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "LOGIC_P_G2_001",
+                "subtopicName": "Pattern Recognition",
+                "description": "Identifying and continuing visual or numerical patterns",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Shape patterns",
+                  "Color patterns",
+                  "Number patterns",
+                  "Size patterns",
+                  "Pattern prediction"
+                ],
+                "gameActivityTypes": ["pattern-builder", "pattern-continues-game", "sequence-finder"],
+                "tags": ["patterns", "logic", "sequence"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G2_002",
+                "subtopicName": "Memory Games",
+                "description": "Enhancing memory with card flipping and recall",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Visual memory",
+                  "Recall ability",
+                  "Concentration",
+                  "Card matching from memory"
+                ],
+                "gameActivityTypes": ["memory-flip-cards", "recall-challenge", "concentration-boost"],
+                "tags": ["memory", "concentration", "recall"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G2_003",
+                "subtopicName": "Shape Sequence",
+                "description": "Understanding and predicting shape patterns",
+                "xpValue": 140,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Shape progression",
+                  "Size and position changes",
+                  "Rotation patterns",
+                  "Shape transformation"
+                ],
+                "gameActivityTypes": ["shape-sequence-puzzle", "transform-game", "rotation-challenge"],
+                "tags": ["shapes", "patterns", "geometry"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "LOGIC_P_G3_001",
+                "subtopicName": "Analogy Basics",
+                "description": "Understanding relationships between items and concepts",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Simple analogies (A:B::C:D)",
+                  "Relationship identification",
+                  "Word analogies",
+                  "Picture analogies"
+                ],
+                "gameActivityTypes": ["analogy-puzzle", "relationship-finder", "comparison-game"],
+                "tags": ["analogy", "reasoning", "relationships"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G3_002",
+                "subtopicName": "Logic Puzzles",
+                "description": "Solving puzzles that require logical deduction",
+                "xpValue": 190,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Deductive reasoning",
+                  "Clue analysis",
+                  "Elimination method",
+                  "Problem decomposition"
+                ],
+                "gameActivityTypes": ["deduction-puzzle", "clue-solver", "logic-quest"],
+                "tags": ["logic", "puzzles", "deduction"],
+                "estimatedTime": "25-35 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G3_003",
+                "subtopicName": "Puzzle Solving",
+                "description": "Solving various types of puzzles",
+                "xpValue": 180,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Jigsaw-like puzzles",
+                  "Room escape thinking",
+                  "Strategy planning",
+                  "Trial and error application"
+                ],
+                "gameActivityTypes": ["puzzle-solver", "escape-room-game", "strategy-builder"],
+                "tags": ["puzzles", "strategy", "problem-solving"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "LOGIC_P_G4_001",
+                "subtopicName": "Advanced Pattern Recognition",
+                "description": "Complex patterns with multiple variables",
+                "xpValue": 210,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Multi-variable patterns",
+                  "Complex sequences",
+                  "Matrix patterns",
+                  "Mathematical patterns"
+                ],
+                "gameActivityTypes": ["matrix-puzzle", "complex-pattern-game", "master-sequence"],
+                "tags": ["patterns", "advanced", "reasoning"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G4_002",
+                "subtopicName": "Advanced Analogies",
+                "description": "Complex analogies with deeper relationships",
+                "xpValue": 220,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Abstract analogies",
+                  "Multiple relationship types",
+                  "Conceptual connections",
+                  "Synonym and opposite analogies"
+                ],
+                "gameActivityTypes": ["analogy-master", "relationship-explorer", "concept-link"],
+                "tags": ["analogy", "advanced", "reasoning"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "LOGIC_P_G4_003",
+                "subtopicName": "Strategic Thinking",
+                "description": "Games and challenges requiring strategy and planning",
+                "xpValue": 230,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Move planning",
+                  "Consequence prediction",
+                  "Strategic moves",
+                  "Winning strategy formulation"
+                ],
+                "gameActivityTypes": ["strategy-game", "planning-quest", "chess-like-game"],
+                "tags": ["strategy", "planning", "advanced"],
+                "estimatedTime": "30-40 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "COMP_P",
+        "subjectName": "Computer Basics",
+        "description": "Introduction to computers and digital literacy",
+        "icon": "computer",
+        "color": "#FFB6C1",
+        "learningObjectives": [
+          "Familiarize with computer components and their functions",
+          "Understand basic computer operations",
+          "Develop typing and keyboard skills",
+          "Learn about computer applications and uses",
+          "Introduce basic digital safety"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "COMP_P_G1_001",
+                "subtopicName": "Computer Parts Introduction",
+                "description": "Learning about different computer components",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "CPU (processing unit)",
+                  "Monitor (display)",
+                  "Keyboard",
+                  "Mouse",
+                  "Speaker",
+                  "Functions of each part"
+                ],
+                "gameActivityTypes": ["parts-match-game", "component-identifier", "computer-explorer"],
+                "tags": ["hardware", "parts", "basics"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G1_002",
+                "subtopicName": "Keyboard Basics",
+                "description": "Learning keyboard layout and basic usage",
+                "xpValue": 120,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "QWERTY layout",
+                  "Letter keys",
+                  "Number keys",
+                  "Space bar",
+                  "Enter key",
+                  "Shift key"
+                ],
+                "gameActivityTypes": ["keyboard-navigator", "key-finder", "layout-learner"],
+                "tags": ["keyboard", "input", "basics"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G1_003",
+                "subtopicName": "Mouse Usage",
+                "description": "Learning to use mouse and pointer control",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Mouse movement",
+                  "Left click",
+                  "Right click",
+                  "Double-click",
+                  "Drag and drop basics"
+                ],
+                "gameActivityTypes": ["mouse-control-game", "click-practice", "drag-drop-tutorial"],
+                "tags": ["mouse", "input", "control"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G1_004",
+                "subtopicName": "Using Monitor/Screen",
+                "description": "Understanding screen display and icons",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Screen display",
+                  "Desktop icons",
+                  "Window basics",
+                  "Screen brightness",
+                  "Safe viewing distance"
+                ],
+                "gameActivityTypes": ["screen-explorer", "icon-finder", "desktop-tutorial"],
+                "tags": ["display", "output", "screen"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "COMP_P_G2_001",
+                "subtopicName": "Basic Typing",
+                "description": "Developing basic typing skills and speed",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Home row keys positioning",
+                  "Finger placement",
+                  "Simple word typing",
+                  "Typing speed basics",
+                  "Accuracy practice"
+                ],
+                "gameActivityTypes": ["typing-racer", "word-typer", "speed-builder"],
+                "tags": ["typing", "keyboard", "skills"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G2_002",
+                "subtopicName": "Uses of Computer",
+                "description": "Understanding various uses of computers",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Education (learning)",
+                  "Entertainment (games, videos)",
+                  "Communication (email)",
+                  "Work and business",
+                  "Banking",
+                  "Safety considerations"
+                ],
+                "gameActivityTypes": ["use-match-game", "application-explorer", "purpose-finder"],
+                "tags": ["applications", "uses", "society"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G2_003",
+                "subtopicName": "Drawing Tools Basics",
+                "description": "Introduction to simple digital drawing",
+                "xpValue": 140,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Paint application basics",
+                  "Drawing tools (pencil, brush)",
+                  "Color selection",
+                  "Eraser tool",
+                  "Shape tools"
+                ],
+                "gameActivityTypes": ["paint-game", "draw-and-create", "color-artist"],
+                "tags": ["drawing", "graphics", "creativity"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "COMP_P_G3_001",
+                "subtopicName": "Internet Basics",
+                "description": "Understanding internet and browsing",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "What is internet",
+                  "Website basics",
+                  "Web browser",
+                  "URL and domain",
+                  "Searching for information"
+                ],
+                "gameActivityTypes": ["browser-explorer", "search-quest", "website-navigator"],
+                "tags": ["internet", "web", "search"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G3_002",
+                "subtopicName": "Digital Safety",
+                "description": "Learning safe computer practices",
+                "xpValue": 180,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Password importance",
+                  "Private information protection",
+                  "Safe browsing",
+                  "Not sharing personal details",
+                  "Cyberbullying awareness"
+                ],
+                "gameActivityTypes": ["safety-quiz", "security-challenge", "password-builder"],
+                "tags": ["safety", "security", "digital"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G3_003",
+                "subtopicName": "File Management Basics",
+                "description": "Learning to organize files and folders",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Folders and files concept",
+                  "Creating folders",
+                  "File naming",
+                  "Saving files",
+                  "File organization"
+                ],
+                "gameActivityTypes": ["file-organizer", "folder-builder", "organization-quest"],
+                "tags": ["files", "folders", "organization"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "COMP_P_G4_001",
+                "subtopicName": "Introduction to Programming Concepts",
+                "description": "Basic algorithmic thinking and logic",
+                "xpValue": 210,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Algorithm basics",
+                  "Step-by-step thinking",
+                  "Logic in programming",
+                  "Sequencing",
+                  "Simple coding concepts"
+                ],
+                "gameActivityTypes": ["algorithm-game", "logic-puzzle", "code-builder"],
+                "tags": ["programming", "logic", "algorithms"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G4_002",
+                "subtopicName": "Advanced Typing",
+                "description": "Improving typing speed and accuracy",
+                "xpValue": 200,
+                "difficulty": "Medium-Hard",
+                "microConcepts": [
+                  "Touch typing",
+                  "Speed development",
+                  "Accuracy improvement",
+                  "Special characters",
+                  "Typing games"
+                ],
+                "gameActivityTypes": ["typing-championship", "speed-racer", "accuracy-master"],
+                "tags": ["typing", "skills", "speed"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "COMP_P_G4_003",
+                "subtopicName": "Email and Communication",
+                "description": "Understanding email and digital communication",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Email basics",
+                  "Email address structure",
+                  "Composing messages",
+                  "Attachments",
+                  "Etiquette in emails"
+                ],
+                "gameActivityTypes": ["email-simulator", "message-builder", "communication-quest"],
+                "tags": ["email", "communication", "digital"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subjectId": "MORAL_P",
+        "subjectName": "Moral Values & Life Skills",
+        "description": "Character development and social-emotional learning",
+        "icon": "heart",
+        "color": "#FA8072",
+        "learningObjectives": [
+          "Develop good moral values and character",
+          "Build social and emotional skills",
+          "Understand ethical behavior and responsibility",
+          "Develop empathy and kindness",
+          "Create positive habits and discipline"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "gradeLabel": "Grade 1",
+            "difficulty": "Easy",
+            "xpMultiplier": 1.0,
+            "subtopics": [
+              {
+                "subtopicId": "MORAL_P_G1_001",
+                "subtopicName": "Basic Manners and Politeness",
+                "description": "Learning polite words and respectful behavior",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Please and thank you",
+                  "Excuse me",
+                  "Hello and goodbye",
+                  "Eye contact",
+                  "Respectful listening"
+                ],
+                "gameActivityTypes": ["manners-story-game", "polite-response-quiz", "conversation-builder"],
+                "tags": ["manners", "etiquette", "respect"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G1_002",
+                "subtopicName": "Respect for Elders",
+                "description": "Understanding importance of respecting elders",
+                "xpValue": 110,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Listening to parents and teachers",
+                  "Obeying elders",
+                  "Showing gratitude",
+                  "Helping elders",
+                  "Touching feet as respect"
+                ],
+                "gameActivityTypes": ["respect-scenario-game", "dialogue-builder", "family-values"],
+                "tags": ["respect", "family", "values"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G1_003",
+                "subtopicName": "Sharing and Kindness",
+                "description": "Learning to share and be kind to others",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Sharing toys and food",
+                  "Helping friends",
+                  "Being kind to animals",
+                  "Not being selfish",
+                  "Caring for others"
+                ],
+                "gameActivityTypes": ["sharing-game", "kindness-quest", "helping-scenario"],
+                "tags": ["sharing", "kindness", "compassion"],
+                "estimatedTime": "15-20 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G1_004",
+                "subtopicName": "Cleanliness and Hygiene",
+                "description": "Importance of personal and surrounding cleanliness",
+                "xpValue": 100,
+                "difficulty": "Easy",
+                "microConcepts": [
+                  "Hand washing",
+                  "Bathing regularly",
+                  "Keeping surroundings clean",
+                  "Trash disposal",
+                  "Healthy habits"
+                ],
+                "gameActivityTypes": ["cleanliness-challenge", "hygiene-builder", "clean-habit-quest"],
+                "tags": ["cleanliness", "hygiene", "health"],
+                "estimatedTime": "15-20 mins"
+              }
+            ]
+          },
+          {
+            "grade": 2,
+            "gradeLabel": "Grade 2",
+            "difficulty": "Easy-Medium",
+            "xpMultiplier": 1.2,
+            "subtopics": [
+              {
+                "subtopicId": "MORAL_P_G2_001",
+                "subtopicName": "Honesty and Truthfulness",
+                "description": "Importance of being honest and telling truth",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Telling the truth",
+                  "Not lying",
+                  "Admitting mistakes",
+                  "Trust building through honesty",
+                  "Honest behavior examples"
+                ],
+                "gameActivityTypes": ["truth-teller-game", "honest-choice-quiz", "scenario-decision"],
+                "tags": ["honesty", "integrity", "values"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G2_002",
+                "subtopicName": "Discipline and Responsibility",
+                "description": "Understanding discipline and personal responsibility",
+                "xpValue": 150,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Following rules",
+                  "Time management basics",
+                  "Completing tasks",
+                  "Taking responsibility",
+                  "Consequences of actions"
+                ],
+                "gameActivityTypes": ["discipline-builder", "responsibility-quest", "time-manager"],
+                "tags": ["discipline", "responsibility", "accountability"],
+                "estimatedTime": "20-25 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G2_003",
+                "subtopicName": "Friendship and Helping Others",
+                "description": "Building good friendships and helping",
+                "xpValue": 140,
+                "difficulty": "Easy-Medium",
+                "microConcepts": [
+                  "Making friends",
+                  "Being a good friend",
+                  "Helping classmates",
+                  "Cooperation",
+                  "Group activities"
+                ],
+                "gameActivityTypes": ["friendship-game", "helping-scenario", "cooperation-quest"],
+                "tags": ["friendship", "helping", "cooperation"],
+                "estimatedTime": "20-25 mins"
+              }
+            ]
+          },
+          {
+            "grade": 3,
+            "gradeLabel": "Grade 3",
+            "difficulty": "Medium",
+            "xpMultiplier": 1.4,
+            "subtopics": [
+              {
+                "subtopicId": "MORAL_P_G3_001",
+                "subtopicName": "Empathy and Compassion",
+                "description": "Understanding and feeling for others' emotions",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Understanding emotions",
+                  "Empathy definition",
+                  "Helping those in need",
+                  "Compassionate behavior",
+                  "Emotional support"
+                ],
+                "gameActivityTypes": ["empathy-story-game", "emotion-recognizer", "compassion-quest"],
+                "tags": ["empathy", "emotions", "compassion"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G3_002",
+                "subtopicName": "Courage and Bravery",
+                "description": "Developing courage and facing fears",
+                "xpValue": 170,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Facing fears",
+                  "Being brave",
+                  "Courage vs recklessness",
+                  "Standing up for what is right",
+                  "Examples of bravery"
+                ],
+                "gameActivityTypes": ["courage-challenge", "brave-hero-game", "fear-buster"],
+                "tags": ["courage", "bravery", "confidence"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G3_003",
+                "subtopicName": "Environmental Responsibility",
+                "description": "Taking care of environment and nature",
+                "xpValue": 160,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Not littering",
+                  "Saving water and electricity",
+                  "Planting trees",
+                  "Protecting animals",
+                  "Reducing waste"
+                ],
+                "gameActivityTypes": ["eco-guardian-game", "conservation-quest", "green-challenge"],
+                "tags": ["environment", "conservation", "responsibility"],
+                "estimatedTime": "25-30 mins"
+              }
+            ]
+          },
+          {
+            "grade": 4,
+            "gradeLabel": "Grade 4",
+            "difficulty": "Medium-Hard",
+            "xpMultiplier": 1.6,
+            "subtopics": [
+              {
+                "subtopicId": "MORAL_P_G4_001",
+                "subtopicName": "Justice and Fairness",
+                "description": "Understanding justice and treating others fairly",
+                "xpValue": 210,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Fairness concept",
+                  "Justice and equality",
+                  "Non-discrimination",
+                  "Fair treatment",
+                  "Speaking up for injustice"
+                ],
+                "gameActivityTypes": ["fair-judge-game", "justice-scenario", "equality-quest"],
+                "tags": ["justice", "fairness", "equality"],
+                "estimatedTime": "30-35 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G4_002",
+                "subtopicName": "Patriotism and National Pride",
+                "description": "Love for country and national values",
+                "xpValue": 200,
+                "difficulty": "Medium",
+                "microConcepts": [
+                  "Love for country",
+                  "National symbols respect",
+                  "Indian values",
+                  "Unity and diversity",
+                  "Contributing to society"
+                ],
+                "gameActivityTypes": ["patriot-quest", "nation-builder", "pride-challenge"],
+                "tags": ["patriotism", "national", "values"],
+                "estimatedTime": "25-30 mins"
+              },
+              {
+                "subtopicId": "MORAL_P_G4_003",
+                "subtopicName": "Good Decision Making",
+                "description": "Learning to make good choices and decisions",
+                "xpValue": 220,
+                "difficulty": "Hard",
+                "microConcepts": [
+                  "Problem analysis",
+                  "Considering consequences",
+                  "Right and wrong choices",
+                  "Seeking advice",
+                  "Decision-making skills"
+                ],
+                "gameActivityTypes": ["decision-maker-game", "choice-scenario-quest", "wisdom-builder"],
+                "tags": ["decision", "choices", "wisdom"],
+                "estimatedTime": "30-35 mins"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

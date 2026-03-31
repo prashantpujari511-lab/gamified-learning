@@ -1,0 +1,1769 @@
+{
+  "platform": "Gamified Learning Platform",
+  "curriculum": "Indian Education Policy (NEP 2020, CBSE & State Board)",
+  "class_level": "Primary Class",
+  "sections": [
+    {
+      "section_id": "SECTION_1",
+      "section_name": "Section 1 - Foundation Level",
+      "grades": [1, 2],
+      "description": "Very basic foundation level - recognition, identification, speaking, basic understanding",
+      "subjects": [
+        {
+          "subject_id": "MATH_P_S1",
+          "subject_name": "Mathematics",
+          "grade_range": "1-2",
+          "difficulty": "Very Easy",
+          "learning_focus": "Recognition based learning",
+          "topics": [
+            {
+              "topic_id": "MATH_P_S1_T01",
+              "topic_name": "Number Recognition (1–50)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Recognize and identify numbers from 1 to 50",
+              "game_types": ["interactive_quiz", "matching_game", "number_identification"],
+              "micro_concepts": [
+                "Numbers 1-10 recognition",
+                "Numbers 11-20 recognition",
+                "Numbers 21-50 recognition",
+                "Number ordering (1-10)",
+                "Number writing practice"
+              ],
+              "learning_objectives": [
+                "Identify numbers by sight",
+                "Match number to objects",
+                "Sequence numbers in order"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T02",
+              "topic_name": "Counting Objects",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Count objects and match with numbers",
+              "game_types": ["counting_game", "drag_drop", "interactive_quiz"],
+              "micro_concepts": [
+                "Count 1-10 objects",
+                "Count 11-20 objects",
+                "Count and identify quantity",
+                "One-to-one correspondence",
+                "Quick counting practice"
+              ],
+              "learning_objectives": [
+                "Count accurately up to 50",
+                "Relate counting to quantity",
+                "Practice verbal counting"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T03",
+              "topic_name": "Big and Small Comparison",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 45,
+              "description": "Compare sizes - big, small, bigger, smaller",
+              "game_types": ["size_comparison", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Big vs Small identification",
+                "Bigger vs Smaller comparison",
+                "Tallest vs Shortest",
+                "Long vs Short",
+                "Size sorting activity"
+              ],
+              "learning_objectives": [
+                "Identify and compare sizes",
+                "Use comparison vocabulary",
+                "Sort objects by size"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T04",
+              "topic_name": "Basic Addition (Single Digit)",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 60,
+              "description": "Add two single digit numbers (sum ≤ 10)",
+              "game_types": ["math_puzzle", "interactive_quiz", "number_game"],
+              "micro_concepts": [
+                "Addition concept (0+0 to 5+5)",
+                "Addition using objects",
+                "Addition number sentences",
+                "Commutative property (3+2=2+3)",
+                "Adding with fingers"
+              ],
+              "learning_objectives": [
+                "Understand addition concept",
+                "Add single digits accurately",
+                "Write simple addition sentences"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T05",
+              "topic_name": "Basic Subtraction (Single Digit)",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 60,
+              "description": "Subtract single digit numbers (difference from 0-9)",
+              "game_types": ["math_puzzle", "interactive_quiz", "counting_game"],
+              "micro_concepts": [
+                "Subtraction concept",
+                "Subtraction using objects",
+                "Subtraction number sentences",
+                "Finding 'how many left'",
+                "Reverse of addition"
+              ],
+              "learning_objectives": [
+                "Understand subtraction concept",
+                "Subtract single digits accurately",
+                "Relate subtraction to addition"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T06",
+              "topic_name": "Shape Recognition (Circle, Square, Triangle)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify and recognize basic 2D shapes",
+              "game_types": ["shape_matching", "interactive_puzzle", "pattern_game"],
+              "micro_concepts": [
+                "Circle identification",
+                "Square identification",
+                "Triangle identification",
+                "Rectangle introduction",
+                "Shape sorting activity"
+              ],
+              "learning_objectives": [
+                "Recognize basic shapes",
+                "Identify shapes in surroundings",
+                "Name and describe shapes"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S1_T07",
+              "topic_name": "Patterns (Simple Color/Shape Pattern)",
+              "grade": 2,
+              "difficulty": "Easy",
+              "xp_value": 55,
+              "description": "Identify and complete simple repeating patterns",
+              "game_types": ["pattern_completion", "interactive_puzzle", "matching_game"],
+              "micro_concepts": [
+                "Color pattern (AB pattern)",
+                "Shape pattern (AB pattern)",
+                "AAB pattern introduction",
+                "Pattern continuation",
+                "Pattern creation"
+              ],
+              "learning_objectives": [
+                "Identify repeating patterns",
+                "Complete simple patterns",
+                "Understand pattern rules"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "ENG_P_S1",
+          "subject_name": "English",
+          "grade_range": "1-2",
+          "difficulty": "Very Easy",
+          "learning_focus": "Reading and speaking basics",
+          "topics": [
+            {
+              "topic_id": "ENG_P_S1_T01",
+              "topic_name": "Alphabet Recognition (A–Z)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Recognize uppercase and lowercase letters",
+              "game_types": ["letter_matching", "interactive_quiz", "alphabetical_order"],
+              "micro_concepts": [
+                "Uppercase letters A-Z",
+                "Lowercase letters a-z",
+                "Letter names",
+                "Letter ordering",
+                "Letter tracing"
+              ],
+              "learning_objectives": [
+                "Identify all 26 letters",
+                "Distinguish uppercase/lowercase",
+                "Order letters alphabetically"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T02",
+              "topic_name": "Letter Sounds (Basic Phonics)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn and practice basic letter sounds",
+              "game_types": ["phonics_game", "sound_matching", "interactive_audio"],
+              "micro_concepts": [
+                "Consonant sounds (b, c, d, etc.)",
+                "Vowel sounds (a, e, i, o, u)",
+                "Sound discrimination",
+                "Letter-sound association",
+                "Initial sound identification"
+              ],
+              "learning_objectives": [
+                "Associate letters with sounds",
+                "Understand phonetic patterns",
+                "Practice correct pronunciation"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T03",
+              "topic_name": "Vowels Recognition",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify and recognize vowels (A, E, I, O, U)",
+              "game_types": ["vowel_matching", "interactive_quiz", "sound_game"],
+              "micro_concepts": [
+                "Vowel identification",
+                "Vowel sounds",
+                "Vowels in words",
+                "Short vowel sounds",
+                "Vowel tracing"
+              ],
+              "learning_objectives": [
+                "Identify all vowels",
+                "Understand vowel sounds",
+                "Find vowels in words"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T04",
+              "topic_name": "Simple Words (Cat, Dog, Ball...)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn and recognize simple 3-4 letter words",
+              "game_types": ["word_matching", "picture_word_game", "vocabulary_quiz"],
+              "micro_concepts": [
+                "Animals: cat, dog, cow",
+                "Objects: ball, cup, pen",
+                "Food: apple, rice, bread",
+                "Actions: run, sit, jump",
+                "Word reading practice"
+              ],
+              "learning_objectives": [
+                "Read simple words",
+                "Match words with pictures",
+                "Build basic vocabulary"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T05",
+              "topic_name": "Picture Word Matching",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Match pictures with correct words",
+              "game_types": ["drag_drop", "matching_game", "memory_game"],
+              "micro_concepts": [
+                "Picture-word association",
+                "Vocabulary recognition",
+                "Visual-verbal connection",
+                "Word meaning understanding",
+                "Object identification"
+              ],
+              "learning_objectives": [
+                "Connect words with meanings",
+                "Build visual vocabulary",
+                "Understand word-object relationship"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T06",
+              "topic_name": "Rhyming Words (Basic)",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Identify and create rhyming word pairs",
+              "game_types": ["rhyme_matching", "interactive_puzzle", "memory_game"],
+              "micro_concepts": [
+                "Rhyme concept",
+                "Rhyming pairs (cat-bat, etc.)",
+                "Rhyming word identification",
+                "Rhyming sound patterns",
+                "Rhyme completion"
+              ],
+              "learning_objectives": [
+                "Identify rhyming words",
+                "Create rhyming pairs",
+                "Understand sound patterns"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S1_T07",
+              "topic_name": "Simple Sentence Reading (Very Small)",
+              "grade": 2,
+              "difficulty": "Easy",
+              "xp_value": 60,
+              "description": "Read very simple 3-5 word sentences",
+              "game_types": ["reading_game", "interactive_puzzle", "sentence_builder"],
+              "micro_concepts": [
+                "2-3 word sentences",
+                "Subject-verb-object structure",
+                "Sentence with pictures",
+                "Punctuation awareness",
+                "Sentence comprehension"
+              ],
+              "learning_objectives": [
+                "Read simple sentences",
+                "Understand sentence meaning",
+                "Follow simple instructions through reading"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "EVS_P_S1",
+          "subject_name": "Environmental Studies (EVS)",
+          "grade_range": "1-2",
+          "difficulty": "Very Easy",
+          "learning_focus": "Daily life awareness",
+          "topics": [
+            {
+              "topic_id": "EVS_P_S1_T01",
+              "topic_name": "Myself (Name, Age, Family)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Understand self-identity - name, age, basic information",
+              "game_types": ["interactive_quiz", "story_game", "profile_game"],
+              "micro_concepts": [
+                "Personal name",
+                "Age and birthday",
+                "Family members names",
+                "Personal belongings",
+                "Self-introduction"
+              ],
+              "learning_objectives": [
+                "Introduce self with name and age",
+                "Recognize personal identity",
+                "Know immediate family members"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T02",
+              "topic_name": "Body Parts",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify and name body parts",
+              "game_types": ["body_parts_game", "labeling_game", "matching_game"],
+              "micro_concepts": [
+                "Head and face parts",
+                "Arms and hands",
+                "Legs and feet",
+                "Torso",
+                "Sensory organs"
+              ],
+              "learning_objectives": [
+                "Name major body parts",
+                "Understand body structure",
+                "Recognize body functions"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T03",
+              "topic_name": "Family Members",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Recognize and understand family relationships",
+              "game_types": ["family_game", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Mother, Father",
+                "Brother, Sister",
+                "Grandmother, Grandfather",
+                "Family tree basics",
+                "Family roles"
+              ],
+              "learning_objectives": [
+                "Identify family members",
+                "Understand family relationships",
+                "Recognize family roles"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T04",
+              "topic_name": "Animals and Birds Identification",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Identify common animals and birds",
+              "game_types": ["animal_identification", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Domestic animals (cow, dog, cat)",
+                "Wild animals (lion, tiger, elephant)",
+                "Birds (crow, parrot, sparrow)",
+                "Animal sounds",
+                "Animal habitats basics"
+              ],
+              "learning_objectives": [
+                "Recognize common animals and birds",
+                "Match animals with sounds",
+                "Know basic animal facts"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T05",
+              "topic_name": "Fruits and Vegetables Identification",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify common fruits and vegetables",
+              "game_types": ["sorting_game", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Common fruits (apple, banana, orange)",
+                "Common vegetables (carrot, potato, tomato)",
+                "Colors of fruits/vegetables",
+                "Healthy eating awareness",
+                "Growth and harvest"
+              ],
+              "learning_objectives": [
+                "Identify fruits and vegetables",
+                "Understand nutrition basics",
+                "Know food sources"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T06",
+              "topic_name": "Seasons (Summer, Winter, Rainy)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Understand three main seasons and their characteristics",
+              "game_types": ["season_sorting", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Summer - hot, dry",
+                "Winter - cold, dry",
+                "Rainy season - wet, green",
+                "Seasonal activities",
+                "Seasonal clothing"
+              ],
+              "learning_objectives": [
+                "Identify seasons",
+                "Understand seasonal changes",
+                "Know seasonal activities"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S1_T07",
+              "topic_name": "Good Habits (Brush, Clean Hands, Bathe)",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn and practice daily hygiene habits",
+              "game_types": ["habit_game", "story_game", "daily_routine_game"],
+              "micro_concepts": [
+                "Brushing teeth",
+                "Washing hands",
+                "Bathing regularly",
+                "Washing clothes",
+                "Personal hygiene"
+              ],
+              "learning_objectives": [
+                "Understand hygiene importance",
+                "Practice good habits",
+                "Develop daily routine awareness"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "GK_P_S1",
+          "subject_name": "General Knowledge",
+          "grade_range": "1-2",
+          "difficulty": "Very Easy",
+          "learning_focus": "Basic awareness",
+          "topics": [
+            {
+              "topic_id": "GK_P_S1_T01",
+              "topic_name": "Basic Colors",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Recognize and name basic colors",
+              "game_types": ["color_identification", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Red, Blue, Yellow",
+                "Green, Orange, Purple",
+                "Black, White, Brown",
+                "Pink, Gray",
+                "Color mixing basics"
+              ],
+              "learning_objectives": [
+                "Identify basic colors",
+                "Name colors correctly",
+                "Find colors in surroundings"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T02",
+              "topic_name": "Days of Week",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn and sequence the days of the week",
+              "game_types": ["day_ordering", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Monday to Sunday",
+                "Weekdays and weekends",
+                "Day sequence",
+                "Weekly schedule",
+                "School and non-school days"
+              ],
+              "learning_objectives": [
+                "Name all days of week",
+                "Order days correctly",
+                "Understand weekly routine"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T03",
+              "topic_name": "Months Name (Basic Awareness)",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn names and sequence of 12 months",
+              "game_types": ["month_ordering", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "January to December",
+                "Month sequence",
+                "Months with seasons",
+                "Special days in months",
+                "Birthday months"
+              ],
+              "learning_objectives": [
+                "Name all months",
+                "Order months correctly",
+                "Understand yearly calendar"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T04",
+              "topic_name": "National Flag Identification",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Recognize and understand the Indian national flag",
+              "game_types": ["flag_identification", "interactive_quiz", "matching_game"],
+              "micro_concepts": [
+                "Flag colors (orange, white, green)",
+                "Ashoka Chakra",
+                "National pride",
+                "Flag respect",
+                "Independence Day"
+              ],
+              "learning_objectives": [
+                "Identify Indian flag",
+                "Understand flag significance",
+                "Show patriotic awareness"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T05",
+              "topic_name": "Common Vehicles",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify common transportation vehicles",
+              "game_types": ["vehicle_identification", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Car, Bus, Truck",
+                "Train, Boat",
+                "Bicycle, Motorcycle",
+                "Airplane basics",
+                "Vehicle sounds"
+              ],
+              "learning_objectives": [
+                "Identify common vehicles",
+                "Understand transportation types",
+                "Know vehicle purposes"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T06",
+              "topic_name": "Common Birds",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Identify common birds and their characteristics",
+              "game_types": ["bird_identification", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Crow, Sparrow, Pigeon",
+                "Parrot, Peacock",
+                "Eagle, Owl",
+                "Bird sounds",
+                "Bird habitats"
+              ],
+              "learning_objectives": [
+                "Identify common birds",
+                "Understand bird characteristics",
+                "Know bird habitats"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S1_T07",
+              "topic_name": "Common Places (School, Hospital, Home)",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Recognize common community places and their functions",
+              "game_types": ["place_identification", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "House/Home",
+                "School",
+                "Hospital",
+                "Market",
+                "Park"
+              ],
+              "learning_objectives": [
+                "Identify common places",
+                "Understand place functions",
+                "Know community helpers"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "MV_P_S1",
+          "subject_name": "Moral Values",
+          "grade_range": "1-2",
+          "difficulty": "Very Easy",
+          "learning_focus": "Habit building",
+          "topics": [
+            {
+              "topic_id": "MV_P_S1_T01",
+              "topic_name": "Say Thank You",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn gratitude and saying thank you",
+              "game_types": ["story_game", "scenario_game", "interactive_choice"],
+              "micro_concepts": [
+                "Gratitude concept",
+                "When to say thanks",
+                "Thank you phrases",
+                "Appreciating help",
+                "Kindness response"
+              ],
+              "learning_objectives": [
+                "Practice saying thank you",
+                "Understand gratitude",
+                "Show appreciation"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T02",
+              "topic_name": "Say Sorry",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn to apologize and admit mistakes",
+              "game_types": ["story_game", "scenario_game", "interactive_choice"],
+              "micro_concepts": [
+                "Apology concept",
+                "Sorry phrases",
+                "Admitting mistakes",
+                "Making amends",
+                "Conflict resolution"
+              ],
+              "learning_objectives": [
+                "Practice saying sorry",
+                "Admit mistakes gracefully",
+                "Understand consequences"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T03",
+              "topic_name": "Sharing Toys",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn sharing and cooperation with peers",
+              "game_types": ["story_game", "scenario_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Sharing concept",
+                "Taking turns",
+                "Generosity",
+                "Friendliness",
+                "Teamwork"
+              ],
+              "learning_objectives": [
+                "Practice sharing",
+                "Understand benefits of sharing",
+                "Develop cooperative behavior"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T04",
+              "topic_name": "Helping Friends",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn to help and support friends",
+              "game_types": ["story_game", "scenario_game", "interactive_choice"],
+              "micro_concepts": [
+                "Helping concept",
+                "Recognizing needs",
+                "Offering assistance",
+                "Friendship",
+                "Empathy"
+              ],
+              "learning_objectives": [
+                "Develop helping attitude",
+                "Understand empathy",
+                "Support friends in need"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T05",
+              "topic_name": "Respect Parents",
+              "grade": 1,
+              "difficulty": "Very Easy",
+              "xp_value": 50,
+              "description": "Learn respect for parents and elders",
+              "game_types": ["story_game", "scenario_game", "interactive_choice"],
+              "micro_concepts": [
+                "Respect concept",
+                "Parent roles",
+                "Following instructions",
+                "Family values",
+                "Elder respect"
+              ],
+              "learning_objectives": [
+                "Show respect to parents",
+                "Follow family rules",
+                "Appreciate parent care"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T06",
+              "topic_name": "Keep Surroundings Clean",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn cleanliness and environmental responsibility",
+              "game_types": ["cleaning_game", "story_game", "sorting_game"],
+              "micro_concepts": [
+                "Cleanliness importance",
+                "Garbage disposal",
+                "Water conservation",
+                "Environmental care",
+                "Community cleanliness"
+              ],
+              "learning_objectives": [
+                "Develop cleanliness habits",
+                "Protect environment",
+                "Understand health benefits"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S1_T07",
+              "topic_name": "Speaking Truth",
+              "grade": 2,
+              "difficulty": "Very Easy",
+              "xp_value": 55,
+              "description": "Learn honesty and truthfulness",
+              "game_types": ["story_game", "scenario_game", "interactive_choice"],
+              "micro_concepts": [
+                "Honesty concept",
+                "Truthfulness",
+                "Consequences of lying",
+                "Trust building",
+                "Integrity"
+              ],
+              "learning_objectives": [
+                "Practice truthfulness",
+                "Understand honesty importance",
+                "Build trust through honesty"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "SECTION_2",
+      "section_name": "Section 2 - Intermediate Level",
+      "grades": [3, 4],
+      "description": "Intermediate level with increased difficulty - reading, writing, logic, problem solving",
+      "subjects": [
+        {
+          "subject_id": "MATH_P_S2",
+          "subject_name": "Mathematics",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Problem solving introduction",
+          "topics": [
+            {
+              "topic_id": "MATH_P_S2_T01",
+              "topic_name": "Numbers up to 1000",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Recognize, read, and write numbers up to 1000",
+              "game_types": ["number_game", "interactive_quiz", "number_building"],
+              "micro_concepts": [
+                "Place value (ones, tens, hundreds)",
+                "Number 1-1000 reading",
+                "Number writing",
+                "Number comparison",
+                "Number ordering up to 1000"
+              ],
+              "learning_objectives": [
+                "Read and write numbers to 1000",
+                "Understand place value",
+                "Compare and order numbers"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T02",
+              "topic_name": "Addition (2-digit, 3-digit)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Add 2-digit and 3-digit numbers with regrouping",
+              "game_types": ["math_puzzle", "interactive_quiz", "word_problem"],
+              "micro_concepts": [
+                "Addition without regrouping",
+                "Addition with regrouping",
+                "3-digit addition",
+                "Multiple digit addition",
+                "Problem solving through addition"
+              ],
+              "learning_objectives": [
+                "Add 2-digit and 3-digit numbers accurately",
+                "Understand regrouping concept",
+                "Solve addition word problems"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T03",
+              "topic_name": "Subtraction (2-digit, 3-digit)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Subtract 2-digit and 3-digit numbers with regrouping",
+              "game_types": ["math_puzzle", "interactive_quiz", "word_problem"],
+              "micro_concepts": [
+                "Subtraction without regrouping",
+                "Subtraction with regrouping",
+                "3-digit subtraction",
+                "Borrowing concept",
+                "Problem solving through subtraction"
+              ],
+              "learning_objectives": [
+                "Subtract 2-digit and 3-digit numbers",
+                "Understand borrowing",
+                "Solve subtraction word problems"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T04",
+              "topic_name": "Multiplication Basics",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 85,
+              "description": "Learn multiplication as repeated addition",
+              "game_types": ["multiplication_quiz", "array_game", "skip_counting"],
+              "micro_concepts": [
+                "Multiplication concept",
+                "Times tables (2, 3, 5, 10)",
+                "Arrays in multiplication",
+                "Skip counting",
+                "Word problems with multiplication"
+              ],
+              "learning_objectives": [
+                "Understand multiplication concept",
+                "Memorize basic times tables",
+                "Apply multiplication in problems"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T05",
+              "topic_name": "Division Basics",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 85,
+              "description": "Learn division as sharing and grouping",
+              "game_types": ["division_game", "grouping_puzzle", "interactive_quiz"],
+              "micro_concepts": [
+                "Division concept",
+                "Sharing equally",
+                "Grouping concept",
+                "Division with remainders",
+                "Relating division to multiplication"
+              ],
+              "learning_objectives": [
+                "Understand division concept",
+                "Divide equally",
+                "Relate division to multiplication"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T06",
+              "topic_name": "Measurement Basics (Length, Weight)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Measure and compare lengths and weights",
+              "game_types": ["measurement_game", "comparison_puzzle", "interactive_quiz"],
+              "micro_concepts": [
+                "Length measurement (cm, m)",
+                "Weight measurement (kg, g)",
+                "Comparing measurements",
+                "Estimation",
+                "Real-world measurement"
+              ],
+              "learning_objectives": [
+                "Measure accurately",
+                "Compare measurements",
+                "Estimate lengths and weights"
+              ]
+            },
+            {
+              "topic_id": "MATH_P_S2_T07",
+              "topic_name": "Time Reading (Clock)",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Read analog clock and tell time",
+              "game_types": ["time_game", "clock_reading", "interactive_quiz"],
+              "micro_concepts": [
+                "Hour and minute hands",
+                "Reading clock face",
+                "Hours and minutes",
+                "Half past and quarter past",
+                "Elapsed time"
+              ],
+              "learning_objectives": [
+                "Read time on clock",
+                "Understand hours and minutes",
+                "Calculate elapsed time"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "ENG_P_S2",
+          "subject_name": "English",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Grammar introduction",
+          "topics": [
+            {
+              "topic_id": "ENG_P_S2_T01",
+              "topic_name": "Noun Identification",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Identify and understand nouns in sentences",
+              "game_types": ["grammar_quiz", "interactive_puzzle", "sentence_game"],
+              "micro_concepts": [
+                "Noun definition",
+                "Common nouns",
+                "Proper nouns",
+                "Countable nouns",
+                "Noun in sentences"
+              ],
+              "learning_objectives": [
+                "Identify nouns",
+                "Understand noun types",
+                "Use nouns correctly"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T02",
+              "topic_name": "Verb Identification",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Identify and understand verbs in sentences",
+              "game_types": ["grammar_quiz", "action_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Verb definition (action words)",
+                "Common verbs",
+                "Verb in sentences",
+                "Action identification",
+                "Verb variety"
+              ],
+              "learning_objectives": [
+                "Identify verbs",
+                "Understand action words",
+                "Use verbs correctly"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T03",
+              "topic_name": "Simple Tenses (Present)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand and use simple present tense",
+              "game_types": ["grammar_quiz", "sentence_builder", "interactive_puzzle"],
+              "micro_concepts": [
+                "Present tense concept",
+                "First person present",
+                "Third person present",
+                "Forming present tense",
+                "Present tense sentences"
+              ],
+              "learning_objectives": [
+                "Form present tense sentences",
+                "Understand present tense usage",
+                "Apply in writing"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T04",
+              "topic_name": "Sentence Formation",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Form correct sentences with subject and predicate",
+              "game_types": ["sentence_builder", "word_ordering", "interactive_puzzle"],
+              "micro_concepts": [
+                "Subject identification",
+                "Predicate identification",
+                "Sentence structure",
+                "Word order",
+                "Capital letters and periods"
+              ],
+              "learning_objectives": [
+                "Form complete sentences",
+                "Understand sentence structure",
+                "Write grammatically correct sentences"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T05",
+              "topic_name": "Opposite Words (Antonyms)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Find and match opposite words",
+              "game_types": ["matching_game", "interactive_quiz", "vocabulary_game"],
+              "micro_concepts": [
+                "Antonym concept",
+                "Big-small, hot-cold",
+                "Happy-sad, dark-light",
+                "Antonym pairs",
+                "Using antonyms"
+              ],
+              "learning_objectives": [
+                "Identify opposite words",
+                "Match antonyms",
+                "Use antonyms in context"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T06",
+              "topic_name": "Reading Paragraph",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Read and comprehend simple paragraphs",
+              "game_types": ["reading_game", "comprehension_quiz", "story_game"],
+              "micro_concepts": [
+                "Paragraph structure",
+                "Main idea",
+                "Supporting details",
+                "Sequencing",
+                "Comprehension questions"
+              ],
+              "learning_objectives": [
+                "Comprehend paragraphs",
+                "Identify main idea",
+                "Answer comprehension questions"
+              ]
+            },
+            {
+              "topic_id": "ENG_P_S2_T07",
+              "topic_name": "Basic Grammar (A, An, The)",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand articles A, An, and The",
+              "game_types": ["grammar_quiz", "sentence_filler", "interactive_puzzle"],
+              "micro_concepts": [
+                "Article rules",
+                "Using 'a'",
+                "Using 'an'",
+                "Using 'the'",
+                "Article practice"
+              ],
+              "learning_objectives": [
+                "Use articles correctly",
+                "Understand article rules",
+                "Apply in sentences"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "EVS_P_S2",
+          "subject_name": "Environmental Studies (EVS)",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Understanding surroundings",
+          "topics": [
+            {
+              "topic_id": "EVS_P_S2_T01",
+              "topic_name": "Human Body Basics",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand basic human body systems",
+              "game_types": ["body_parts_game", "labeling_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Five senses",
+                "Skeletal system basics",
+                "Digestive system basics",
+                "Respiratory system basics",
+                "Body functions"
+              ],
+              "learning_objectives": [
+                "Understand body systems",
+                "Know five senses",
+                "Understand body functions"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T02",
+              "topic_name": "Plants Types",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Learn about different types of plants",
+              "game_types": ["plant_classification", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Herbs identification",
+                "Shrubs identification",
+                "Trees identification",
+                "Plant parts",
+                "Plant growth"
+              ],
+              "learning_objectives": [
+                "Classify plants",
+                "Identify plant types",
+                "Understand plant life cycle"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T03",
+              "topic_name": "Animals Types",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Learn about different types of animals",
+              "game_types": ["animal_classification", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Herbivores, carnivores, omnivores",
+                "Domestic and wild animals",
+                "Mammals, birds, reptiles",
+                "Animal habitats",
+                "Animal adaptations"
+              ],
+              "learning_objectives": [
+                "Classify animals",
+                "Understand diet types",
+                "Know animal habitats"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T04",
+              "topic_name": "Water Importance",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand water and its importance",
+              "game_types": ["water_cycle_game", "sorting_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Water sources",
+                "Water cycle",
+                "Water uses",
+                "Water conservation",
+                "Importance of water"
+              ],
+              "learning_objectives": [
+                "Understand water cycle",
+                "Know water importance",
+                "Learn conservation basics"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T05",
+              "topic_name": "Types of Houses",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Learn about different types of houses",
+              "game_types": ["house_sorting", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Brick houses",
+                "Wooden houses",
+                "Huts",
+                "Apartments",
+                "Houses in different regions"
+              ],
+              "learning_objectives": [
+                "Identify house types",
+                "Understand regional variations",
+                "Know building materials"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T06",
+              "topic_name": "Transport Types",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Learn about different modes of transportation",
+              "game_types": ["transport_sorting", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Land transport",
+                "Water transport",
+                "Air transport",
+                "Transport uses",
+                "Traffic rules basics"
+              ],
+              "learning_objectives": [
+                "Classify transport modes",
+                "Understand transport uses",
+                "Know traffic awareness"
+              ]
+            },
+            {
+              "topic_id": "EVS_P_S2_T07",
+              "topic_name": "Save Environment Basics",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Learn environmental conservation basics",
+              "game_types": ["environment_game", "sorting_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Reduce waste",
+                "Reuse and recycle",
+                "Pollution prevention",
+                "Tree planting",
+                "Environmental responsibility"
+              ],
+              "learning_objectives": [
+                "Understand environmental issues",
+                "Learn conservation methods",
+                "Develop environmental awareness"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "GK_P_S2",
+          "subject_name": "General Knowledge",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Expanding awareness",
+          "topics": [
+            {
+              "topic_id": "GK_P_S2_T01",
+              "topic_name": "Indian States Basic Awareness",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Learn major Indian states and capitals",
+              "game_types": ["map_puzzle", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "States of India",
+                "Capital cities",
+                "State location on map",
+                "Regional diversity",
+                "State characteristics"
+              ],
+              "learning_objectives": [
+                "Identify Indian states",
+                "Match states with capitals",
+                "Understand India's diversity"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T02",
+              "topic_name": "National Symbols Detail",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand India's national symbols in detail",
+              "game_types": ["symbol_identification", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "National flag details",
+                "National emblem",
+                "National animal (tiger)",
+                "National bird (peacock)",
+                "National flower (lotus)"
+              ],
+              "learning_objectives": [
+                "Identify national symbols",
+                "Understand symbol significance",
+                "Appreciate national pride"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T03",
+              "topic_name": "Famous Indian Leaders",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Learn about notable Indian leaders",
+              "game_types": ["biography_game", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Mahatma Gandhi",
+                "Jawaharlal Nehru",
+                "Sardar Vallabhbhai Patel",
+                "Subhas Chandra Bose",
+                "Contemporary leaders"
+              ],
+              "learning_objectives": [
+                "Know famous leaders",
+                "Understand their contributions",
+                "Develop national consciousness"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T04",
+              "topic_name": "Solar System Basic",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Learn basic facts about solar system",
+              "game_types": ["space_game", "planet_matching", "interactive_quiz"],
+              "micro_concepts": [
+                "The Sun",
+                "Eight planets",
+                "Moon",
+                "Stars",
+                "Space exploration basics"
+              ],
+              "learning_objectives": [
+                "Know planets in order",
+                "Understand solar system structure",
+                "Learn space basics"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T05",
+              "topic_name": "Important Festivals",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Learn about important Indian festivals",
+              "game_types": ["festival_game", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Diwali",
+                "Holi",
+                "Eid",
+                "Christmas",
+                "Regional festivals"
+              ],
+              "learning_objectives": [
+                "Know major festivals",
+                "Understand festival significance",
+                "Appreciate cultural diversity"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T06",
+              "topic_name": "Sports Basic Knowledge",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Learn basic facts about popular sports",
+              "game_types": ["sports_game", "matching_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Cricket basics",
+                "Football basics",
+                "Badminton basics",
+                "Athletic events",
+                "Olympic games basics"
+              ],
+              "learning_objectives": [
+                "Know popular sports",
+                "Understand sports rules basics",
+                "Appreciate athletic achievements"
+              ]
+            },
+            {
+              "topic_id": "GK_P_S2_T07",
+              "topic_name": "Basic Science Facts",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Learn interesting basic science facts",
+              "game_types": ["science_quiz", "matching_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Gravity basics",
+                "Magnetism basics",
+                "Weather phenomena",
+                "Light and shadow",
+                "Sound basics"
+              ],
+              "learning_objectives": [
+                "Understand basic science concepts",
+                "Observe scientific phenomena",
+                "Develop scientific thinking"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "LR_P_S2",
+          "subject_name": "Logical Reasoning",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Thinking ability development",
+          "topics": [
+            {
+              "topic_id": "LR_P_S2_T01",
+              "topic_name": "Find Odd One Out",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Identify the item that doesn't belong in a group",
+              "game_types": ["logic_puzzle", "interactive_quiz", "classification_game"],
+              "micro_concepts": [
+                "Category identification",
+                "Exclusion logic",
+                "Group classification",
+                "Logical differences",
+                "Critical thinking"
+              ],
+              "learning_objectives": [
+                "Identify odd one out",
+                "Understand categorization",
+                "Develop logical thinking"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T02",
+              "topic_name": "Complete Pattern",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Complete missing part of a pattern",
+              "game_types": ["pattern_game", "puzzle_completion", "interactive_quiz"],
+              "micro_concepts": [
+                "Pattern recognition",
+                "ABAB patterns",
+                "Number patterns",
+                "Shape patterns",
+                "Color patterns"
+              ],
+              "learning_objectives": [
+                "Identify patterns",
+                "Complete missing elements",
+                "Understand pattern rules"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T03",
+              "topic_name": "Picture Sequence",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Arrange pictures in correct sequence",
+              "game_types": ["sequencing_game", "ordering_puzzle", "story_game"],
+              "micro_concepts": [
+                "Sequential order",
+                "Logical progression",
+                "Cause and effect",
+                "Story sequence",
+                "Event ordering"
+              ],
+              "learning_objectives": [
+                "Order pictures logically",
+                "Understand sequences",
+                "Think in order"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T04",
+              "topic_name": "Matching Objects",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Match related pairs and objects",
+              "game_types": ["matching_game", "memory_game", "concentration_game"],
+              "micro_concepts": [
+                "Object association",
+                "Pair matching",
+                "Logical connection",
+                "Visual matching",
+                "Concept matching"
+              ],
+              "learning_objectives": [
+                "Find matching pairs",
+                "Understand relationships",
+                "Develop association skills"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T05",
+              "topic_name": "Simple Puzzle",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Solve simple logic puzzles",
+              "game_types": ["puzzle_game", "logic_puzzle", "interactive_puzzle"],
+              "micro_concepts": [
+                "Puzzle solving strategy",
+                "Logical deduction",
+                "Problem-solving",
+                "Critical thinking",
+                "Pattern application"
+              ],
+              "learning_objectives": [
+                "Solve simple puzzles",
+                "Apply logic",
+                "Develop problem-solving skills"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T06",
+              "topic_name": "Number Pattern",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Identify and complete number patterns",
+              "game_types": ["number_pattern", "sequence_game", "interactive_quiz"],
+              "micro_concepts": [
+                "Addition patterns",
+                "Subtraction patterns",
+                "Skip counting patterns",
+                "Doubling patterns",
+                "Number sequences"
+              ],
+              "learning_objectives": [
+                "Recognize number patterns",
+                "Complete sequences",
+                "Understand mathematical patterns"
+              ]
+            },
+            {
+              "topic_id": "LR_P_S2_T07",
+              "topic_name": "Shape Sequence",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Identify and complete shape sequences",
+              "game_types": ["shape_game", "sequence_puzzle", "interactive_puzzle"],
+              "micro_concepts": [
+                "Shape transformation",
+                "Rotation patterns",
+                "Size progression",
+                "Color change patterns",
+                "Sequential shapes"
+              ],
+              "learning_objectives": [
+                "Recognize shape sequences",
+                "Understand transformations",
+                "Complete visual patterns"
+              ]
+            }
+          ]
+        },
+        {
+          "subject_id": "MV_P_S2",
+          "subject_name": "Moral Values",
+          "grade_range": "3-4",
+          "difficulty": "Easy",
+          "learning_focus": "Social values development",
+          "topics": [
+            {
+              "topic_id": "MV_P_S2_T01",
+              "topic_name": "Helping Others",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Develop habit of helping and serving others",
+              "game_types": ["service_game", "story_game", "scenario_game"],
+              "micro_concepts": [
+                "Helping concept",
+                "Identifying needs",
+                "Offering assistance",
+                "Service attitude",
+                "Community service"
+              ],
+              "learning_objectives": [
+                "Develop caring attitude",
+                "Practice helping behavior",
+                "Understand service importance"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T02",
+              "topic_name": "Respect Teachers",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Learn respect and appreciation for teachers",
+              "game_types": ["respect_game", "story_game", "interactive_choice"],
+              "micro_concepts": [
+                "Teacher role",
+                "Respect concept",
+                "Following instructions",
+                "Classroom behavior",
+                "Teacher appreciation"
+              ],
+              "learning_objectives": [
+                "Show respect to teachers",
+                "Understand teacher role",
+                "Maintain classroom discipline"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T03",
+              "topic_name": "Friendship",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 70,
+              "description": "Build and maintain healthy friendships",
+              "game_types": ["friendship_game", "story_game", "scenario_game"],
+              "micro_concepts": [
+                "Friendship qualities",
+                "Trust and loyalty",
+                "Cooperation",
+                "Conflict resolution",
+                "Buddy system"
+              ],
+              "learning_objectives": [
+                "Build meaningful friendships",
+                "Develop social skills",
+                "Understand friendship value"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T04",
+              "topic_name": "Honesty Importance",
+              "grade": 3,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Understand honesty and integrity",
+              "game_types": ["honesty_game", "story_game", "interactive_choice"],
+              "micro_concepts": [
+                "Honesty value",
+                "Truthfulness",
+                "Trust building",
+                "Consequences of dishonesty",
+                "Integrity development"
+              ],
+              "learning_objectives": [
+                "Practice honesty",
+                "Build trust",
+                "Understand integrity importance"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T05",
+              "topic_name": "Discipline",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Develop self-discipline and following rules",
+              "game_types": ["discipline_game", "routine_game", "interactive_puzzle"],
+              "micro_concepts": [
+                "Discipline concept",
+                "Following rules",
+                "Self-control",
+                "Time management",
+                "Responsibility"
+              ],
+              "learning_objectives": [
+                "Develop discipline",
+                "Follow rules consistently",
+                "Practice self-control"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T06",
+              "topic_name": "Teamwork",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 75,
+              "description": "Learn cooperation and working in teams",
+              "game_types": ["teamwork_game", "collaborative_game", "scenario_game"],
+              "micro_concepts": [
+                "Team concept",
+                "Cooperation",
+                "Role assignment",
+                "Group goals",
+                "Collective achievement"
+              ],
+              "learning_objectives": [
+                "Cooperate in teams",
+                "Contribute to group goals",
+                "Understand teamwork benefits"
+              ]
+            },
+            {
+              "topic_id": "MV_P_S2_T07",
+              "topic_name": "Responsibility",
+              "grade": 4,
+              "difficulty": "Easy",
+              "xp_value": 80,
+              "description": "Develop sense of responsibility towards duties",
+              "game_types": ["responsibility_game", "duty_game", "routine_game"],
+              "micro_concepts": [
+                "Responsibility concept",
+                "Personal duties",
+                "Completing tasks",
+                "Accountability",
+                "Responsibility acceptance"
+              ],
+              "learning_objectives": [
+                "Take responsibility",
+                "Complete assigned duties",
+                "Develop accountability"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "total_sections": 2,
+    "total_subjects": 11,
+    "total_topics": 77,
+    "curriculum_alignment": "Indian Education Policy (NEP 2020, CBSE & State Boards)",
+    "gamification_features": [
+      "Interactive Quiz",
+      "Drag & Drop Games",
+      "Matching Games",
+      "Puzzle Games",
+      "Story-based Games",
+      "Sorting Games",
+      "Memory Games",
+      "Pattern Completion",
+      "Choice Scenarios"
+    ],
+    "difficulty_progression": "Very Easy → Easy",
+    "xp_value_range": {
+      "section_1": "45-60 XP per topic",
+      "section_2": "70-85 XP per topic"
+    },
+    "target_audience": "Class 1-4 (Age 6-10 years)",
+    "assessment_methods": [
+      "Quiz-based",
+      "Game-based",
+      "Achievement tracking",
+      "Progress monitoring",
+      "Streak building"
+    ]
+  }
+}

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏃 Numbers & Counting - Infinite Runner</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            max-height: 600px;
+        }
+
+        /* 🎮 Game UI Overlay */
+        .game-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .ui-stat {
+            position: absolute;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ui-stat-top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .ui-stat-top-center {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ui-stat-top-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        .ui-stat-bottom-center {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 20px;
+        }
+
+        .stat-value {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .lives {
+            display: flex;
+            gap: 5px;
+            font-size: 24px;
+        }
+
+        /* 📋 Question Modal */
+        .question-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+        }
+
+        .question-modal.active {
+            display: flex;
+        }
+
+        .question-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .question-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .option-btn.correct {
+            border-color: #10b981;
+            background: #10b981;
+            color: white;
+        }
+
+        .option-btn.wrong {
+            border-color: #ef4444;
+            background: #ef4444;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* 🎮 Game Over Screen */
+        .game-over-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .game-over-screen.active {
+            display: flex;
+        }
+
+        .game-over-content {
+            text-align: center;
+            color: white;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .game-over-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-over-stats {
+            font-size: 24px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-over-stats strong {
+            color: #fbbf24;
+        }
+
+        .game-over-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .game-over-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .btn-play-again {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .btn-play-again:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-dashboard {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .btn-dashboard:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* 📱 Responsive */
+        @media (max-width: 768px) {
+            #game-container {
+                max-height: 400px;
+            }
+
+            .ui-stat {
+                font-size: 14px;
+            }
+
+            .question-content {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 18px;
+            }
+
+            .options-grid {
+                gap: 10px;
+            }
+
+            .option-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- 🎮 Phaser game will render here -->
+        <div class="game-ui">
+            <!-- 💰 XP Counter -->
+            <div class="ui-stat ui-stat-top-left">
+                <span>⭐ XP:</span>
+                <span class="stat-value" id="xp-display">0</span>
+            </div>
+
+            <!-- 🪙 Coins Counter -->
+            <div class="ui-stat ui-stat-top-center">
+                <span>🪙 Coins:</span>
+                <span class="stat-value" id="coins-display">0</span>
+            </div>
+
+            <!-- ❤️ Lives -->
+            <div class="ui-stat ui-stat-top-right">
+                <span>❤️</span>
+                <span class="lives" id="lives-display">❤️ ❤️ ❤️</span>
+            </div>
+
+            <!-- 📊 Level & Speed -->
+            <div class="ui-stat ui-stat-bottom-center" id="level-display">
+                🎯 Level 1 • Speed: 200 px/s
+            </div>
+        </div>
+    </div>
+
+    <!-- 📋 Question Modal -->
+    <div class="question-modal" id="questionModal">
+        <div class="question-content">
+            <div class="question-text" id="questionText">What is the correct answer?</div>
+            <div class="options-grid" id="optionsGrid"></div>
+            <button class="submit-btn" id="submitBtn" onclick="submitAnswer()">
+                Submit Answer
+            </button>
+        </div>
+    </div>
+
+    <!-- 🎮 Game Over Screen -->
+    <div class="game-over-screen" id="gameOverScreen">
+        <div class="game-over-content">
+            <div class="game-over-title">🎮 Game Over!</div>
+            <div class="game-over-stats">
+                Your Score: <strong id="finalScore">0</strong>
+            </div>
+            <div class="game-over-stats">
+                XP Earned: <strong id="finalXP">0</strong> ⭐
+            </div>
+            <div class="game-over-stats">
+                Coins Collected: <strong id="finalCoins">0</strong> 🪙
+            </div>
+            <div class="game-over-stats">
+                Correct Answers: <strong id="finalCorrect">0</strong> ✅
+            </div>
+            <div class="game-over-buttons">
+                <button class="game-over-btn btn-play-again" onclick="location.reload()">
+                    🎮 Play Again
+                </button>
+                <button class="game-over-btn btn-save" onclick="saveScore()">
+                    💾 Save Score
+                </button>
+                <button class="game-over-btn btn-dashboard" onclick="window.location.href='/dashboard.html'">
+                    📊 Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 🎮 Game Configuration & Global Variables
+        // हिंदी: खेल का कॉन्फ़िगरेशन
+        const GAME_CONFIG = {
+            initialSpeed: 200,
+            speedIncrement: 20,
+            speedIncrement2: 5,
+            initialLives: 3,
+            coinXP: 5,
+            correctAnswerXP: 10,
+            questionBlockSpawn: 5000, // 5 seconds
+            coinChance: 0.3, // 30%
+            shieldDuration: 10000, // 10 seconds
+            wrongAnswerPenalty: 1,
+        };
+
+        let gameState = {
+            currentScore: 0,
+            totalXP: 0,
+            totalCoins: 0,
+            lives: GAME_CONFIG.initialLives,
+            currentLevel: 1,
+            correctAnswers: 0,
+            incorrectAnswers: 0,
+            currentSpeed: GAME_CONFIG.initialSpeed,
+            isShielded: false,
+            topicId: new URLSearchParams(window.location.search).get('topicId') || 'numbers-counting',
+            currentQuestion: null,
+            selectedOption: null,
+        };
+
+        // 🎮 Phaser Game Configuration
+        const phaserConfig = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: 1200,
+            height: 600,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false,
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update,
+            }
+        };
+
+        const game = new Phaser.Game(phaserConfig);
+
+        // 🎨 Preload Assets
+        // हिंदी: खेल के चित्र लोड करो
+        function preload() {
+            const scene = this;
+            // Using placeholder colors since we can't load external images reliably
+        }
+
+        // 🎮 Create Game Scene
+        function create() {
+            const scene = this;
+
+            // 🌅 Create parallax background
+            // Hindi: पृष्ठभूमि बनाओ
+            const sky = scene.add.rectangle(600, 150, 1200, 300, 0x87ceeb);
+            sky.depth = -3;
+            
+            // Tree background
+            const trees = scene.add.rectangle(600, 280, 1200, 120, 0x2d5016);
+            trees.depth = -2;
+            
+            const ground = scene.add.rectangle(600, 550, 1200, 100, 0x7cb342);
+            ground.depth = -1;
+
+            // 🏃 Create player character (animated square)
+            const player = scene.add.rectangle(100, 450, 30, 40, 0xff6b6b);
+            scene.physics.add.existing(player);
+            player.body.setBounce(0.2);
+            player.body.collideWorldBounds = true;
+            player.body.setDrag(0);
+            player.name = 'player';
+
+            // 🏃 Player animation state
+            player.isJumping = false;
+            player.canJump = true;
+
+            // 🎯 Create obstacle group using custom factory
+            // Hindi: बाधा समूह
+            const obstacles = scene.add.group();
+            obstacles.name = 'obstacles';
+
+            // 🪙 Create coin group
+            const coins = scene.add.group();
+            coins.name = 'coins';
+
+            // ❓ Create question block group
+            const questionBlocks = scene.add.group();
+            questionBlocks.name = 'questionBlocks';
+
+            // ⚡ Create shield powerup group
+            const shields = scene.add.group();
+            shields.name = 'shields';
+
+            // 💥 Create particles emitter
+            const particleEmitter = scene.add.particles(0xffd700);
+            particleEmitter.createEmitter({
+                speed: { min: -200, max: 200 },
+                angle: { min: 240, max: 300 },
+                scale: { start: 1, end: 0 },
+                lifespan: 600,
+                gravityY: 300
+            });
+            particleEmitter.name = 'particles';
+
+            // ⏰ Spawn timers
+            let nextObstacleTime = 0;
+            let nextQuestionBlockTime = GAME_CONFIG.questionBlockSpawn;
+            let shieldTimeout = null;
+
+            // 🎮 Input handling
+            scene.input.keyboard.on('keydown-SPACE', () => {
+                if (player.body.touching.down) {
+                    player.body.setVelocityY(-300);
+                    player.isJumping = true;
+                }
+            });
+
+            // 📱 Touch input for mobile
+            scene.input.on('pointerdown', () => {
+                if (player.body.touching.down) {
+                    player.body.setVelocityY(-300);
+                    player.isJumping = true;
+                }
+            });
+
+            // Store all in scene for update
+            scene.gameState = gameState;
+            scene.gameConfig = GAME_CONFIG;
+            scene.player = player;
+            scene.obstacles = obstacles;
+            scene.coins = coins;
+            scene.questionBlocks = questionBlocks;
+            scene.shields = shields;
+            scene.particleEmitter = particleEmitter;
+            scene.nextObstacleTime = nextObstacleTime;
+            scene.nextQuestionBlockTime = nextQuestionBlockTime;
+            scene.shieldTimeout = shieldTimeout;
+            scene.lastSpawnTime = Date.now();
+        }
+
+        // 🎮 Update Game Loop
+        // Hindi: खेल को अपडेट करो
+        function update() {
+            const scene = this;
+            const now = Date.now();
+            const deltaTime = (now - scene.lastSpawnTime) / 1000;
+            scene.lastSpawnTime = now;
+
+            const player = scene.player;
+            const obstacles = scene.obstacles;
+            const coins = scene.coins;
+            const questionBlocks = scene.questionBlocks;
+            const speed = scene.gameState.currentSpeed;
+
+            // 🏃 Player movement
+            if (!player.body.touching.down && player.isJumping) {
+                // Player is in air
+            }
+
+            if (player.body.touching.down) {
+                player.isJumping = false;
+            }
+
+            // 🎯 Spawn obstacles randomly
+            scene.nextObstacleTime -= deltaTime * 1000;
+            if (scene.nextObstacleTime <= 0) {
+                spawnObstacle(scene);
+                scene.nextObstacleTime = Phaser.Math.Between(2000, 3500); // 2-3.5 seconds
+            }
+
+            // ❓ Spawn question blocks
+            scene.nextQuestionBlockTime -= deltaTime * 1000;
+            if (scene.nextQuestionBlockTime <= 0) {
+                spawnQuestionBlock(scene);
+                scene.nextQuestionBlockTime = GAME_CONFIG.questionBlockSpawn;
+            }
+
+            // 🪙 Randomly spawn coins
+            if (Math.random() < 0.01) {
+                spawnCoin(scene);
+            }
+
+            // ⚡ Randomly spawn shields
+            if (Math.random() < 0.005) {
+                spawnShield(scene);
+            }
+
+            // Move all obstacles left
+            obstacles.children.entries.forEach(obs => {
+                obs.x -= speed * deltaTime;
+                if (obs.x < -50) {
+                    obs.destroy();
+                }
+            });
+
+            // Move all coins left
+            coins.children.entries.forEach(coin => {
+                coin.x -= speed * deltaTime;
+                coin.rotation += 0.1;
+                if (coin.x < -50) {
+                    coin.destroy();
+                }
+            });
+
+            // Move all question blocks left
+            questionBlocks.children.entries.forEach(qb => {
+                qb.x -= speed * deltaTime;
+                if (qb.linkedText) {
+                    qb.linkedText.x = qb.x;
+                    qb.linkedText.y = qb.y;
+                }
+                qb.rotation += 0.05;
+                if (qb.x < -50) {
+                    qb.destroy();
+                    if (qb.linkedText) qb.linkedText.destroy();
+                }
+            });
+
+            // Move all shields left
+            scene.shields.children.entries.forEach(shield => {
+                shield.x -= speed * deltaTime;
+                shield.rotation += 0.08;
+                if (shield.x < -50) {
+                    shield.destroy();
+                }
+            });
+
+            // 💥 Collision detection - obstacles
+            obstacles.children.entries.forEach((obs, idx) => {
+                if (scene.physics.overlap(player, obs)) {
+                    if (scene.gameState.isShielded) {
+                        scene.gameState.isShielded = false;
+                        player.setFillStyle(0xff6b6b);
+                    } else {
+                        // Hit obstacle
+                        scene.gameState.lives--;
+                        updateUI();
+                        
+                        // Screen shake
+                        scene.cameras.main.shake(200, 0.01);
+
+                        if (scene.gameState.lives <= 0) {
+                            endGame(scene);
+                        }
+                        scene.obstacles.children.entries.forEach(o => o.destroy());
+                    }
+                }
+            });
+
+            // 🪙 Collision detection - coins
+            coins.children.entries.forEach((coin, idx) => {
+                if (scene.physics.overlap(player, coin)) {
+                    scene.gameState.totalCoins++;
+                    scene.gameState.totalXP += 5;
+                    updateUI();
+                    coin.destroy();
+                    // Particle effect
+                    if (scene.particleEmitter) {
+                        scene.particleEmitter.emitParticleAt(coin.x, coin.y);
+                    }
+                }
+            });
+
+            // ❓ Collision detection - question blocks
+            questionBlocks.children.entries.forEach((qb, idx) => {
+                if (scene.physics.overlap(player, qb)) {
+                    showQuestion(scene);
+                    if (qb.linkedText) qb.linkedText.destroy();
+                    qb.destroy();
+                }
+            });
+
+            // ⚡ Collision detection - shields
+            scene.shields.children.entries.forEach((shield, idx) => {
+                if (scene.physics.overlap(player, shield)) {
+                    scene.gameState.isShielded = true;
+                    player.setFillStyle(0x00ffff); // Blue glow
+                    shield.destroy();
+
+                    if (scene.shieldTimeout) {
+                        clearTimeout(scene.shieldTimeout);
+                    }
+                    scene.shieldTimeout = setTimeout(() => {
+                        scene.gameState.isShielded = false;
+                        player.setFillStyle(0xff6b6b);
+                    }, GAME_CONFIG.shieldDuration);
+                }
+            });
+
+            // Update level based on correct answers
+            const newLevel = Math.floor(scene.gameState.correctAnswers / 5) + 1;
+            if (newLevel !== scene.gameState.currentLevel) {
+                scene.gameState.currentLevel = newLevel;
+                // Increase difficulty
+                scene.gameState.currentSpeed += GAME_CONFIG.speedIncrement;
+            }
+        }
+
+        // 🎯 Spawn obstacle function
+        function spawnObstacle(scene) {
+            const obstacle = scene.add.rectangle(1200, 500, 40, 40, 0xff0000);
+            scene.physics.add.existing(obstacle);
+            obstacle.body.setVelocityX(-scene.gameState.currentSpeed);
+            obstacle.body.setCollideWorldBounds(false);
+            scene.obstacles.add(obstacle);
+        }
+
+        // 🪙 Spawn coin function
+        function spawnCoin(scene) {
+            const coin = scene.add.circle(1200, Phaser.Math.Between(200, 450), 10, 0xffd700);
+            scene.physics.add.existing(coin);
+            coin.body.setVelocityX(-scene.gameState.currentSpeed);
+            coin.body.setCollideWorldBounds(false);
+            scene.coins.add(coin);
+        }
+
+        // ❓ Spawn question block function
+        function spawnQuestionBlock(scene) {
+            const qb = scene.add.rectangle(1200, Phaser.Math.Between(250, 450), 40, 40, 0xffeb3b);
+            const text = scene.add.text(1200, Phaser.Math.Between(250, 450), '?', {
+                fontSize: '24px',
+                fontStyle: 'bold',
+                fill: '#000',
+                align: 'center'
+            });
+            text.setOrigin(0.5, 0.5);
+            
+            scene.physics.add.existing(qb);
+            qb.body.setVelocityX(-scene.gameState.currentSpeed);
+            qb.body.setCollideWorldBounds(false);
+            qb.linkedText = text;
+            scene.questionBlocks.add(qb);
+        }
+
+        // ⚡ Spawn shield function
+        function spawnShield(scene) {
+            const shield = scene.add.circle(1200, Phaser.Math.Between(200, 450), 15, 0x00ffff);
+            scene.physics.add.existing(shield);
+            shield.body.setVelocityX(-scene.gameState.currentSpeed);
+            shield.body.setCollideWorldBounds(false);
+            scene.shields.add(shield);
+        }
+
+        // 📋 Show question modal
+        function showQuestion(scene) {
+            // Pause game
+            scene.physics.pause();
+
+            // 🎯 Fetch level-wise question based on current game level
+            const currentLevel = scene.gameState.level || 1;
+            fetch(`/api/games/infinite-runner/${scene.gameState.topicId}/level-question?level=${currentLevel}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        scene.gameState.currentQuestion = data.data;
+                        console.log(`📚 Level ${data.level} - ${data.difficulty.toUpperCase()} Question`);
+                        displayQuestion(data.data);
+                        showModal();
+                    }
+                })
+                .catch(err => {
+                    console.error('Failed to fetch question:', err);
+                    scene.physics.resume();
+                });
+        }
+
+        // Display question in modal
+        function displayQuestion(question) {
+            document.getElementById('questionText').textContent = question.question_text;
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => selectOption(index);
+                grid.appendChild(btn);
+            });
+
+            gameState.selectedOption = null;
+        }
+
+        // Select option
+        function selectOption(index) {
+            gameState.selectedOption = index;
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('selected', i === index);
+            });
+        }
+
+        // Submit answer
+        function submitAnswer() {
+            if (gameState.selectedOption === null) return;
+
+            const question = gameState.currentQuestion;
+            const isCorrect = gameState.selectedOption === question.correct_answer;
+
+            if (isCorrect) {
+                gameState.correctAnswers++;
+                gameState.totalXP += 10;
+                gameState.currentScore += 10;
+                
+                // Visual feedback
+                document.querySelectorAll('.option-btn')[gameState.selectedOption]
+                    .classList.add('correct');
+                
+                // Speed bonus
+                gameState.currentSpeed += GAME_CONFIG.speedIncrement2;
+            } else {
+                gameState.incorrectAnswers++;
+                document.querySelectorAll('.option-btn')[gameState.selectedOption]
+                    .classList.add('wrong');
+                document.querySelectorAll('.option-btn')[question.correct_answer]
+                    .classList.add('correct');
+            }
+
+            updateUI();
+
+            setTimeout(() => {
+                hideModal();
+                if (game.scene.isActive('default')) {
+                    game.scene.get('default').physics.resume();
+                }
+            }, 1500);
+        }
+
+        // Show/hide modal
+        function showModal() {
+            document.getElementById('questionModal').classList.add('active');
+        }
+
+        function hideModal() {
+            document.getElementById('questionModal').classList.remove('active');
+        }
+
+        // Update UI displays
+        function updateUI() {
+            document.getElementById('xp-display').textContent = gameState.totalXP;
+            document.getElementById('coins-display').textContent = gameState.totalCoins;
+            
+            const livesStr = '❤️ '.repeat(gameState.lives) + '🖤 '.repeat(GAME_CONFIG.initialLives - gameState.lives);
+            document.getElementById('lives-display').textContent = livesStr;
+            
+            document.getElementById('level-display').innerHTML = 
+                `🎯 Level ${gameState.currentLevel} • Speed: ${Math.round(gameState.currentSpeed)} px/s`;
+        }
+
+        // End game
+        function endGame(scene) {
+            scene.physics.pause();
+            scene.scene.pause();
+
+            document.getElementById('finalScore').textContent = gameState.currentScore;
+            document.getElementById('finalXP').textContent = gameState.totalXP;
+            document.getElementById('finalCoins').textContent = gameState.totalCoins;
+            document.getElementById('finalCorrect').textContent = gameState.correctAnswers;
+
+            document.getElementById('gameOverScreen').classList.add('active');
+        }
+
+        // Save score to backend
+        function saveScore() {
+            const userId = localStorage.getItem('userId') || 'guest';
+
+            fetch('/api/games/infinite-runner/save-score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    topicId: gameState.topicId,
+                    score: gameState.currentScore,
+                    xp: gameState.totalXP,
+                    coins: gameState.totalCoins,
+                    correctAnswers: gameState.correctAnswers,
+                    incorrectAnswers: gameState.incorrectAnswers,
+                    level: gameState.currentLevel,
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✅ Score saved successfully!');
+                }
+            })
+            .catch(err => console.error('Failed to save score:', err));
+        }
+
+        // Initialize UI on page load
+        window.addEventListener('load', updateUI);
+    </script>
+</body>
+</html>

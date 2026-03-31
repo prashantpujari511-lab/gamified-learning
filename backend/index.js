@@ -39,6 +39,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/gamifiedDB")
 ========================= */
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/games", require("./routes/gameRoutes"));
+app.use("/api/curriculum", require("./routes/curriculumRoutes"));
 
 /* =========================
    DASHBOARD ROUTE
